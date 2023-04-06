@@ -44,7 +44,7 @@ const aws = __importStar(__nccwpck_require__(7560));
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const client = new aws.MarketplaceCatalogClient({});
+            const client = new aws.MarketplaceCatalogClient({ region: 'us-east-1' });
             const productID = core.getInput('product-id', { required: true });
             const version = core.getInput('version', { required: true });
             const releaseNotes = core.getInput('release-notes', { required: true });
@@ -83,7 +83,7 @@ function run() {
                 ],
             };
             const result = yield client.send(new aws.StartChangeSetCommand(params));
-            core.debug(JSON.stringify(result));
+            core.info(JSON.stringify(result));
         }
         catch (error) {
             if (error instanceof Error)

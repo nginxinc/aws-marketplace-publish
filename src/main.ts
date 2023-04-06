@@ -3,7 +3,7 @@ import * as aws from '@aws-sdk/client-marketplace-catalog'
 
 async function run(): Promise<void> {
   try {
-    const client = new aws.MarketplaceCatalogClient({})
+    const client = new aws.MarketplaceCatalogClient({region: 'us-east-1'})
 
     const productID = core.getInput('product-id', {required: true})
     const version = core.getInput('version', {required: true})
@@ -48,7 +48,7 @@ async function run(): Promise<void> {
     }
 
     const result = await client.send(new aws.StartChangeSetCommand(params))
-    core.debug(JSON.stringify(result))
+    core.info(JSON.stringify(result))
   } catch (error) {
     if (error instanceof Error) core.setFailed(error.message)
   }
