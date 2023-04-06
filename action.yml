@@ -1,0 +1,19 @@
+name: 'AWS Marketplace Publish'
+description: 'Publish a new version of a product in AWS Marketplace'
+author: 'Luca Comellini <lucacome>'
+inputs:
+  product-id:
+    description: 'Product ID'
+    required: true
+  release-notes:
+    description: 'Release notes for the new version'
+    required: true
+  registry:
+    description: 'ECR registry with tag'
+    required: true
+  version:
+    description: 'Version of the new release'
+    required: true
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
