@@ -42,13 +42,19 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core = __importStar(__nccwpck_require__(2186));
 const aws = __importStar(__nccwpck_require__(7560));
 function run() {
+    var _a;
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const client = new aws.MarketplaceCatalogClient({ region: 'us-east-1' });
             const productID = core.getInput('product-id', { required: true });
+            core.setSecret(productID);
             const version = core.getInput('version', { required: true });
             const releaseNotes = core.getInput('release-notes', { required: true });
             const registry = core.getInput('registry', { required: true });
+            const description = core.getInput('description', { required: true });
+            const usageInstructions = core.getInput('usage-instructions', {
+                required: true,
+            });
             const details = {
                 Version: {
                     VersionTitle: version,
@@ -62,8 +68,8 @@ function run() {
                                 DeploymentResources: [],
                                 ContainerImages: [registry],
                                 CompatibleServices: ['EKS'],
-                                Description: 'Best-in-class traffic management solution for services in Amazon EKS. This is the official implementation of NGINX Ingress Controller (based on NGINX Plus) from NGINX.',
-                                UsageInstructions: 'This container requires Kubernetes and can be deployed to EKS. Review the installation instructions https://docs.nginx.com/nginx-ingress-controller/installation/ and utilize the deployment resources available https://github.com/nginxinc/kubernetes-ingress/tree/master/deployments  Use this image instead of building your own',
+                                Description: description,
+                                UsageInstructions: usageInstructions,
                             },
                         },
                     },
@@ -84,6 +90,9 @@ function run() {
             };
             const result = yield client.send(new aws.StartChangeSetCommand(params));
             core.info(JSON.stringify(result));
+            if (((_a = result.$metadata.httpStatusCode) === null || _a === void 0 ? void 0 : _a.toString()) !== '200') {
+                core.setFailed(`Failed to start change set: ${result.$metadata.httpStatusCode}`);
+            }
         }
         catch (error) {
             if (error instanceof Error)

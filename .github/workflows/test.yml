@@ -31,3 +31,10 @@ jobs:
           product-id: ${{ secrets.AWS_MARKETPLACE_PRODUCT_ID }}
           release-notes: 'https://github.com/nginxinc/kubernetes-ingress/releases/tag/v3.0.2'
           registry: '709825985650.dkr.ecr.us-east-1.amazonaws.com/nginx/nginx-plus-ingress:3.0.2-mktpl'
+          description: |
+            Best-in-class traffic management solution for services in Amazon EKS.
+            This is the official implementation of NGINX Ingress Controller (based on NGINX Plus) from NGINX.
+          usage-instructions: |
+            This container requires Kubernetes and can be deployed to EKS.
+            Review the installation instructions https://docs.nginx.com/nginx-ingress-controller/installation/ and utilize the deployment resources available https://github.com/nginxinc/kubernetes-ingress/tree/master/deployments
+            Use this image instead of building your own.

@@ -6,9 +6,15 @@ async function run(): Promise<void> {
     const client = new aws.MarketplaceCatalogClient({region: 'us-east-1'})
 
     const productID = core.getInput('product-id', {required: true})
+    core.setSecret(productID)
+
     const version = core.getInput('version', {required: true})
     const releaseNotes = core.getInput('release-notes', {required: true})
     const registry = core.getInput('registry', {required: true})
+    const description = core.getInput('description', {required: true})
+    const usageInstructions = core.getInput('usage-instructions', {
+      required: true,
+    })
 
     const details = {
       Version: {
@@ -23,10 +29,8 @@ async function run(): Promise<void> {
               DeploymentResources: [],
               ContainerImages: [registry],
               CompatibleServices: ['EKS'],
-              Description:
-                'Best-in-class traffic management solution for services in Amazon EKS. This is the official implementation of NGINX Ingress Controller (based on NGINX Plus) from NGINX.',
-              UsageInstructions:
-                'This container requires Kubernetes and can be deployed to EKS. Review the installation instructions https://docs.nginx.com/nginx-ingress-controller/installation/ and utilize the deployment resources available https://github.com/nginxinc/kubernetes-ingress/tree/master/deployments  Use this image instead of building your own',
+              Description: description,
+              UsageInstructions: usageInstructions,
             },
           },
         },
@@ -49,6 +53,10 @@ async function run(): Promise<void> {
 
     const result = await client.send(new aws.StartChangeSetCommand(params))
     core.info(JSON.stringify(result))
+
+    if (result.$metadata.httpStatusCode?.toString() !== '200') {
+      core.setFailed(`Failed to start change set: ${result.$metadata.httpStatusCode}`)
+    }
   } catch (error) {
     if (error instanceof Error) core.setFailed(error.message)
   }
