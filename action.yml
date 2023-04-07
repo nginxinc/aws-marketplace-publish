@@ -14,6 +14,12 @@ inputs:
   version:
     description: 'Version of the new release'
     required: true
+  description:
+    description: 'Description of the new release'
+    required: true
+  usage-instructions:
+    description: 'Usage instructions for the new release'
+    required: true
 runs:
   using: 'node16'
   main: 'dist/index.js'

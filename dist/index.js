@@ -49,12 +49,10 @@ function run() {
             const productID = core.getInput('product-id', { required: true });
             core.setSecret(productID);
             const version = core.getInput('version', { required: true });
-            const releaseNotes = core.getInput('release-notes', { required: true });
             const registry = core.getInput('registry', { required: true });
-            const description = core.getInput('description', { required: true });
-            const usageInstructions = core.getInput('usage-instructions', {
-                required: true,
-            });
+            const releaseNotes = core.getInput('release-notes');
+            const description = core.getInput('description');
+            const usageInstructions = core.getInput('usage-instructions');
             const details = {
                 Version: {
                     VersionTitle: version,
@@ -89,7 +87,7 @@ function run() {
                 ],
             };
             const result = yield client.send(new aws.StartChangeSetCommand(params));
-            core.info(JSON.stringify(result));
+            core.info(JSON.stringify(result, null, 2));
             if (((_a = result.$metadata.httpStatusCode) === null || _a === void 0 ? void 0 : _a.toString()) !== '200') {
                 core.setFailed(`Failed to start change set: ${result.$metadata.httpStatusCode}`);
             }

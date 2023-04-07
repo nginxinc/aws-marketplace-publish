@@ -9,12 +9,11 @@ async function run(): Promise<void> {
     core.setSecret(productID)
 
     const version = core.getInput('version', {required: true})
-    const releaseNotes = core.getInput('release-notes', {required: true})
     const registry = core.getInput('registry', {required: true})
-    const description = core.getInput('description', {required: true})
-    const usageInstructions = core.getInput('usage-instructions', {
-      required: true,
-    })
+
+    const releaseNotes = core.getInput('release-notes')
+    const description = core.getInput('description')
+    const usageInstructions = core.getInput('usage-instructions')
 
     const details = {
       Version: {
@@ -52,7 +51,7 @@ async function run(): Promise<void> {
     }
 
     const result = await client.send(new aws.StartChangeSetCommand(params))
-    core.info(JSON.stringify(result))
+    core.info(JSON.stringify(result, null, 2))
 
     if (result.$metadata.httpStatusCode?.toString() !== '200') {
       core.setFailed(`Failed to start change set: ${result.$metadata.httpStatusCode}`)
