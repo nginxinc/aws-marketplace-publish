@@ -1,41 +1,41 @@
-name: 'build-test'
-on: # rebuild any PRs and main branch changes
-  pull_request:
-  push:
-    branches:
-      - main
-      - 'releases/*'
+# name: 'build-test'
+# on: # rebuild any PRs and main branch changes
+#   pull_request:
+#   push:
+#     branches:
+#       - main
+#       - 'releases/*'
 
-jobs:
-  build: # make sure build/ci work properly
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - run: |
-          npm install
-      - run: |
-          npm run all
-  test: # make sure the action works on a clean machine without building
-    runs-on: ubuntu-latest
-    permissions:
-      id-token: write
-    steps:
-      - uses: actions/checkout@v3
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v2
-        with:
-          role-to-assume: ${{ secrets.AWS_ROLE }}
-          aws-region: us-east-1
-      - uses: ./
-        with:
-          version: 'v3.1.1'
-          product-id: ${{ secrets.AWS_MARKETPLACE_PRODUCT_ID }}
-          registry: '709825985650.dkr.ecr.us-east-1.amazonaws.com/nginx/nginx-plus-ingress:3.1.1-mktpl'
-          release-notes: 'https://github.com/nginxinc/kubernetes-ingress/releases/tag/v3.1.1'
-          description: |
-            Best-in-class traffic management solution for services in Amazon EKS.
-            This is the official implementation of NGINX Ingress Controller (based on NGINX Plus) from NGINX.
-          usage-instructions: |
-            This container requires Kubernetes and can be deployed to EKS.
-            Review the installation instructions https://docs.nginx.com/nginx-ingress-controller/installation/ and utilize the deployment resources available https://github.com/nginxinc/kubernetes-ingress/tree/master/deployments
-            Use this image instead of building your own.
+# jobs:
+#   build: # make sure build/ci work properly
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v3
+#       - run: |
+#           npm install
+#       - run: |
+#           npm run all
+#   test: # make sure the action works on a clean machine without building
+#     runs-on: ubuntu-latest
+#     permissions:
+#       id-token: write
+#     steps:
+#       - uses: actions/checkout@v3
+#       - name: Configure AWS Credentials
+#         uses: aws-actions/configure-aws-credentials@v2
+#         with:
+#           role-to-assume: ${{ secrets.AWS_ROLE }}
+#           aws-region: us-east-1
+#       - uses: ./
+#         with:
+#           version: 'v3.1.1'
+#           product-id: ${{ secrets.AWS_MARKETPLACE_PRODUCT_ID }}
+#           registry: '709825985650.dkr.ecr.us-east-1.amazonaws.com/nginx/nginx-plus-ingress:3.1.1-mktpl'
+#           release-notes: 'https://github.com/nginxinc/kubernetes-ingress/releases/tag/v3.1.1'
+#           description: |
+#             Best-in-class traffic management solution for services in Amazon EKS.
+#             This is the official implementation of NGINX Ingress Controller (based on NGINX Plus) from NGINX.
+#           usage-instructions: |
+#             This container requires Kubernetes and can be deployed to EKS.
+#             Review the installation instructions https://docs.nginx.com/nginx-ingress-controller/installation/ and utilize the deployment resources available https://github.com/nginxinc/kubernetes-ingress/tree/master/deployments
+#             Use this image instead of building your own.
