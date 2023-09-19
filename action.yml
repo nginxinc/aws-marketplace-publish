@@ -21,5 +21,5 @@ inputs:
     description: 'Usage instructions for the new release'
     required: true
 runs:
-  using: 'node16'
+  using: 'node20'
   main: 'dist/index.js'
