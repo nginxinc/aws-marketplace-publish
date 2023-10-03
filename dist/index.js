@@ -2549,6 +2549,7 @@ const middleware_endpoint_1 = __nccwpck_require__(82918);
 const middleware_serde_1 = __nccwpck_require__(81238);
 const smithy_client_1 = __nccwpck_require__(63570);
 Object.defineProperty(exports, "$Command", ({ enumerable: true, get: function () { return smithy_client_1.Command; } }));
+const types_1 = __nccwpck_require__(55756);
 const Aws_restJson1_1 = __nccwpck_require__(13259);
 class CancelChangeSetCommand extends smithy_client_1.Command {
     static getEndpointParameterInstructions() {
@@ -2576,6 +2577,10 @@ class CancelChangeSetCommand extends smithy_client_1.Command {
             commandName,
             inputFilterSensitiveLog: (_) => _,
             outputFilterSensitiveLog: (_) => _,
+            [types_1.SMITHY_CONTEXT_KEY]: {
+                service: "AWSMPSeymour",
+                operation: "CancelChangeSet",
+            },
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -2603,6 +2608,7 @@ const middleware_endpoint_1 = __nccwpck_require__(82918);
 const middleware_serde_1 = __nccwpck_require__(81238);
 const smithy_client_1 = __nccwpck_require__(63570);
 Object.defineProperty(exports, "$Command", ({ enumerable: true, get: function () { return smithy_client_1.Command; } }));
+const types_1 = __nccwpck_require__(55756);
 const Aws_restJson1_1 = __nccwpck_require__(13259);
 class DeleteResourcePolicyCommand extends smithy_client_1.Command {
     static getEndpointParameterInstructions() {
@@ -2630,6 +2636,10 @@ class DeleteResourcePolicyCommand extends smithy_client_1.Command {
             commandName,
             inputFilterSensitiveLog: (_) => _,
             outputFilterSensitiveLog: (_) => _,
+            [types_1.SMITHY_CONTEXT_KEY]: {
+                service: "AWSMPSeymour",
+                operation: "DeleteResourcePolicy",
+            },
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -2657,6 +2667,7 @@ const middleware_endpoint_1 = __nccwpck_require__(82918);
 const middleware_serde_1 = __nccwpck_require__(81238);
 const smithy_client_1 = __nccwpck_require__(63570);
 Object.defineProperty(exports, "$Command", ({ enumerable: true, get: function () { return smithy_client_1.Command; } }));
+const types_1 = __nccwpck_require__(55756);
 const Aws_restJson1_1 = __nccwpck_require__(13259);
 class DescribeChangeSetCommand extends smithy_client_1.Command {
     static getEndpointParameterInstructions() {
@@ -2684,6 +2695,10 @@ class DescribeChangeSetCommand extends smithy_client_1.Command {
             commandName,
             inputFilterSensitiveLog: (_) => _,
             outputFilterSensitiveLog: (_) => _,
+            [types_1.SMITHY_CONTEXT_KEY]: {
+                service: "AWSMPSeymour",
+                operation: "DescribeChangeSet",
+            },
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -2711,6 +2726,7 @@ const middleware_endpoint_1 = __nccwpck_require__(82918);
 const middleware_serde_1 = __nccwpck_require__(81238);
 const smithy_client_1 = __nccwpck_require__(63570);
 Object.defineProperty(exports, "$Command", ({ enumerable: true, get: function () { return smithy_client_1.Command; } }));
+const types_1 = __nccwpck_require__(55756);
 const Aws_restJson1_1 = __nccwpck_require__(13259);
 class DescribeEntityCommand extends smithy_client_1.Command {
     static getEndpointParameterInstructions() {
@@ -2738,6 +2754,10 @@ class DescribeEntityCommand extends smithy_client_1.Command {
             commandName,
             inputFilterSensitiveLog: (_) => _,
             outputFilterSensitiveLog: (_) => _,
+            [types_1.SMITHY_CONTEXT_KEY]: {
+                service: "AWSMPSeymour",
+                operation: "DescribeEntity",
+            },
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -2765,6 +2785,7 @@ const middleware_endpoint_1 = __nccwpck_require__(82918);
 const middleware_serde_1 = __nccwpck_require__(81238);
 const smithy_client_1 = __nccwpck_require__(63570);
 Object.defineProperty(exports, "$Command", ({ enumerable: true, get: function () { return smithy_client_1.Command; } }));
+const types_1 = __nccwpck_require__(55756);
 const Aws_restJson1_1 = __nccwpck_require__(13259);
 class GetResourcePolicyCommand extends smithy_client_1.Command {
     static getEndpointParameterInstructions() {
@@ -2792,6 +2813,10 @@ class GetResourcePolicyCommand extends smithy_client_1.Command {
             commandName,
             inputFilterSensitiveLog: (_) => _,
             outputFilterSensitiveLog: (_) => _,
+            [types_1.SMITHY_CONTEXT_KEY]: {
+                service: "AWSMPSeymour",
+                operation: "GetResourcePolicy",
+            },
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -2819,6 +2844,7 @@ const middleware_endpoint_1 = __nccwpck_require__(82918);
 const middleware_serde_1 = __nccwpck_require__(81238);
 const smithy_client_1 = __nccwpck_require__(63570);
 Object.defineProperty(exports, "$Command", ({ enumerable: true, get: function () { return smithy_client_1.Command; } }));
+const types_1 = __nccwpck_require__(55756);
 const Aws_restJson1_1 = __nccwpck_require__(13259);
 class ListChangeSetsCommand extends smithy_client_1.Command {
     static getEndpointParameterInstructions() {
@@ -2846,6 +2872,10 @@ class ListChangeSetsCommand extends smithy_client_1.Command {
             commandName,
             inputFilterSensitiveLog: (_) => _,
             outputFilterSensitiveLog: (_) => _,
+            [types_1.SMITHY_CONTEXT_KEY]: {
+                service: "AWSMPSeymour",
+                operation: "ListChangeSets",
+            },
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -2873,6 +2903,7 @@ const middleware_endpoint_1 = __nccwpck_require__(82918);
 const middleware_serde_1 = __nccwpck_require__(81238);
 const smithy_client_1 = __nccwpck_require__(63570);
 Object.defineProperty(exports, "$Command", ({ enumerable: true, get: function () { return smithy_client_1.Command; } }));
+const types_1 = __nccwpck_require__(55756);
 const Aws_restJson1_1 = __nccwpck_require__(13259);
 class ListEntitiesCommand extends smithy_client_1.Command {
     static getEndpointParameterInstructions() {
@@ -2900,6 +2931,10 @@ class ListEntitiesCommand extends smithy_client_1.Command {
             commandName,
             inputFilterSensitiveLog: (_) => _,
             outputFilterSensitiveLog: (_) => _,
+            [types_1.SMITHY_CONTEXT_KEY]: {
+                service: "AWSMPSeymour",
+                operation: "ListEntities",
+            },
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -2927,6 +2962,7 @@ const middleware_endpoint_1 = __nccwpck_require__(82918);
 const middleware_serde_1 = __nccwpck_require__(81238);
 const smithy_client_1 = __nccwpck_require__(63570);
 Object.defineProperty(exports, "$Command", ({ enumerable: true, get: function () { return smithy_client_1.Command; } }));
+const types_1 = __nccwpck_require__(55756);
 const Aws_restJson1_1 = __nccwpck_require__(13259);
 class ListTagsForResourceCommand extends smithy_client_1.Command {
     static getEndpointParameterInstructions() {
@@ -2954,6 +2990,10 @@ class ListTagsForResourceCommand extends smithy_client_1.Command {
             commandName,
             inputFilterSensitiveLog: (_) => _,
             outputFilterSensitiveLog: (_) => _,
+            [types_1.SMITHY_CONTEXT_KEY]: {
+                service: "AWSMPSeymour",
+                operation: "ListTagsForResource",
+            },
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -2981,6 +3021,7 @@ const middleware_endpoint_1 = __nccwpck_require__(82918);
 const middleware_serde_1 = __nccwpck_require__(81238);
 const smithy_client_1 = __nccwpck_require__(63570);
 Object.defineProperty(exports, "$Command", ({ enumerable: true, get: function () { return smithy_client_1.Command; } }));
+const types_1 = __nccwpck_require__(55756);
 const Aws_restJson1_1 = __nccwpck_require__(13259);
 class PutResourcePolicyCommand extends smithy_client_1.Command {
     static getEndpointParameterInstructions() {
@@ -3008,6 +3049,10 @@ class PutResourcePolicyCommand extends smithy_client_1.Command {
             commandName,
             inputFilterSensitiveLog: (_) => _,
             outputFilterSensitiveLog: (_) => _,
+            [types_1.SMITHY_CONTEXT_KEY]: {
+                service: "AWSMPSeymour",
+                operation: "PutResourcePolicy",
+            },
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -3035,6 +3080,7 @@ const middleware_endpoint_1 = __nccwpck_require__(82918);
 const middleware_serde_1 = __nccwpck_require__(81238);
 const smithy_client_1 = __nccwpck_require__(63570);
 Object.defineProperty(exports, "$Command", ({ enumerable: true, get: function () { return smithy_client_1.Command; } }));
+const types_1 = __nccwpck_require__(55756);
 const Aws_restJson1_1 = __nccwpck_require__(13259);
 class StartChangeSetCommand extends smithy_client_1.Command {
     static getEndpointParameterInstructions() {
@@ -3062,6 +3108,10 @@ class StartChangeSetCommand extends smithy_client_1.Command {
             commandName,
             inputFilterSensitiveLog: (_) => _,
             outputFilterSensitiveLog: (_) => _,
+            [types_1.SMITHY_CONTEXT_KEY]: {
+                service: "AWSMPSeymour",
+                operation: "StartChangeSet",
+            },
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -3089,6 +3139,7 @@ const middleware_endpoint_1 = __nccwpck_require__(82918);
 const middleware_serde_1 = __nccwpck_require__(81238);
 const smithy_client_1 = __nccwpck_require__(63570);
 Object.defineProperty(exports, "$Command", ({ enumerable: true, get: function () { return smithy_client_1.Command; } }));
+const types_1 = __nccwpck_require__(55756);
 const Aws_restJson1_1 = __nccwpck_require__(13259);
 class TagResourceCommand extends smithy_client_1.Command {
     static getEndpointParameterInstructions() {
@@ -3116,6 +3167,10 @@ class TagResourceCommand extends smithy_client_1.Command {
             commandName,
             inputFilterSensitiveLog: (_) => _,
             outputFilterSensitiveLog: (_) => _,
+            [types_1.SMITHY_CONTEXT_KEY]: {
+                service: "AWSMPSeymour",
+                operation: "TagResource",
+            },
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -3143,6 +3198,7 @@ const middleware_endpoint_1 = __nccwpck_require__(82918);
 const middleware_serde_1 = __nccwpck_require__(81238);
 const smithy_client_1 = __nccwpck_require__(63570);
 Object.defineProperty(exports, "$Command", ({ enumerable: true, get: function () { return smithy_client_1.Command; } }));
+const types_1 = __nccwpck_require__(55756);
 const Aws_restJson1_1 = __nccwpck_require__(13259);
 class UntagResourceCommand extends smithy_client_1.Command {
     static getEndpointParameterInstructions() {
@@ -3170,6 +3226,10 @@ class UntagResourceCommand extends smithy_client_1.Command {
             commandName,
             inputFilterSensitiveLog: (_) => _,
             outputFilterSensitiveLog: (_) => _,
+            [types_1.SMITHY_CONTEXT_KEY]: {
+                service: "AWSMPSeymour",
+                operation: "UntagResource",
+            },
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -4760,6 +4820,7 @@ const middleware_endpoint_1 = __nccwpck_require__(82918);
 const middleware_serde_1 = __nccwpck_require__(81238);
 const smithy_client_1 = __nccwpck_require__(63570);
 Object.defineProperty(exports, "$Command", ({ enumerable: true, get: function () { return smithy_client_1.Command; } }));
+const types_1 = __nccwpck_require__(55756);
 const models_0_1 = __nccwpck_require__(66390);
 const Aws_restJson1_1 = __nccwpck_require__(98507);
 class GetRoleCredentialsCommand extends smithy_client_1.Command {
@@ -4788,6 +4849,10 @@ class GetRoleCredentialsCommand extends smithy_client_1.Command {
             commandName,
             inputFilterSensitiveLog: models_0_1.GetRoleCredentialsRequestFilterSensitiveLog,
             outputFilterSensitiveLog: models_0_1.GetRoleCredentialsResponseFilterSensitiveLog,
+            [types_1.SMITHY_CONTEXT_KEY]: {
+                service: "SWBPortalService",
+                operation: "GetRoleCredentials",
+            },
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -4815,6 +4880,7 @@ const middleware_endpoint_1 = __nccwpck_require__(82918);
 const middleware_serde_1 = __nccwpck_require__(81238);
 const smithy_client_1 = __nccwpck_require__(63570);
 Object.defineProperty(exports, "$Command", ({ enumerable: true, get: function () { return smithy_client_1.Command; } }));
+const types_1 = __nccwpck_require__(55756);
 const models_0_1 = __nccwpck_require__(66390);
 const Aws_restJson1_1 = __nccwpck_require__(98507);
 class ListAccountRolesCommand extends smithy_client_1.Command {
@@ -4843,6 +4909,10 @@ class ListAccountRolesCommand extends smithy_client_1.Command {
             commandName,
             inputFilterSensitiveLog: models_0_1.ListAccountRolesRequestFilterSensitiveLog,
             outputFilterSensitiveLog: (_) => _,
+            [types_1.SMITHY_CONTEXT_KEY]: {
+                service: "SWBPortalService",
+                operation: "ListAccountRoles",
+            },
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -4870,6 +4940,7 @@ const middleware_endpoint_1 = __nccwpck_require__(82918);
 const middleware_serde_1 = __nccwpck_require__(81238);
 const smithy_client_1 = __nccwpck_require__(63570);
 Object.defineProperty(exports, "$Command", ({ enumerable: true, get: function () { return smithy_client_1.Command; } }));
+const types_1 = __nccwpck_require__(55756);
 const models_0_1 = __nccwpck_require__(66390);
 const Aws_restJson1_1 = __nccwpck_require__(98507);
 class ListAccountsCommand extends smithy_client_1.Command {
@@ -4898,6 +4969,10 @@ class ListAccountsCommand extends smithy_client_1.Command {
             commandName,
             inputFilterSensitiveLog: models_0_1.ListAccountsRequestFilterSensitiveLog,
             outputFilterSensitiveLog: (_) => _,
+            [types_1.SMITHY_CONTEXT_KEY]: {
+                service: "SWBPortalService",
+                operation: "ListAccounts",
+            },
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -4925,6 +5000,7 @@ const middleware_endpoint_1 = __nccwpck_require__(82918);
 const middleware_serde_1 = __nccwpck_require__(81238);
 const smithy_client_1 = __nccwpck_require__(63570);
 Object.defineProperty(exports, "$Command", ({ enumerable: true, get: function () { return smithy_client_1.Command; } }));
+const types_1 = __nccwpck_require__(55756);
 const models_0_1 = __nccwpck_require__(66390);
 const Aws_restJson1_1 = __nccwpck_require__(98507);
 class LogoutCommand extends smithy_client_1.Command {
@@ -4953,6 +5029,10 @@ class LogoutCommand extends smithy_client_1.Command {
             commandName,
             inputFilterSensitiveLog: models_0_1.LogoutRequestFilterSensitiveLog,
             outputFilterSensitiveLog: (_) => _,
+            [types_1.SMITHY_CONTEXT_KEY]: {
+                service: "SWBPortalService",
+                operation: "Logout",
+            },
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -5031,9 +5111,9 @@ exports.defaultEndpointResolver = defaultEndpointResolver;
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.ruleSet = void 0;
-const q = "required", r = "fn", s = "argv", t = "ref";
-const a = "isSet", b = "tree", c = "error", d = "endpoint", e = "PartitionResult", f = { [q]: false, "type": "String" }, g = { [q]: true, "default": false, "type": "Boolean" }, h = { [t]: "Endpoint" }, i = { [r]: "booleanEquals", [s]: [{ [t]: "UseFIPS" }, true] }, j = { [r]: "booleanEquals", [s]: [{ [t]: "UseDualStack" }, true] }, k = {}, l = { [r]: "booleanEquals", [s]: [true, { [r]: "getAttr", [s]: [{ [t]: e }, "supportsFIPS"] }] }, m = { [r]: "booleanEquals", [s]: [true, { [r]: "getAttr", [s]: [{ [t]: e }, "supportsDualStack"] }] }, n = [i], o = [j], p = [{ [t]: "Region" }];
-const _data = { version: "1.0", parameters: { Region: f, UseDualStack: g, UseFIPS: g, Endpoint: f }, rules: [{ conditions: [{ [r]: a, [s]: [h] }], type: b, rules: [{ conditions: n, error: "Invalid Configuration: FIPS and custom endpoint are not supported", type: c }, { conditions: o, error: "Invalid Configuration: Dualstack and custom endpoint are not supported", type: c }, { endpoint: { url: h, properties: k, headers: k }, type: d }] }, { conditions: [{ [r]: a, [s]: p }], type: b, rules: [{ conditions: [{ [r]: "aws.partition", [s]: p, assign: e }], type: b, rules: [{ conditions: [i, j], type: b, rules: [{ conditions: [l, m], type: b, rules: [{ endpoint: { url: "https://portal.sso-fips.{Region}.{PartitionResult#dualStackDnsSuffix}", properties: k, headers: k }, type: d }] }, { error: "FIPS and DualStack are enabled, but this partition does not support one or both", type: c }] }, { conditions: n, type: b, rules: [{ conditions: [l], type: b, rules: [{ endpoint: { url: "https://portal.sso-fips.{Region}.{PartitionResult#dnsSuffix}", properties: k, headers: k }, type: d }] }, { error: "FIPS is enabled but this partition does not support FIPS", type: c }] }, { conditions: o, type: b, rules: [{ conditions: [m], type: b, rules: [{ endpoint: { url: "https://portal.sso.{Region}.{PartitionResult#dualStackDnsSuffix}", properties: k, headers: k }, type: d }] }, { error: "DualStack is enabled but this partition does not support DualStack", type: c }] }, { endpoint: { url: "https://portal.sso.{Region}.{PartitionResult#dnsSuffix}", properties: k, headers: k }, type: d }] }] }, { error: "Invalid Configuration: Missing Region", type: c }] };
+const s = "required", t = "fn", u = "argv", v = "ref";
+const a = "isSet", b = "tree", c = "error", d = "endpoint", e = "PartitionResult", f = "getAttr", g = { [s]: false, "type": "String" }, h = { [s]: true, "default": false, "type": "Boolean" }, i = { [v]: "Endpoint" }, j = { [t]: "booleanEquals", [u]: [{ [v]: "UseFIPS" }, true] }, k = { [t]: "booleanEquals", [u]: [{ [v]: "UseDualStack" }, true] }, l = {}, m = { [t]: "booleanEquals", [u]: [true, { [t]: f, [u]: [{ [v]: e }, "supportsFIPS"] }] }, n = { [v]: e }, o = { [t]: "booleanEquals", [u]: [true, { [t]: f, [u]: [n, "supportsDualStack"] }] }, p = [j], q = [k], r = [{ [v]: "Region" }];
+const _data = { version: "1.0", parameters: { Region: g, UseDualStack: h, UseFIPS: h, Endpoint: g }, rules: [{ conditions: [{ [t]: a, [u]: [i] }], type: b, rules: [{ conditions: p, error: "Invalid Configuration: FIPS and custom endpoint are not supported", type: c }, { conditions: q, error: "Invalid Configuration: Dualstack and custom endpoint are not supported", type: c }, { endpoint: { url: i, properties: l, headers: l }, type: d }] }, { conditions: [{ [t]: a, [u]: r }], type: b, rules: [{ conditions: [{ [t]: "aws.partition", [u]: r, assign: e }], type: b, rules: [{ conditions: [j, k], type: b, rules: [{ conditions: [m, o], type: b, rules: [{ endpoint: { url: "https://portal.sso-fips.{Region}.{PartitionResult#dualStackDnsSuffix}", properties: l, headers: l }, type: d }] }, { error: "FIPS and DualStack are enabled, but this partition does not support one or both", type: c }] }, { conditions: p, type: b, rules: [{ conditions: [m], type: b, rules: [{ conditions: [{ [t]: "stringEquals", [u]: ["aws-us-gov", { [t]: f, [u]: [n, "name"] }] }], endpoint: { url: "https://portal.sso.{Region}.amazonaws.com", properties: l, headers: l }, type: d }, { endpoint: { url: "https://portal.sso-fips.{Region}.{PartitionResult#dnsSuffix}", properties: l, headers: l }, type: d }] }, { error: "FIPS is enabled but this partition does not support FIPS", type: c }] }, { conditions: q, type: b, rules: [{ conditions: [o], type: b, rules: [{ endpoint: { url: "https://portal.sso.{Region}.{PartitionResult#dualStackDnsSuffix}", properties: l, headers: l }, type: d }] }, { error: "DualStack is enabled but this partition does not support DualStack", type: c }] }, { endpoint: { url: "https://portal.sso.{Region}.{PartitionResult#dnsSuffix}", properties: l, headers: l }, type: d }] }] }, { error: "Invalid Configuration: Missing Region", type: c }] };
 exports.ruleSet = _data;
 
 
@@ -5869,6 +5949,7 @@ const middleware_endpoint_1 = __nccwpck_require__(82918);
 const middleware_serde_1 = __nccwpck_require__(81238);
 const smithy_client_1 = __nccwpck_require__(63570);
 Object.defineProperty(exports, "$Command", ({ enumerable: true, get: function () { return smithy_client_1.Command; } }));
+const types_1 = __nccwpck_require__(55756);
 const models_0_1 = __nccwpck_require__(21780);
 const Aws_query_1 = __nccwpck_require__(10740);
 class AssumeRoleCommand extends smithy_client_1.Command {
@@ -5899,6 +5980,10 @@ class AssumeRoleCommand extends smithy_client_1.Command {
             commandName,
             inputFilterSensitiveLog: (_) => _,
             outputFilterSensitiveLog: models_0_1.AssumeRoleResponseFilterSensitiveLog,
+            [types_1.SMITHY_CONTEXT_KEY]: {
+                service: "AWSSecurityTokenServiceV20110615",
+                operation: "AssumeRole",
+            },
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -5926,6 +6011,7 @@ const middleware_endpoint_1 = __nccwpck_require__(82918);
 const middleware_serde_1 = __nccwpck_require__(81238);
 const smithy_client_1 = __nccwpck_require__(63570);
 Object.defineProperty(exports, "$Command", ({ enumerable: true, get: function () { return smithy_client_1.Command; } }));
+const types_1 = __nccwpck_require__(55756);
 const models_0_1 = __nccwpck_require__(21780);
 const Aws_query_1 = __nccwpck_require__(10740);
 class AssumeRoleWithSAMLCommand extends smithy_client_1.Command {
@@ -5955,6 +6041,10 @@ class AssumeRoleWithSAMLCommand extends smithy_client_1.Command {
             commandName,
             inputFilterSensitiveLog: models_0_1.AssumeRoleWithSAMLRequestFilterSensitiveLog,
             outputFilterSensitiveLog: models_0_1.AssumeRoleWithSAMLResponseFilterSensitiveLog,
+            [types_1.SMITHY_CONTEXT_KEY]: {
+                service: "AWSSecurityTokenServiceV20110615",
+                operation: "AssumeRoleWithSAML",
+            },
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -5982,6 +6072,7 @@ const middleware_endpoint_1 = __nccwpck_require__(82918);
 const middleware_serde_1 = __nccwpck_require__(81238);
 const smithy_client_1 = __nccwpck_require__(63570);
 Object.defineProperty(exports, "$Command", ({ enumerable: true, get: function () { return smithy_client_1.Command; } }));
+const types_1 = __nccwpck_require__(55756);
 const models_0_1 = __nccwpck_require__(21780);
 const Aws_query_1 = __nccwpck_require__(10740);
 class AssumeRoleWithWebIdentityCommand extends smithy_client_1.Command {
@@ -6011,6 +6102,10 @@ class AssumeRoleWithWebIdentityCommand extends smithy_client_1.Command {
             commandName,
             inputFilterSensitiveLog: models_0_1.AssumeRoleWithWebIdentityRequestFilterSensitiveLog,
             outputFilterSensitiveLog: models_0_1.AssumeRoleWithWebIdentityResponseFilterSensitiveLog,
+            [types_1.SMITHY_CONTEXT_KEY]: {
+                service: "AWSSecurityTokenServiceV20110615",
+                operation: "AssumeRoleWithWebIdentity",
+            },
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -6039,6 +6134,7 @@ const middleware_endpoint_1 = __nccwpck_require__(82918);
 const middleware_serde_1 = __nccwpck_require__(81238);
 const smithy_client_1 = __nccwpck_require__(63570);
 Object.defineProperty(exports, "$Command", ({ enumerable: true, get: function () { return smithy_client_1.Command; } }));
+const types_1 = __nccwpck_require__(55756);
 const Aws_query_1 = __nccwpck_require__(10740);
 class DecodeAuthorizationMessageCommand extends smithy_client_1.Command {
     static getEndpointParameterInstructions() {
@@ -6068,6 +6164,10 @@ class DecodeAuthorizationMessageCommand extends smithy_client_1.Command {
             commandName,
             inputFilterSensitiveLog: (_) => _,
             outputFilterSensitiveLog: (_) => _,
+            [types_1.SMITHY_CONTEXT_KEY]: {
+                service: "AWSSecurityTokenServiceV20110615",
+                operation: "DecodeAuthorizationMessage",
+            },
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -6096,6 +6196,7 @@ const middleware_endpoint_1 = __nccwpck_require__(82918);
 const middleware_serde_1 = __nccwpck_require__(81238);
 const smithy_client_1 = __nccwpck_require__(63570);
 Object.defineProperty(exports, "$Command", ({ enumerable: true, get: function () { return smithy_client_1.Command; } }));
+const types_1 = __nccwpck_require__(55756);
 const Aws_query_1 = __nccwpck_require__(10740);
 class GetAccessKeyInfoCommand extends smithy_client_1.Command {
     static getEndpointParameterInstructions() {
@@ -6125,6 +6226,10 @@ class GetAccessKeyInfoCommand extends smithy_client_1.Command {
             commandName,
             inputFilterSensitiveLog: (_) => _,
             outputFilterSensitiveLog: (_) => _,
+            [types_1.SMITHY_CONTEXT_KEY]: {
+                service: "AWSSecurityTokenServiceV20110615",
+                operation: "GetAccessKeyInfo",
+            },
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -6153,6 +6258,7 @@ const middleware_endpoint_1 = __nccwpck_require__(82918);
 const middleware_serde_1 = __nccwpck_require__(81238);
 const smithy_client_1 = __nccwpck_require__(63570);
 Object.defineProperty(exports, "$Command", ({ enumerable: true, get: function () { return smithy_client_1.Command; } }));
+const types_1 = __nccwpck_require__(55756);
 const Aws_query_1 = __nccwpck_require__(10740);
 class GetCallerIdentityCommand extends smithy_client_1.Command {
     static getEndpointParameterInstructions() {
@@ -6182,6 +6288,10 @@ class GetCallerIdentityCommand extends smithy_client_1.Command {
             commandName,
             inputFilterSensitiveLog: (_) => _,
             outputFilterSensitiveLog: (_) => _,
+            [types_1.SMITHY_CONTEXT_KEY]: {
+                service: "AWSSecurityTokenServiceV20110615",
+                operation: "GetCallerIdentity",
+            },
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -6210,6 +6320,7 @@ const middleware_endpoint_1 = __nccwpck_require__(82918);
 const middleware_serde_1 = __nccwpck_require__(81238);
 const smithy_client_1 = __nccwpck_require__(63570);
 Object.defineProperty(exports, "$Command", ({ enumerable: true, get: function () { return smithy_client_1.Command; } }));
+const types_1 = __nccwpck_require__(55756);
 const models_0_1 = __nccwpck_require__(21780);
 const Aws_query_1 = __nccwpck_require__(10740);
 class GetFederationTokenCommand extends smithy_client_1.Command {
@@ -6240,6 +6351,10 @@ class GetFederationTokenCommand extends smithy_client_1.Command {
             commandName,
             inputFilterSensitiveLog: (_) => _,
             outputFilterSensitiveLog: models_0_1.GetFederationTokenResponseFilterSensitiveLog,
+            [types_1.SMITHY_CONTEXT_KEY]: {
+                service: "AWSSecurityTokenServiceV20110615",
+                operation: "GetFederationToken",
+            },
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -6268,6 +6383,7 @@ const middleware_endpoint_1 = __nccwpck_require__(82918);
 const middleware_serde_1 = __nccwpck_require__(81238);
 const smithy_client_1 = __nccwpck_require__(63570);
 Object.defineProperty(exports, "$Command", ({ enumerable: true, get: function () { return smithy_client_1.Command; } }));
+const types_1 = __nccwpck_require__(55756);
 const models_0_1 = __nccwpck_require__(21780);
 const Aws_query_1 = __nccwpck_require__(10740);
 class GetSessionTokenCommand extends smithy_client_1.Command {
@@ -6298,6 +6414,10 @@ class GetSessionTokenCommand extends smithy_client_1.Command {
             commandName,
             inputFilterSensitiveLog: (_) => _,
             outputFilterSensitiveLog: models_0_1.GetSessionTokenResponseFilterSensitiveLog,
+            [types_1.SMITHY_CONTEXT_KEY]: {
+                service: "AWSSecurityTokenServiceV20110615",
+                operation: "GetSessionToken",
+            },
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -14477,18 +14597,37 @@ exports.serializerMiddleware = serializerMiddleware;
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.constructStack = void 0;
+const getAllAliases = (name, aliases) => {
+    const _aliases = [];
+    if (name) {
+        _aliases.push(name);
+    }
+    if (aliases) {
+        for (const alias of aliases) {
+            _aliases.push(alias);
+        }
+    }
+    return _aliases;
+};
+const getMiddlewareNameWithAliases = (name, aliases) => {
+    return `${name || "anonymous"}${aliases && aliases.length > 0 ? ` (a.k.a. ${aliases.join(",")})` : ""}`;
+};
 const constructStack = () => {
     let absoluteEntries = [];
     let relativeEntries = [];
+    let identifyOnResolve = false;
     const entriesNameSet = new Set();
     const sort = (entries) => entries.sort((a, b) => stepWeights[b.step] - stepWeights[a.step] ||
         priorityWeights[b.priority || "normal"] - priorityWeights[a.priority || "normal"]);
     const removeByName = (toRemove) => {
         let isRemoved = false;
         const filterCb = (entry) => {
-            if (entry.name && entry.name === toRemove) {
+            const aliases = getAllAliases(entry.name, entry.aliases);
+            if (aliases.includes(toRemove)) {
                 isRemoved = true;
-                entriesNameSet.delete(toRemove);
+                for (const alias of aliases) {
+                    entriesNameSet.delete(alias);
+                }
                 return false;
             }
             return true;
@@ -14502,8 +14641,9 @@ const constructStack = () => {
         const filterCb = (entry) => {
             if (entry.middleware === toRemove) {
                 isRemoved = true;
-                if (entry.name)
-                    entriesNameSet.delete(entry.name);
+                for (const alias of getAllAliases(entry.name, entry.aliases)) {
+                    entriesNameSet.delete(alias);
+                }
                 return false;
             }
             return true;
@@ -14513,12 +14653,14 @@ const constructStack = () => {
         return isRemoved;
     };
     const cloneTo = (toStack) => {
+        var _a;
         absoluteEntries.forEach((entry) => {
             toStack.add(entry.middleware, { ...entry });
         });
         relativeEntries.forEach((entry) => {
             toStack.addRelativeTo(entry.middleware, { ...entry });
         });
+        (_a = toStack.identifyOnResolve) === null || _a === void 0 ? void 0 : _a.call(toStack, stack.identifyOnResolve());
         return toStack;
     };
     const expandRelativeMiddlewareList = (from) => {
@@ -14552,8 +14694,9 @@ const constructStack = () => {
                 before: [],
                 after: [],
             };
-            if (normalizedEntry.name)
-                normalizedEntriesNameMap[normalizedEntry.name] = normalizedEntry;
+            for (const alias of getAllAliases(normalizedEntry.name, normalizedEntry.aliases)) {
+                normalizedEntriesNameMap[alias] = normalizedEntry;
+            }
             normalizedAbsoluteEntries.push(normalizedEntry);
         });
         relativeEntries.forEach((entry) => {
@@ -14562,8 +14705,9 @@ const constructStack = () => {
                 before: [],
                 after: [],
             };
-            if (normalizedEntry.name)
-                normalizedEntriesNameMap[normalizedEntry.name] = normalizedEntry;
+            for (const alias of getAllAliases(normalizedEntry.name, normalizedEntry.aliases)) {
+                normalizedEntriesNameMap[alias] = normalizedEntry;
+            }
             normalizedRelativeEntries.push(normalizedEntry);
         });
         normalizedRelativeEntries.forEach((entry) => {
@@ -14573,7 +14717,9 @@ const constructStack = () => {
                     if (debug) {
                         return;
                     }
-                    throw new Error(`${entry.toMiddleware} is not found when adding ${entry.name || "anonymous"} middleware ${entry.relation} ${entry.toMiddleware}`);
+                    throw new Error(`${entry.toMiddleware} is not found when adding ` +
+                        `${getMiddlewareNameWithAliases(entry.name, entry.aliases)} ` +
+                        `middleware ${entry.relation} ${entry.toMiddleware}`);
                 }
                 if (entry.relation === "after") {
                     toMiddleware.after.push(entry);
@@ -14593,48 +14739,68 @@ const constructStack = () => {
     };
     const stack = {
         add: (middleware, options = {}) => {
-            const { name, override } = options;
+            const { name, override, aliases: _aliases } = options;
             const entry = {
                 step: "initialize",
                 priority: "normal",
                 middleware,
                 ...options,
             };
-            if (name) {
-                if (entriesNameSet.has(name)) {
+            const aliases = getAllAliases(name, _aliases);
+            if (aliases.length > 0) {
+                if (aliases.some((alias) => entriesNameSet.has(alias))) {
                     if (!override)
-                        throw new Error(`Duplicate middleware name '${name}'`);
-                    const toOverrideIndex = absoluteEntries.findIndex((entry) => entry.name === name);
-                    const toOverride = absoluteEntries[toOverrideIndex];
-                    if (toOverride.step !== entry.step || toOverride.priority !== entry.priority) {
-                        throw new Error(`"${name}" middleware with ${toOverride.priority} priority in ${toOverride.step} step cannot be ` +
-                            `overridden by same-name middleware with ${entry.priority} priority in ${entry.step} step.`);
+                        throw new Error(`Duplicate middleware name '${getMiddlewareNameWithAliases(name, _aliases)}'`);
+                    for (const alias of aliases) {
+                        const toOverrideIndex = absoluteEntries.findIndex((entry) => { var _a; return entry.name === alias || ((_a = entry.aliases) === null || _a === void 0 ? void 0 : _a.some((a) => a === alias)); });
+                        if (toOverrideIndex === -1) {
+                            continue;
+                        }
+                        const toOverride = absoluteEntries[toOverrideIndex];
+                        if (toOverride.step !== entry.step || entry.priority !== toOverride.priority) {
+                            throw new Error(`"${getMiddlewareNameWithAliases(toOverride.name, toOverride.aliases)}" middleware with ` +
+                                `${toOverride.priority} priority in ${toOverride.step} step cannot ` +
+                                `be overridden by "${getMiddlewareNameWithAliases(name, _aliases)}" middleware with ` +
+                                `${entry.priority} priority in ${entry.step} step.`);
+                        }
+                        absoluteEntries.splice(toOverrideIndex, 1);
                     }
-                    absoluteEntries.splice(toOverrideIndex, 1);
                 }
-                entriesNameSet.add(name);
+                for (const alias of aliases) {
+                    entriesNameSet.add(alias);
+                }
             }
             absoluteEntries.push(entry);
         },
         addRelativeTo: (middleware, options) => {
-            const { name, override } = options;
+            const { name, override, aliases: _aliases } = options;
             const entry = {
                 middleware,
                 ...options,
             };
-            if (name) {
-                if (entriesNameSet.has(name)) {
+            const aliases = getAllAliases(name, _aliases);
+            if (aliases.length > 0) {
+                if (aliases.some((alias) => entriesNameSet.has(alias))) {
                     if (!override)
-                        throw new Error(`Duplicate middleware name '${name}'`);
-                    const toOverrideIndex = relativeEntries.findIndex((entry) => entry.name === name);
-                    const toOverride = relativeEntries[toOverrideIndex];
-                    if (toOverride.toMiddleware !== entry.toMiddleware || toOverride.relation !== entry.relation) {
-                        throw new Error(`"${name}" middleware ${toOverride.relation} "${toOverride.toMiddleware}" middleware cannot be overridden ` +
-                            `by same-name middleware ${entry.relation} "${entry.toMiddleware}" middleware.`);
+                        throw new Error(`Duplicate middleware name '${getMiddlewareNameWithAliases(name, _aliases)}'`);
+                    for (const alias of aliases) {
+                        const toOverrideIndex = relativeEntries.findIndex((entry) => { var _a; return entry.name === alias || ((_a = entry.aliases) === null || _a === void 0 ? void 0 : _a.some((a) => a === alias)); });
+                        if (toOverrideIndex === -1) {
+                            continue;
+                        }
+                        const toOverride = relativeEntries[toOverrideIndex];
+                        if (toOverride.toMiddleware !== entry.toMiddleware || toOverride.relation !== entry.relation) {
+                            throw new Error(`"${getMiddlewareNameWithAliases(toOverride.name, toOverride.aliases)}" middleware ` +
+                                `${toOverride.relation} "${toOverride.toMiddleware}" middleware cannot be overridden ` +
+                                `by "${getMiddlewareNameWithAliases(name, _aliases)}" middleware ${entry.relation} ` +
+                                `"${entry.toMiddleware}" middleware.`);
+                        }
+                        relativeEntries.splice(toOverrideIndex, 1);
                     }
-                    relativeEntries.splice(toOverrideIndex, 1);
                 }
-                entriesNameSet.add(name);
+                for (const alias of aliases) {
+                    entriesNameSet.add(alias);
+                }
             }
             relativeEntries.push(entry);
         },
@@ -14651,10 +14817,12 @@ const constructStack = () => {
         removeByTag: (toRemove) => {
             let isRemoved = false;
             const filterCb = (entry) => {
-                const { tags, name } = entry;
+                const { tags, name, aliases: _aliases } = entry;
                 if (tags && tags.includes(toRemove)) {
-                    if (name)
-                        entriesNameSet.delete(name);
+                    const aliases = getAllAliases(name, _aliases);
+                    for (const alias of aliases) {
+                        entriesNameSet.delete(alias);
+                    }
                     isRemoved = true;
                     return false;
                 }
@@ -14665,21 +14833,35 @@ const constructStack = () => {
             return isRemoved;
         },
         concat: (from) => {
+            var _a, _b;
             const cloned = cloneTo((0, exports.constructStack)());
             cloned.use(from);
+            cloned.identifyOnResolve(identifyOnResolve || cloned.identifyOnResolve() || ((_b = (_a = from.identifyOnResolve) === null || _a === void 0 ? void 0 : _a.call(from)) !== null && _b !== void 0 ? _b : false));
             return cloned;
         },
         applyToStack: cloneTo,
         identify: () => {
             return getMiddlewareList(true).map((mw) => {
-                return mw.name + ": " + (mw.tags || []).join(",");
+                var _a;
+                const step = (_a = mw.step) !== null && _a !== void 0 ? _a : mw.relation +
+                    " " +
+                    mw.toMiddleware;
+                return getMiddlewareNameWithAliases(mw.name, mw.aliases) + " - " + step;
             });
+        },
+        identifyOnResolve(toggle) {
+            if (typeof toggle === "boolean")
+                identifyOnResolve = toggle;
+            return identifyOnResolve;
         },
         resolve: (handler, context) => {
             for (const middleware of getMiddlewareList()
                 .map((entry) => entry.middleware)
                 .reverse()) {
                 handler = middleware(handler, context);
+            }
+            if (identifyOnResolve) {
+                console.log(stack.identify());
             }
             return handler;
         },
@@ -23488,7 +23670,7 @@ module.exports = require("util");
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"@aws-sdk/client-marketplace-catalog","description":"AWS SDK for JavaScript Marketplace Catalog Client for Node.js, Browser and React Native","version":"3.414.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"tsc -p tsconfig.cjs.json","build:docs":"typedoc","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo marketplace-catalog"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"3.0.0","@aws-crypto/sha256-js":"3.0.0","@aws-sdk/client-sts":"3.414.0","@aws-sdk/credential-provider-node":"3.414.0","@aws-sdk/middleware-host-header":"3.413.0","@aws-sdk/middleware-logger":"3.413.0","@aws-sdk/middleware-recursion-detection":"3.413.0","@aws-sdk/middleware-signing":"3.413.0","@aws-sdk/middleware-user-agent":"3.413.0","@aws-sdk/region-config-resolver":"3.413.0","@aws-sdk/types":"3.413.0","@aws-sdk/util-endpoints":"3.413.0","@aws-sdk/util-user-agent-browser":"3.413.0","@aws-sdk/util-user-agent-node":"3.413.0","@smithy/config-resolver":"^2.0.8","@smithy/fetch-http-handler":"^2.1.3","@smithy/hash-node":"^2.0.7","@smithy/invalid-dependency":"^2.0.7","@smithy/middleware-content-length":"^2.0.9","@smithy/middleware-endpoint":"^2.0.7","@smithy/middleware-retry":"^2.0.10","@smithy/middleware-serde":"^2.0.7","@smithy/middleware-stack":"^2.0.0","@smithy/node-config-provider":"^2.0.10","@smithy/node-http-handler":"^2.1.3","@smithy/protocol-http":"^3.0.3","@smithy/smithy-client":"^2.1.4","@smithy/types":"^2.3.1","@smithy/url-parser":"^2.0.7","@smithy/util-base64":"^2.0.0","@smithy/util-body-length-browser":"^2.0.0","@smithy/util-body-length-node":"^2.1.0","@smithy/util-defaults-mode-browser":"^2.0.8","@smithy/util-defaults-mode-node":"^2.0.10","@smithy/util-retry":"^2.0.0","@smithy/util-utf8":"^2.0.0","tslib":"^2.5.0","uuid":"^8.3.2"},"devDependencies":{"@smithy/service-client-documentation-generator":"^2.0.0","@tsconfig/node14":"1.0.3","@types/node":"^14.14.31","@types/uuid":"^8.3.0","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typedoc":"0.23.23","typescript":"~4.9.5"},"engines":{"node":">=14.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-marketplace-catalog","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-marketplace-catalog"}}');
+module.exports = JSON.parse('{"name":"@aws-sdk/client-marketplace-catalog","description":"AWS SDK for JavaScript Marketplace Catalog Client for Node.js, Browser and React Native","version":"3.423.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"tsc -p tsconfig.cjs.json","build:docs":"typedoc","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo marketplace-catalog"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"3.0.0","@aws-crypto/sha256-js":"3.0.0","@aws-sdk/client-sts":"3.423.0","@aws-sdk/credential-provider-node":"3.423.0","@aws-sdk/middleware-host-header":"3.418.0","@aws-sdk/middleware-logger":"3.418.0","@aws-sdk/middleware-recursion-detection":"3.418.0","@aws-sdk/middleware-signing":"3.418.0","@aws-sdk/middleware-user-agent":"3.418.0","@aws-sdk/region-config-resolver":"3.418.0","@aws-sdk/types":"3.418.0","@aws-sdk/util-endpoints":"3.418.0","@aws-sdk/util-user-agent-browser":"3.418.0","@aws-sdk/util-user-agent-node":"3.418.0","@smithy/config-resolver":"^2.0.10","@smithy/fetch-http-handler":"^2.1.5","@smithy/hash-node":"^2.0.9","@smithy/invalid-dependency":"^2.0.9","@smithy/middleware-content-length":"^2.0.11","@smithy/middleware-endpoint":"^2.0.9","@smithy/middleware-retry":"^2.0.12","@smithy/middleware-serde":"^2.0.9","@smithy/middleware-stack":"^2.0.2","@smithy/node-config-provider":"^2.0.12","@smithy/node-http-handler":"^2.1.5","@smithy/protocol-http":"^3.0.5","@smithy/smithy-client":"^2.1.6","@smithy/types":"^2.3.3","@smithy/url-parser":"^2.0.9","@smithy/util-base64":"^2.0.0","@smithy/util-body-length-browser":"^2.0.0","@smithy/util-body-length-node":"^2.1.0","@smithy/util-defaults-mode-browser":"^2.0.10","@smithy/util-defaults-mode-node":"^2.0.12","@smithy/util-retry":"^2.0.2","@smithy/util-utf8":"^2.0.0","tslib":"^2.5.0","uuid":"^8.3.2"},"devDependencies":{"@smithy/service-client-documentation-generator":"^2.0.0","@tsconfig/node14":"1.0.3","@types/node":"^14.14.31","@types/uuid":"^8.3.0","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typedoc":"0.23.23","typescript":"~4.9.5"},"engines":{"node":">=14.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-marketplace-catalog","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-marketplace-catalog"}}');
 
 /***/ }),
 
@@ -23496,7 +23678,7 @@ module.exports = JSON.parse('{"name":"@aws-sdk/client-marketplace-catalog","desc
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"@aws-sdk/client-sso","description":"AWS SDK for JavaScript Sso Client for Node.js, Browser and React Native","version":"3.414.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"tsc -p tsconfig.cjs.json","build:docs":"typedoc","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo sso"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"3.0.0","@aws-crypto/sha256-js":"3.0.0","@aws-sdk/middleware-host-header":"3.413.0","@aws-sdk/middleware-logger":"3.413.0","@aws-sdk/middleware-recursion-detection":"3.413.0","@aws-sdk/middleware-user-agent":"3.413.0","@aws-sdk/region-config-resolver":"3.413.0","@aws-sdk/types":"3.413.0","@aws-sdk/util-endpoints":"3.413.0","@aws-sdk/util-user-agent-browser":"3.413.0","@aws-sdk/util-user-agent-node":"3.413.0","@smithy/config-resolver":"^2.0.8","@smithy/fetch-http-handler":"^2.1.3","@smithy/hash-node":"^2.0.7","@smithy/invalid-dependency":"^2.0.7","@smithy/middleware-content-length":"^2.0.9","@smithy/middleware-endpoint":"^2.0.7","@smithy/middleware-retry":"^2.0.10","@smithy/middleware-serde":"^2.0.7","@smithy/middleware-stack":"^2.0.0","@smithy/node-config-provider":"^2.0.10","@smithy/node-http-handler":"^2.1.3","@smithy/protocol-http":"^3.0.3","@smithy/smithy-client":"^2.1.4","@smithy/types":"^2.3.1","@smithy/url-parser":"^2.0.7","@smithy/util-base64":"^2.0.0","@smithy/util-body-length-browser":"^2.0.0","@smithy/util-body-length-node":"^2.1.0","@smithy/util-defaults-mode-browser":"^2.0.8","@smithy/util-defaults-mode-node":"^2.0.10","@smithy/util-retry":"^2.0.0","@smithy/util-utf8":"^2.0.0","tslib":"^2.5.0"},"devDependencies":{"@smithy/service-client-documentation-generator":"^2.0.0","@tsconfig/node14":"1.0.3","@types/node":"^14.14.31","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typedoc":"0.23.23","typescript":"~4.9.5"},"engines":{"node":">=14.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-sso","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-sso"}}');
+module.exports = JSON.parse('{"name":"@aws-sdk/client-sso","description":"AWS SDK for JavaScript Sso Client for Node.js, Browser and React Native","version":"3.423.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"tsc -p tsconfig.cjs.json","build:docs":"typedoc","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo sso"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"3.0.0","@aws-crypto/sha256-js":"3.0.0","@aws-sdk/middleware-host-header":"3.418.0","@aws-sdk/middleware-logger":"3.418.0","@aws-sdk/middleware-recursion-detection":"3.418.0","@aws-sdk/middleware-user-agent":"3.418.0","@aws-sdk/region-config-resolver":"3.418.0","@aws-sdk/types":"3.418.0","@aws-sdk/util-endpoints":"3.418.0","@aws-sdk/util-user-agent-browser":"3.418.0","@aws-sdk/util-user-agent-node":"3.418.0","@smithy/config-resolver":"^2.0.10","@smithy/fetch-http-handler":"^2.1.5","@smithy/hash-node":"^2.0.9","@smithy/invalid-dependency":"^2.0.9","@smithy/middleware-content-length":"^2.0.11","@smithy/middleware-endpoint":"^2.0.9","@smithy/middleware-retry":"^2.0.12","@smithy/middleware-serde":"^2.0.9","@smithy/middleware-stack":"^2.0.2","@smithy/node-config-provider":"^2.0.12","@smithy/node-http-handler":"^2.1.5","@smithy/protocol-http":"^3.0.5","@smithy/smithy-client":"^2.1.6","@smithy/types":"^2.3.3","@smithy/url-parser":"^2.0.9","@smithy/util-base64":"^2.0.0","@smithy/util-body-length-browser":"^2.0.0","@smithy/util-body-length-node":"^2.1.0","@smithy/util-defaults-mode-browser":"^2.0.10","@smithy/util-defaults-mode-node":"^2.0.12","@smithy/util-retry":"^2.0.2","@smithy/util-utf8":"^2.0.0","tslib":"^2.5.0"},"devDependencies":{"@smithy/service-client-documentation-generator":"^2.0.0","@tsconfig/node14":"1.0.3","@types/node":"^14.14.31","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typedoc":"0.23.23","typescript":"~4.9.5"},"engines":{"node":">=14.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-sso","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-sso"}}');
 
 /***/ }),
 
@@ -23504,7 +23686,7 @@ module.exports = JSON.parse('{"name":"@aws-sdk/client-sso","description":"AWS SD
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"@aws-sdk/client-sts","description":"AWS SDK for JavaScript Sts Client for Node.js, Browser and React Native","version":"3.414.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"tsc -p tsconfig.cjs.json","build:docs":"typedoc","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo sts","test":"yarn test:unit","test:unit":"jest"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"3.0.0","@aws-crypto/sha256-js":"3.0.0","@aws-sdk/credential-provider-node":"3.414.0","@aws-sdk/middleware-host-header":"3.413.0","@aws-sdk/middleware-logger":"3.413.0","@aws-sdk/middleware-recursion-detection":"3.413.0","@aws-sdk/middleware-sdk-sts":"3.413.0","@aws-sdk/middleware-signing":"3.413.0","@aws-sdk/middleware-user-agent":"3.413.0","@aws-sdk/region-config-resolver":"3.413.0","@aws-sdk/types":"3.413.0","@aws-sdk/util-endpoints":"3.413.0","@aws-sdk/util-user-agent-browser":"3.413.0","@aws-sdk/util-user-agent-node":"3.413.0","@smithy/config-resolver":"^2.0.8","@smithy/fetch-http-handler":"^2.1.3","@smithy/hash-node":"^2.0.7","@smithy/invalid-dependency":"^2.0.7","@smithy/middleware-content-length":"^2.0.9","@smithy/middleware-endpoint":"^2.0.7","@smithy/middleware-retry":"^2.0.10","@smithy/middleware-serde":"^2.0.7","@smithy/middleware-stack":"^2.0.0","@smithy/node-config-provider":"^2.0.10","@smithy/node-http-handler":"^2.1.3","@smithy/protocol-http":"^3.0.3","@smithy/smithy-client":"^2.1.4","@smithy/types":"^2.3.1","@smithy/url-parser":"^2.0.7","@smithy/util-base64":"^2.0.0","@smithy/util-body-length-browser":"^2.0.0","@smithy/util-body-length-node":"^2.1.0","@smithy/util-defaults-mode-browser":"^2.0.8","@smithy/util-defaults-mode-node":"^2.0.10","@smithy/util-retry":"^2.0.0","@smithy/util-utf8":"^2.0.0","fast-xml-parser":"4.2.5","tslib":"^2.5.0"},"devDependencies":{"@smithy/service-client-documentation-generator":"^2.0.0","@tsconfig/node14":"1.0.3","@types/node":"^14.14.31","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typedoc":"0.23.23","typescript":"~4.9.5"},"engines":{"node":">=14.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-sts","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-sts"}}');
+module.exports = JSON.parse('{"name":"@aws-sdk/client-sts","description":"AWS SDK for JavaScript Sts Client for Node.js, Browser and React Native","version":"3.423.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"tsc -p tsconfig.cjs.json","build:docs":"typedoc","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo sts","test":"yarn test:unit","test:unit":"jest"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"3.0.0","@aws-crypto/sha256-js":"3.0.0","@aws-sdk/credential-provider-node":"3.423.0","@aws-sdk/middleware-host-header":"3.418.0","@aws-sdk/middleware-logger":"3.418.0","@aws-sdk/middleware-recursion-detection":"3.418.0","@aws-sdk/middleware-sdk-sts":"3.418.0","@aws-sdk/middleware-signing":"3.418.0","@aws-sdk/middleware-user-agent":"3.418.0","@aws-sdk/region-config-resolver":"3.418.0","@aws-sdk/types":"3.418.0","@aws-sdk/util-endpoints":"3.418.0","@aws-sdk/util-user-agent-browser":"3.418.0","@aws-sdk/util-user-agent-node":"3.418.0","@smithy/config-resolver":"^2.0.10","@smithy/fetch-http-handler":"^2.1.5","@smithy/hash-node":"^2.0.9","@smithy/invalid-dependency":"^2.0.9","@smithy/middleware-content-length":"^2.0.11","@smithy/middleware-endpoint":"^2.0.9","@smithy/middleware-retry":"^2.0.12","@smithy/middleware-serde":"^2.0.9","@smithy/middleware-stack":"^2.0.2","@smithy/node-config-provider":"^2.0.12","@smithy/node-http-handler":"^2.1.5","@smithy/protocol-http":"^3.0.5","@smithy/smithy-client":"^2.1.6","@smithy/types":"^2.3.3","@smithy/url-parser":"^2.0.9","@smithy/util-base64":"^2.0.0","@smithy/util-body-length-browser":"^2.0.0","@smithy/util-body-length-node":"^2.1.0","@smithy/util-defaults-mode-browser":"^2.0.10","@smithy/util-defaults-mode-node":"^2.0.12","@smithy/util-retry":"^2.0.2","@smithy/util-utf8":"^2.0.0","fast-xml-parser":"4.2.5","tslib":"^2.5.0"},"devDependencies":{"@smithy/service-client-documentation-generator":"^2.0.0","@tsconfig/node14":"1.0.3","@types/node":"^14.14.31","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typedoc":"0.23.23","typescript":"~4.9.5"},"engines":{"node":">=14.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-sts","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-sts"}}');
 
 /***/ }),
 
