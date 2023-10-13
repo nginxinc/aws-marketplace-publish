@@ -28,10 +28,10 @@ jobs:
           aws-region: us-east-1
       - uses: ./
         with:
-          version: 3.3.0
+          version: 3.3.1
           product-id: ${{ secrets.AWS_MARKETPLACE_PRODUCT_ID }}
-          registry: '709825985650.dkr.ecr.us-east-1.amazonaws.com/nginx/nginx-plus-ingress:3.3.0'
-          release-notes: 'https://github.com/nginxinc/kubernetes-ingress/releases/tag/v3.3.0'
+          registry: '709825985650.dkr.ecr.us-east-1.amazonaws.com/nginx/nginx-plus-ingress:3.3.1-mktpl'
+          release-notes: 'https://github.com/nginxinc/kubernetes-ingress/releases/tag/v3.3.1'
           description: |
             Best-in-class traffic management solution for services in Amazon EKS.
             This is the official implementation of NGINX Ingress Controller (based on NGINX Plus) from NGINX.
