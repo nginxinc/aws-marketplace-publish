@@ -3835,7 +3835,7 @@ const se_StartChangeSetCommand = async (input, context) => {
     let body;
     body = JSON.stringify((0, smithy_client_1.take)(input, {
         Catalog: [],
-        ChangeSet: (_) => (0, smithy_client_1._json)(_),
+        ChangeSet: (_) => se_RequestedChangeList(_, context),
         ChangeSetName: [],
         ChangeSetTags: (_) => (0, smithy_client_1._json)(_),
         ClientRequestToken: [true, (_) => _ ?? (0, uuid_1.v4)()],
@@ -3996,7 +3996,7 @@ const de_DescribeChangeSetCommand = async (output, context) => {
     });
     const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
     const doc = (0, smithy_client_1.take)(data, {
-        ChangeSet: smithy_client_1._json,
+        ChangeSet: (_) => de_ChangeSetDescription(_, context),
         ChangeSetArn: smithy_client_1.expectString,
         ChangeSetId: smithy_client_1.expectString,
         ChangeSetName: smithy_client_1.expectString,
@@ -4051,6 +4051,7 @@ const de_DescribeEntityCommand = async (output, context) => {
     const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
     const doc = (0, smithy_client_1.take)(data, {
         Details: smithy_client_1.expectString,
+        DetailsDocument: (_) => de_JsonDocumentType(_, context),
         EntityArn: smithy_client_1.expectString,
         EntityIdentifier: smithy_client_1.expectString,
         EntityType: smithy_client_1.expectString,
@@ -4561,6 +4562,47 @@ const de_ValidationExceptionRes = async (parsedOutput, context) => {
         ...contents,
     });
     return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
+};
+const se_Change = (input, context) => {
+    return (0, smithy_client_1.take)(input, {
+        ChangeName: [],
+        ChangeType: [],
+        Details: [],
+        DetailsDocument: (_) => se_JsonDocumentType(_, context),
+        Entity: smithy_client_1._json,
+        EntityTags: smithy_client_1._json,
+    });
+};
+const se_JsonDocumentType = (input, context) => {
+    return input;
+};
+const se_RequestedChangeList = (input, context) => {
+    return input
+        .filter((e) => e != null)
+        .map((entry) => {
+        return se_Change(entry, context);
+    });
+};
+const de_ChangeSetDescription = (output, context) => {
+    const retVal = (output || [])
+        .filter((e) => e != null)
+        .map((entry) => {
+        return de_ChangeSummary(entry, context);
+    });
+    return retVal;
+};
+const de_ChangeSummary = (output, context) => {
+    return (0, smithy_client_1.take)(output, {
+        ChangeName: smithy_client_1.expectString,
+        ChangeType: smithy_client_1.expectString,
+        Details: smithy_client_1.expectString,
+        DetailsDocument: (_) => de_JsonDocumentType(_, context),
+        Entity: smithy_client_1._json,
+        ErrorDetailList: smithy_client_1._json,
+    });
+};
+const de_JsonDocumentType = (output, context) => {
+    return output;
 };
 const deserializeMetadata = (output) => ({
     httpStatusCode: output.statusCode,
@@ -8742,7 +8784,7 @@ const hostHeaderMiddleware = (options) => (next) => async (args) => {
     const { handlerProtocol = "" } = options.requestHandler.metadata || {};
     if (handlerProtocol.indexOf("h2") >= 0 && !request.headers[":authority"]) {
         delete request.headers["host"];
-        request.headers[":authority"] = "";
+        request.headers[":authority"] = request.hostname + (request.port ? ":" + request.port : "");
     }
     else if (!request.headers["host"]) {
         let host = request.hostname;
@@ -9449,10 +9491,10 @@ var resolveClientEndpointParameters = (options) => {
         ...options,
         useDualstackEndpoint: (_a = options.useDualstackEndpoint) !== null && _a !== void 0 ? _a : false,
         useFipsEndpoint: (_b = options.useFipsEndpoint) !== null && _b !== void 0 ? _b : false,
-        defaultSigningName: "awsssooidc"
+        defaultSigningName: "awsssooidc",
     };
 };
-var package_default = { version: "3.387.0" };
+var package_default = { version: "3.429.0" };
 const util_user_agent_node_1 = __nccwpck_require__(98095);
 const config_resolver_2 = __nccwpck_require__(53098);
 const hash_node_1 = __nccwpck_require__(3081);
@@ -9466,46 +9508,149 @@ const url_parser_1 = __nccwpck_require__(14681);
 const util_base64_1 = __nccwpck_require__(75600);
 const util_utf8_1 = __nccwpck_require__(41895);
 const util_endpoints_1 = __nccwpck_require__(13350);
-var p = "required";
-var q = "fn";
-var r = "argv";
-var s = "ref";
-var a = "PartitionResult";
+var s = "required";
+var t = "fn";
+var u = "argv";
+var v = "ref";
+var a = "isSet";
 var b = "tree";
 var c = "error";
 var d = "endpoint";
-var e = { [p]: false, "type": "String" };
-var f = { [p]: true, "default": false, "type": "Boolean" };
-var g = { [s]: "Endpoint" };
-var h = { [q]: "booleanEquals", [r]: [{ [s]: "UseFIPS" }, true] };
-var i = { [q]: "booleanEquals", [r]: [{ [s]: "UseDualStack" }, true] };
-var j = {};
-var k = { [q]: "booleanEquals", [r]: [true, { [q]: "getAttr", [r]: [{ [s]: a }, "supportsFIPS"] }] };
-var l = { [q]: "booleanEquals", [r]: [true, { [q]: "getAttr", [r]: [{ [s]: a }, "supportsDualStack"] }] };
-var m = [g];
-var n = [h];
-var o = [i];
-var _data = { version: "1.0", parameters: { Region: e, UseDualStack: f, UseFIPS: f, Endpoint: e }, rules: [{ conditions: [{ [q]: "aws.partition", [r]: [{ [s]: "Region" }], assign: a }], type: b, rules: [{ conditions: [{ [q]: "isSet", [r]: m }, { [q]: "parseURL", [r]: m, assign: "url" }], type: b, rules: [{ conditions: n, error: "Invalid Configuration: FIPS and custom endpoint are not supported", type: c }, { type: b, rules: [{ conditions: o, error: "Invalid Configuration: Dualstack and custom endpoint are not supported", type: c }, { endpoint: { url: g, properties: j, headers: j }, type: d }] }] }, { conditions: [h, i], type: b, rules: [{ conditions: [k, l], type: b, rules: [{ endpoint: { url: "https://oidc-fips.{Region}.{PartitionResult#dualStackDnsSuffix}", properties: j, headers: j }, type: d }] }, { error: "FIPS and DualStack are enabled, but this partition does not support one or both", type: c }] }, { conditions: n, type: b, rules: [{ conditions: [k], type: b, rules: [{ type: b, rules: [{ endpoint: { url: "https://oidc-fips.{Region}.{PartitionResult#dnsSuffix}", properties: j, headers: j }, type: d }] }] }, { error: "FIPS is enabled but this partition does not support FIPS", type: c }] }, { conditions: o, type: b, rules: [{ conditions: [l], type: b, rules: [{ endpoint: { url: "https://oidc.{Region}.{PartitionResult#dualStackDnsSuffix}", properties: j, headers: j }, type: d }] }, { error: "DualStack is enabled but this partition does not support DualStack", type: c }] }, { endpoint: { url: "https://oidc.{Region}.{PartitionResult#dnsSuffix}", properties: j, headers: j }, type: d }] }] };
+var e = "PartitionResult";
+var f = "getAttr";
+var g = { [s]: false, type: "String" };
+var h = { [s]: true, default: false, type: "Boolean" };
+var i = { [v]: "Endpoint" };
+var j = { [t]: "booleanEquals", [u]: [{ [v]: "UseFIPS" }, true] };
+var k = { [t]: "booleanEquals", [u]: [{ [v]: "UseDualStack" }, true] };
+var l = {};
+var m = { [t]: "booleanEquals", [u]: [true, { [t]: f, [u]: [{ [v]: e }, "supportsFIPS"] }] };
+var n = { [v]: e };
+var o = { [t]: "booleanEquals", [u]: [true, { [t]: f, [u]: [n, "supportsDualStack"] }] };
+var p = [j];
+var q = [k];
+var r = [{ [v]: "Region" }];
+var _data = {
+    version: "1.0",
+    parameters: { Region: g, UseDualStack: h, UseFIPS: h, Endpoint: g },
+    rules: [
+        {
+            conditions: [{ [t]: a, [u]: [i] }],
+            type: b,
+            rules: [
+                { conditions: p, error: "Invalid Configuration: FIPS and custom endpoint are not supported", type: c },
+                { conditions: q, error: "Invalid Configuration: Dualstack and custom endpoint are not supported", type: c },
+                { endpoint: { url: i, properties: l, headers: l }, type: d },
+            ],
+        },
+        {
+            conditions: [{ [t]: a, [u]: r }],
+            type: b,
+            rules: [
+                {
+                    conditions: [{ [t]: "aws.partition", [u]: r, assign: e }],
+                    type: b,
+                    rules: [
+                        {
+                            conditions: [j, k],
+                            type: b,
+                            rules: [
+                                {
+                                    conditions: [m, o],
+                                    type: b,
+                                    rules: [
+                                        {
+                                            endpoint: {
+                                                url: "https://oidc-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                properties: l,
+                                                headers: l,
+                                            },
+                                            type: d,
+                                        },
+                                    ],
+                                },
+                                { error: "FIPS and DualStack are enabled, but this partition does not support one or both", type: c },
+                            ],
+                        },
+                        {
+                            conditions: p,
+                            type: b,
+                            rules: [
+                                {
+                                    conditions: [m],
+                                    type: b,
+                                    rules: [
+                                        {
+                                            conditions: [{ [t]: "stringEquals", [u]: ["aws-us-gov", { [t]: f, [u]: [n, "name"] }] }],
+                                            endpoint: { url: "https://oidc.{Region}.amazonaws.com", properties: l, headers: l },
+                                            type: d,
+                                        },
+                                        {
+                                            endpoint: {
+                                                url: "https://oidc-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                properties: l,
+                                                headers: l,
+                                            },
+                                            type: d,
+                                        },
+                                    ],
+                                },
+                                { error: "FIPS is enabled but this partition does not support FIPS", type: c },
+                            ],
+                        },
+                        {
+                            conditions: q,
+                            type: b,
+                            rules: [
+                                {
+                                    conditions: [o],
+                                    type: b,
+                                    rules: [
+                                        {
+                                            endpoint: {
+                                                url: "https://oidc.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                properties: l,
+                                                headers: l,
+                                            },
+                                            type: d,
+                                        },
+                                    ],
+                                },
+                                { error: "DualStack is enabled but this partition does not support DualStack", type: c },
+                            ],
+                        },
+                        {
+                            endpoint: { url: "https://oidc.{Region}.{PartitionResult#dnsSuffix}", properties: l, headers: l },
+                            type: d,
+                        },
+                    ],
+                },
+            ],
+        },
+        { error: "Invalid Configuration: Missing Region", type: c },
+    ],
+};
 var ruleSet = _data;
 var defaultEndpointResolver = (endpointParams, context = {}) => {
     return (0, util_endpoints_1.resolveEndpoint)(ruleSet, {
         endpointParams,
-        logger: context.logger
+        logger: context.logger,
     });
 };
 var getRuntimeConfig = (config) => {
-    var _a, _b, _c, _d, _e, _f, _g, _h, _j;
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
     return ({
         apiVersion: "2019-06-10",
         base64Decoder: (_a = config === null || config === void 0 ? void 0 : config.base64Decoder) !== null && _a !== void 0 ? _a : util_base64_1.fromBase64,
         base64Encoder: (_b = config === null || config === void 0 ? void 0 : config.base64Encoder) !== null && _b !== void 0 ? _b : util_base64_1.toBase64,
         disableHostPrefix: (_c = config === null || config === void 0 ? void 0 : config.disableHostPrefix) !== null && _c !== void 0 ? _c : false,
         endpointProvider: (_d = config === null || config === void 0 ? void 0 : config.endpointProvider) !== null && _d !== void 0 ? _d : defaultEndpointResolver,
-        logger: (_e = config === null || config === void 0 ? void 0 : config.logger) !== null && _e !== void 0 ? _e : new smithy_client_2.NoOpLogger(),
-        serviceId: (_f = config === null || config === void 0 ? void 0 : config.serviceId) !== null && _f !== void 0 ? _f : "SSO OIDC",
-        urlParser: (_g = config === null || config === void 0 ? void 0 : config.urlParser) !== null && _g !== void 0 ? _g : url_parser_1.parseUrl,
-        utf8Decoder: (_h = config === null || config === void 0 ? void 0 : config.utf8Decoder) !== null && _h !== void 0 ? _h : util_utf8_1.fromUtf8,
-        utf8Encoder: (_j = config === null || config === void 0 ? void 0 : config.utf8Encoder) !== null && _j !== void 0 ? _j : util_utf8_1.toUtf8
+        extensions: (_e = config === null || config === void 0 ? void 0 : config.extensions) !== null && _e !== void 0 ? _e : [],
+        logger: (_f = config === null || config === void 0 ? void 0 : config.logger) !== null && _f !== void 0 ? _f : new smithy_client_2.NoOpLogger(),
+        serviceId: (_g = config === null || config === void 0 ? void 0 : config.serviceId) !== null && _g !== void 0 ? _g : "SSO OIDC",
+        urlParser: (_h = config === null || config === void 0 ? void 0 : config.urlParser) !== null && _h !== void 0 ? _h : url_parser_1.parseUrl,
+        utf8Decoder: (_j = config === null || config === void 0 ? void 0 : config.utf8Decoder) !== null && _j !== void 0 ? _j : util_utf8_1.fromUtf8,
+        utf8Encoder: (_k = config === null || config === void 0 ? void 0 : config.utf8Encoder) !== null && _k !== void 0 ? _k : util_utf8_1.toUtf8,
     });
 };
 const smithy_client_3 = __nccwpck_require__(63570);
@@ -9529,12 +9674,30 @@ var getRuntimeConfig2 = (config) => {
         requestHandler: (_e = config === null || config === void 0 ? void 0 : config.requestHandler) !== null && _e !== void 0 ? _e : new node_http_handler_1.NodeHttpHandler(defaultConfigProvider),
         retryMode: (_f = config === null || config === void 0 ? void 0 : config.retryMode) !== null && _f !== void 0 ? _f : (0, node_config_provider_1.loadConfig)({
             ...middleware_retry_2.NODE_RETRY_MODE_CONFIG_OPTIONS,
-            default: async () => (await defaultConfigProvider()).retryMode || util_retry_1.DEFAULT_RETRY_MODE
+            default: async () => (await defaultConfigProvider()).retryMode || util_retry_1.DEFAULT_RETRY_MODE,
         }),
         sha256: (_g = config === null || config === void 0 ? void 0 : config.sha256) !== null && _g !== void 0 ? _g : hash_node_1.Hash.bind(null, "sha256"),
         streamCollector: (_h = config === null || config === void 0 ? void 0 : config.streamCollector) !== null && _h !== void 0 ? _h : node_http_handler_1.streamCollector,
         useDualstackEndpoint: (_j = config === null || config === void 0 ? void 0 : config.useDualstackEndpoint) !== null && _j !== void 0 ? _j : (0, node_config_provider_1.loadConfig)(config_resolver_2.NODE_USE_DUALSTACK_ENDPOINT_CONFIG_OPTIONS),
-        useFipsEndpoint: (_k = config === null || config === void 0 ? void 0 : config.useFipsEndpoint) !== null && _k !== void 0 ? _k : (0, node_config_provider_1.loadConfig)(config_resolver_2.NODE_USE_FIPS_ENDPOINT_CONFIG_OPTIONS)
+        useFipsEndpoint: (_k = config === null || config === void 0 ? void 0 : config.useFipsEndpoint) !== null && _k !== void 0 ? _k : (0, node_config_provider_1.loadConfig)(config_resolver_2.NODE_USE_FIPS_ENDPOINT_CONFIG_OPTIONS),
+    };
+};
+const region_config_resolver_1 = __nccwpck_require__(18156);
+const protocol_http_1 = __nccwpck_require__(64418);
+const smithy_client_5 = __nccwpck_require__(63570);
+var asPartial = (t2) => t2;
+var resolveRuntimeExtensions = (runtimeConfig, extensions) => {
+    const extensionConfiguration = {
+        ...asPartial((0, region_config_resolver_1.getAwsRegionExtensionConfiguration)(runtimeConfig)),
+        ...asPartial((0, smithy_client_5.getDefaultExtensionConfiguration)(runtimeConfig)),
+        ...asPartial((0, protocol_http_1.getHttpHandlerExtensionConfiguration)(runtimeConfig)),
+    };
+    extensions.forEach((extension) => extension.configure(extensionConfiguration));
+    return {
+        ...runtimeConfig,
+        ...(0, region_config_resolver_1.resolveAwsRegionExtensionConfiguration)(extensionConfiguration),
+        ...(0, smithy_client_5.resolveDefaultRuntimeConfig)(extensionConfiguration),
+        ...(0, protocol_http_1.resolveHttpHandlerRuntimeConfig)(extensionConfiguration),
     };
 };
 var SSOOIDCClient = class extends smithy_client_1.Client {
@@ -9546,8 +9709,9 @@ var SSOOIDCClient = class extends smithy_client_1.Client {
         const _config_4 = (0, middleware_retry_1.resolveRetryConfig)(_config_3);
         const _config_5 = (0, middleware_host_header_1.resolveHostHeaderConfig)(_config_4);
         const _config_6 = (0, middleware_user_agent_1.resolveUserAgentConfig)(_config_5);
-        super(_config_6);
-        this.config = _config_6;
+        const _config_7 = resolveRuntimeExtensions(_config_6, (configuration === null || configuration === void 0 ? void 0 : configuration.extensions) || []);
+        super(_config_7);
+        this.config = _config_7;
         this.middlewareStack.use((0, middleware_retry_1.getRetryPlugin)(this.config));
         this.middlewareStack.use((0, middleware_content_length_1.getContentLengthPlugin)(this.config));
         this.middlewareStack.use((0, middleware_host_header_1.getHostHeaderPlugin)(this.config));
@@ -9560,14 +9724,15 @@ var SSOOIDCClient = class extends smithy_client_1.Client {
     }
 };
 exports.SSOOIDCClient = SSOOIDCClient;
-const smithy_client_5 = __nccwpck_require__(63570);
+const smithy_client_6 = __nccwpck_require__(63570);
 const middleware_endpoint_2 = __nccwpck_require__(82918);
 const middleware_serde_1 = __nccwpck_require__(81238);
-const smithy_client_6 = __nccwpck_require__(63570);
-const protocol_http_1 = __nccwpck_require__(64418);
 const smithy_client_7 = __nccwpck_require__(63570);
+const types_1 = __nccwpck_require__(55756);
+const protocol_http_2 = __nccwpck_require__(64418);
 const smithy_client_8 = __nccwpck_require__(63570);
-var SSOOIDCServiceException = class _SSOOIDCServiceException extends smithy_client_8.ServiceException {
+const smithy_client_9 = __nccwpck_require__(63570);
+var SSOOIDCServiceException = class _SSOOIDCServiceException extends smithy_client_9.ServiceException {
     constructor(options) {
         super(options);
         Object.setPrototypeOf(this, _SSOOIDCServiceException.prototype);
@@ -9578,7 +9743,7 @@ var AccessDeniedException = class _AccessDeniedException extends SSOOIDCServiceE
         super({
             name: "AccessDeniedException",
             $fault: "client",
-            ...opts
+            ...opts,
         });
         this.name = "AccessDeniedException";
         this.$fault = "client";
@@ -9593,7 +9758,7 @@ var AuthorizationPendingException = class _AuthorizationPendingException extends
         super({
             name: "AuthorizationPendingException",
             $fault: "client",
-            ...opts
+            ...opts,
         });
         this.name = "AuthorizationPendingException";
         this.$fault = "client";
@@ -9608,7 +9773,7 @@ var ExpiredTokenException = class _ExpiredTokenException extends SSOOIDCServiceE
         super({
             name: "ExpiredTokenException",
             $fault: "client",
-            ...opts
+            ...opts,
         });
         this.name = "ExpiredTokenException";
         this.$fault = "client";
@@ -9623,7 +9788,7 @@ var InternalServerException = class _InternalServerException extends SSOOIDCServ
         super({
             name: "InternalServerException",
             $fault: "server",
-            ...opts
+            ...opts,
         });
         this.name = "InternalServerException";
         this.$fault = "server";
@@ -9638,7 +9803,7 @@ var InvalidClientException = class _InvalidClientException extends SSOOIDCServic
         super({
             name: "InvalidClientException",
             $fault: "client",
-            ...opts
+            ...opts,
         });
         this.name = "InvalidClientException";
         this.$fault = "client";
@@ -9653,7 +9818,7 @@ var InvalidGrantException = class _InvalidGrantException extends SSOOIDCServiceE
         super({
             name: "InvalidGrantException",
             $fault: "client",
-            ...opts
+            ...opts,
         });
         this.name = "InvalidGrantException";
         this.$fault = "client";
@@ -9667,7 +9832,7 @@ var InvalidRequestException = class _InvalidRequestException extends SSOOIDCServ
         super({
             name: "InvalidRequestException",
             $fault: "client",
-            ...opts
+            ...opts,
         });
         this.name = "InvalidRequestException";
         this.$fault = "client";
@@ -9682,7 +9847,7 @@ var InvalidScopeException = class _InvalidScopeException extends SSOOIDCServiceE
         super({
             name: "InvalidScopeException",
             $fault: "client",
-            ...opts
+            ...opts,
         });
         this.name = "InvalidScopeException";
         this.$fault = "client";
@@ -9697,7 +9862,7 @@ var SlowDownException = class _SlowDownException extends SSOOIDCServiceException
         super({
             name: "SlowDownException",
             $fault: "client",
-            ...opts
+            ...opts,
         });
         this.name = "SlowDownException";
         this.$fault = "client";
@@ -9712,7 +9877,7 @@ var UnauthorizedClientException = class _UnauthorizedClientException extends SSO
         super({
             name: "UnauthorizedClientException",
             $fault: "client",
-            ...opts
+            ...opts,
         });
         this.name = "UnauthorizedClientException";
         this.$fault = "client";
@@ -9727,7 +9892,7 @@ var UnsupportedGrantTypeException = class _UnsupportedGrantTypeException extends
         super({
             name: "UnsupportedGrantTypeException",
             $fault: "client",
-            ...opts
+            ...opts,
         });
         this.name = "UnsupportedGrantTypeException";
         this.$fault = "client";
@@ -9742,7 +9907,7 @@ var InvalidClientMetadataException = class _InvalidClientMetadataException exten
         super({
             name: "InvalidClientMetadataException",
             $fault: "client",
-            ...opts
+            ...opts,
         });
         this.name = "InvalidClientMetadataException";
         this.$fault = "client";
@@ -9754,11 +9919,11 @@ var InvalidClientMetadataException = class _InvalidClientMetadataException exten
 var se_CreateTokenCommand = async (input, context) => {
     const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
     const headers = {
-        "content-type": "application/json"
+        "content-type": "application/json",
     };
     const resolvedPath = `${(basePath === null || basePath === void 0 ? void 0 : basePath.endsWith("/")) ? basePath.slice(0, -1) : basePath || ""}/token`;
     let body;
-    body = JSON.stringify((0, smithy_client_7.take)(input, {
+    body = JSON.stringify((0, smithy_client_8.take)(input, {
         clientId: [],
         clientSecret: [],
         code: [],
@@ -9766,76 +9931,76 @@ var se_CreateTokenCommand = async (input, context) => {
         grantType: [],
         redirectUri: [],
         refreshToken: [],
-        scope: (_) => (0, smithy_client_7._json)(_)
+        scope: (_) => (0, smithy_client_8._json)(_),
     }));
-    return new protocol_http_1.HttpRequest({
+    return new protocol_http_2.HttpRequest({
         protocol,
         hostname,
         port,
         method: "POST",
         headers,
         path: resolvedPath,
-        body
+        body,
     });
 };
 var se_RegisterClientCommand = async (input, context) => {
     const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
     const headers = {
-        "content-type": "application/json"
+        "content-type": "application/json",
     };
     const resolvedPath = `${(basePath === null || basePath === void 0 ? void 0 : basePath.endsWith("/")) ? basePath.slice(0, -1) : basePath || ""}/client/register`;
     let body;
-    body = JSON.stringify((0, smithy_client_7.take)(input, {
+    body = JSON.stringify((0, smithy_client_8.take)(input, {
         clientName: [],
         clientType: [],
-        scopes: (_) => (0, smithy_client_7._json)(_)
+        scopes: (_) => (0, smithy_client_8._json)(_),
     }));
-    return new protocol_http_1.HttpRequest({
+    return new protocol_http_2.HttpRequest({
         protocol,
         hostname,
         port,
         method: "POST",
         headers,
         path: resolvedPath,
-        body
+        body,
     });
 };
 var se_StartDeviceAuthorizationCommand = async (input, context) => {
     const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
     const headers = {
-        "content-type": "application/json"
+        "content-type": "application/json",
     };
     const resolvedPath = `${(basePath === null || basePath === void 0 ? void 0 : basePath.endsWith("/")) ? basePath.slice(0, -1) : basePath || ""}/device_authorization`;
     let body;
-    body = JSON.stringify((0, smithy_client_7.take)(input, {
+    body = JSON.stringify((0, smithy_client_8.take)(input, {
         clientId: [],
         clientSecret: [],
-        startUrl: []
+        startUrl: [],
     }));
-    return new protocol_http_1.HttpRequest({
+    return new protocol_http_2.HttpRequest({
         protocol,
         hostname,
         port,
         method: "POST",
         headers,
         path: resolvedPath,
-        body
+        body,
     });
 };
 var de_CreateTokenCommand = async (output, context) => {
     if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_CreateTokenCommandError(output, context);
     }
-    const contents = (0, smithy_client_7.map)({
-        $metadata: deserializeMetadata(output)
+    const contents = (0, smithy_client_8.map)({
+        $metadata: deserializeMetadata(output),
     });
-    const data = (0, smithy_client_7.expectNonNull)((0, smithy_client_7.expectObject)(await parseBody(output.body, context)), "body");
-    const doc = (0, smithy_client_7.take)(data, {
-        accessToken: smithy_client_7.expectString,
-        expiresIn: smithy_client_7.expectInt32,
-        idToken: smithy_client_7.expectString,
-        refreshToken: smithy_client_7.expectString,
-        tokenType: smithy_client_7.expectString
+    const data = (0, smithy_client_8.expectNonNull)((0, smithy_client_8.expectObject)(await parseBody(output.body, context)), "body");
+    const doc = (0, smithy_client_8.take)(data, {
+        accessToken: smithy_client_8.expectString,
+        expiresIn: smithy_client_8.expectInt32,
+        idToken: smithy_client_8.expectString,
+        refreshToken: smithy_client_8.expectString,
+        tokenType: smithy_client_8.expectString,
     });
     Object.assign(contents, doc);
     return contents;
@@ -9843,7 +10008,7 @@ var de_CreateTokenCommand = async (output, context) => {
 var de_CreateTokenCommandError = async (output, context) => {
     const parsedOutput = {
         ...output,
-        body: await parseErrorBody(output.body, context)
+        body: await parseErrorBody(output.body, context),
     };
     const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
@@ -9885,7 +10050,7 @@ var de_CreateTokenCommandError = async (output, context) => {
             return throwDefaultError({
                 output,
                 parsedBody,
-                errorCode
+                errorCode,
             });
     }
 };
@@ -9893,17 +10058,17 @@ var de_RegisterClientCommand = async (output, context) => {
     if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_RegisterClientCommandError(output, context);
     }
-    const contents = (0, smithy_client_7.map)({
-        $metadata: deserializeMetadata(output)
+    const contents = (0, smithy_client_8.map)({
+        $metadata: deserializeMetadata(output),
     });
-    const data = (0, smithy_client_7.expectNonNull)((0, smithy_client_7.expectObject)(await parseBody(output.body, context)), "body");
-    const doc = (0, smithy_client_7.take)(data, {
-        authorizationEndpoint: smithy_client_7.expectString,
-        clientId: smithy_client_7.expectString,
-        clientIdIssuedAt: smithy_client_7.expectLong,
-        clientSecret: smithy_client_7.expectString,
-        clientSecretExpiresAt: smithy_client_7.expectLong,
-        tokenEndpoint: smithy_client_7.expectString
+    const data = (0, smithy_client_8.expectNonNull)((0, smithy_client_8.expectObject)(await parseBody(output.body, context)), "body");
+    const doc = (0, smithy_client_8.take)(data, {
+        authorizationEndpoint: smithy_client_8.expectString,
+        clientId: smithy_client_8.expectString,
+        clientIdIssuedAt: smithy_client_8.expectLong,
+        clientSecret: smithy_client_8.expectString,
+        clientSecretExpiresAt: smithy_client_8.expectLong,
+        tokenEndpoint: smithy_client_8.expectString,
     });
     Object.assign(contents, doc);
     return contents;
@@ -9911,7 +10076,7 @@ var de_RegisterClientCommand = async (output, context) => {
 var de_RegisterClientCommandError = async (output, context) => {
     const parsedOutput = {
         ...output,
-        body: await parseErrorBody(output.body, context)
+        body: await parseErrorBody(output.body, context),
     };
     const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
@@ -9932,7 +10097,7 @@ var de_RegisterClientCommandError = async (output, context) => {
             return throwDefaultError({
                 output,
                 parsedBody,
-                errorCode
+                errorCode,
             });
     }
 };
@@ -9940,17 +10105,17 @@ var de_StartDeviceAuthorizationCommand = async (output, context) => {
     if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_StartDeviceAuthorizationCommandError(output, context);
     }
-    const contents = (0, smithy_client_7.map)({
-        $metadata: deserializeMetadata(output)
+    const contents = (0, smithy_client_8.map)({
+        $metadata: deserializeMetadata(output),
     });
-    const data = (0, smithy_client_7.expectNonNull)((0, smithy_client_7.expectObject)(await parseBody(output.body, context)), "body");
-    const doc = (0, smithy_client_7.take)(data, {
-        deviceCode: smithy_client_7.expectString,
-        expiresIn: smithy_client_7.expectInt32,
-        interval: smithy_client_7.expectInt32,
-        userCode: smithy_client_7.expectString,
-        verificationUri: smithy_client_7.expectString,
-        verificationUriComplete: smithy_client_7.expectString
+    const data = (0, smithy_client_8.expectNonNull)((0, smithy_client_8.expectObject)(await parseBody(output.body, context)), "body");
+    const doc = (0, smithy_client_8.take)(data, {
+        deviceCode: smithy_client_8.expectString,
+        expiresIn: smithy_client_8.expectInt32,
+        interval: smithy_client_8.expectInt32,
+        userCode: smithy_client_8.expectString,
+        verificationUri: smithy_client_8.expectString,
+        verificationUriComplete: smithy_client_8.expectString,
     });
     Object.assign(contents, doc);
     return contents;
@@ -9958,7 +10123,7 @@ var de_StartDeviceAuthorizationCommand = async (output, context) => {
 var de_StartDeviceAuthorizationCommandError = async (output, context) => {
     const parsedOutput = {
         ...output,
-        body: await parseErrorBody(output.body, context)
+        body: await parseErrorBody(output.body, context),
     };
     const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
@@ -9982,178 +10147,178 @@ var de_StartDeviceAuthorizationCommandError = async (output, context) => {
             return throwDefaultError({
                 output,
                 parsedBody,
-                errorCode
+                errorCode,
             });
     }
 };
-var throwDefaultError = (0, smithy_client_7.withBaseException)(SSOOIDCServiceException);
+var throwDefaultError = (0, smithy_client_8.withBaseException)(SSOOIDCServiceException);
 var de_AccessDeniedExceptionRes = async (parsedOutput, context) => {
-    const contents = (0, smithy_client_7.map)({});
+    const contents = (0, smithy_client_8.map)({});
     const data = parsedOutput.body;
-    const doc = (0, smithy_client_7.take)(data, {
-        error: smithy_client_7.expectString,
-        error_description: smithy_client_7.expectString
+    const doc = (0, smithy_client_8.take)(data, {
+        error: smithy_client_8.expectString,
+        error_description: smithy_client_8.expectString,
     });
     Object.assign(contents, doc);
     const exception = new AccessDeniedException({
         $metadata: deserializeMetadata(parsedOutput),
-        ...contents
+        ...contents,
     });
-    return (0, smithy_client_7.decorateServiceException)(exception, parsedOutput.body);
+    return (0, smithy_client_8.decorateServiceException)(exception, parsedOutput.body);
 };
 var de_AuthorizationPendingExceptionRes = async (parsedOutput, context) => {
-    const contents = (0, smithy_client_7.map)({});
+    const contents = (0, smithy_client_8.map)({});
     const data = parsedOutput.body;
-    const doc = (0, smithy_client_7.take)(data, {
-        error: smithy_client_7.expectString,
-        error_description: smithy_client_7.expectString
+    const doc = (0, smithy_client_8.take)(data, {
+        error: smithy_client_8.expectString,
+        error_description: smithy_client_8.expectString,
     });
     Object.assign(contents, doc);
     const exception = new AuthorizationPendingException({
         $metadata: deserializeMetadata(parsedOutput),
-        ...contents
+        ...contents,
     });
-    return (0, smithy_client_7.decorateServiceException)(exception, parsedOutput.body);
+    return (0, smithy_client_8.decorateServiceException)(exception, parsedOutput.body);
 };
 var de_ExpiredTokenExceptionRes = async (parsedOutput, context) => {
-    const contents = (0, smithy_client_7.map)({});
+    const contents = (0, smithy_client_8.map)({});
     const data = parsedOutput.body;
-    const doc = (0, smithy_client_7.take)(data, {
-        error: smithy_client_7.expectString,
-        error_description: smithy_client_7.expectString
+    const doc = (0, smithy_client_8.take)(data, {
+        error: smithy_client_8.expectString,
+        error_description: smithy_client_8.expectString,
     });
     Object.assign(contents, doc);
     const exception = new ExpiredTokenException({
         $metadata: deserializeMetadata(parsedOutput),
-        ...contents
+        ...contents,
     });
-    return (0, smithy_client_7.decorateServiceException)(exception, parsedOutput.body);
+    return (0, smithy_client_8.decorateServiceException)(exception, parsedOutput.body);
 };
 var de_InternalServerExceptionRes = async (parsedOutput, context) => {
-    const contents = (0, smithy_client_7.map)({});
+    const contents = (0, smithy_client_8.map)({});
     const data = parsedOutput.body;
-    const doc = (0, smithy_client_7.take)(data, {
-        error: smithy_client_7.expectString,
-        error_description: smithy_client_7.expectString
+    const doc = (0, smithy_client_8.take)(data, {
+        error: smithy_client_8.expectString,
+        error_description: smithy_client_8.expectString,
     });
     Object.assign(contents, doc);
     const exception = new InternalServerException({
         $metadata: deserializeMetadata(parsedOutput),
-        ...contents
+        ...contents,
     });
-    return (0, smithy_client_7.decorateServiceException)(exception, parsedOutput.body);
+    return (0, smithy_client_8.decorateServiceException)(exception, parsedOutput.body);
 };
 var de_InvalidClientExceptionRes = async (parsedOutput, context) => {
-    const contents = (0, smithy_client_7.map)({});
+    const contents = (0, smithy_client_8.map)({});
     const data = parsedOutput.body;
-    const doc = (0, smithy_client_7.take)(data, {
-        error: smithy_client_7.expectString,
-        error_description: smithy_client_7.expectString
+    const doc = (0, smithy_client_8.take)(data, {
+        error: smithy_client_8.expectString,
+        error_description: smithy_client_8.expectString,
     });
     Object.assign(contents, doc);
     const exception = new InvalidClientException({
         $metadata: deserializeMetadata(parsedOutput),
-        ...contents
+        ...contents,
     });
-    return (0, smithy_client_7.decorateServiceException)(exception, parsedOutput.body);
+    return (0, smithy_client_8.decorateServiceException)(exception, parsedOutput.body);
 };
 var de_InvalidClientMetadataExceptionRes = async (parsedOutput, context) => {
-    const contents = (0, smithy_client_7.map)({});
+    const contents = (0, smithy_client_8.map)({});
     const data = parsedOutput.body;
-    const doc = (0, smithy_client_7.take)(data, {
-        error: smithy_client_7.expectString,
-        error_description: smithy_client_7.expectString
+    const doc = (0, smithy_client_8.take)(data, {
+        error: smithy_client_8.expectString,
+        error_description: smithy_client_8.expectString,
     });
     Object.assign(contents, doc);
     const exception = new InvalidClientMetadataException({
         $metadata: deserializeMetadata(parsedOutput),
-        ...contents
+        ...contents,
     });
-    return (0, smithy_client_7.decorateServiceException)(exception, parsedOutput.body);
+    return (0, smithy_client_8.decorateServiceException)(exception, parsedOutput.body);
 };
 var de_InvalidGrantExceptionRes = async (parsedOutput, context) => {
-    const contents = (0, smithy_client_7.map)({});
+    const contents = (0, smithy_client_8.map)({});
     const data = parsedOutput.body;
-    const doc = (0, smithy_client_7.take)(data, {
-        error: smithy_client_7.expectString,
-        error_description: smithy_client_7.expectString
+    const doc = (0, smithy_client_8.take)(data, {
+        error: smithy_client_8.expectString,
+        error_description: smithy_client_8.expectString,
     });
     Object.assign(contents, doc);
     const exception = new InvalidGrantException({
         $metadata: deserializeMetadata(parsedOutput),
-        ...contents
+        ...contents,
     });
-    return (0, smithy_client_7.decorateServiceException)(exception, parsedOutput.body);
+    return (0, smithy_client_8.decorateServiceException)(exception, parsedOutput.body);
 };
 var de_InvalidRequestExceptionRes = async (parsedOutput, context) => {
-    const contents = (0, smithy_client_7.map)({});
+    const contents = (0, smithy_client_8.map)({});
     const data = parsedOutput.body;
-    const doc = (0, smithy_client_7.take)(data, {
-        error: smithy_client_7.expectString,
-        error_description: smithy_client_7.expectString
+    const doc = (0, smithy_client_8.take)(data, {
+        error: smithy_client_8.expectString,
+        error_description: smithy_client_8.expectString,
     });
     Object.assign(contents, doc);
     const exception = new InvalidRequestException({
         $metadata: deserializeMetadata(parsedOutput),
-        ...contents
+        ...contents,
     });
-    return (0, smithy_client_7.decorateServiceException)(exception, parsedOutput.body);
+    return (0, smithy_client_8.decorateServiceException)(exception, parsedOutput.body);
 };
 var de_InvalidScopeExceptionRes = async (parsedOutput, context) => {
-    const contents = (0, smithy_client_7.map)({});
+    const contents = (0, smithy_client_8.map)({});
     const data = parsedOutput.body;
-    const doc = (0, smithy_client_7.take)(data, {
-        error: smithy_client_7.expectString,
-        error_description: smithy_client_7.expectString
+    const doc = (0, smithy_client_8.take)(data, {
+        error: smithy_client_8.expectString,
+        error_description: smithy_client_8.expectString,
     });
     Object.assign(contents, doc);
     const exception = new InvalidScopeException({
         $metadata: deserializeMetadata(parsedOutput),
-        ...contents
+        ...contents,
     });
-    return (0, smithy_client_7.decorateServiceException)(exception, parsedOutput.body);
+    return (0, smithy_client_8.decorateServiceException)(exception, parsedOutput.body);
 };
 var de_SlowDownExceptionRes = async (parsedOutput, context) => {
-    const contents = (0, smithy_client_7.map)({});
+    const contents = (0, smithy_client_8.map)({});
     const data = parsedOutput.body;
-    const doc = (0, smithy_client_7.take)(data, {
-        error: smithy_client_7.expectString,
-        error_description: smithy_client_7.expectString
+    const doc = (0, smithy_client_8.take)(data, {
+        error: smithy_client_8.expectString,
+        error_description: smithy_client_8.expectString,
     });
     Object.assign(contents, doc);
     const exception = new SlowDownException({
         $metadata: deserializeMetadata(parsedOutput),
-        ...contents
+        ...contents,
     });
-    return (0, smithy_client_7.decorateServiceException)(exception, parsedOutput.body);
+    return (0, smithy_client_8.decorateServiceException)(exception, parsedOutput.body);
 };
 var de_UnauthorizedClientExceptionRes = async (parsedOutput, context) => {
-    const contents = (0, smithy_client_7.map)({});
+    const contents = (0, smithy_client_8.map)({});
     const data = parsedOutput.body;
-    const doc = (0, smithy_client_7.take)(data, {
-        error: smithy_client_7.expectString,
-        error_description: smithy_client_7.expectString
+    const doc = (0, smithy_client_8.take)(data, {
+        error: smithy_client_8.expectString,
+        error_description: smithy_client_8.expectString,
     });
     Object.assign(contents, doc);
     const exception = new UnauthorizedClientException({
         $metadata: deserializeMetadata(parsedOutput),
-        ...contents
+        ...contents,
     });
-    return (0, smithy_client_7.decorateServiceException)(exception, parsedOutput.body);
+    return (0, smithy_client_8.decorateServiceException)(exception, parsedOutput.body);
 };
 var de_UnsupportedGrantTypeExceptionRes = async (parsedOutput, context) => {
-    const contents = (0, smithy_client_7.map)({});
+    const contents = (0, smithy_client_8.map)({});
     const data = parsedOutput.body;
-    const doc = (0, smithy_client_7.take)(data, {
-        error: smithy_client_7.expectString,
-        error_description: smithy_client_7.expectString
+    const doc = (0, smithy_client_8.take)(data, {
+        error: smithy_client_8.expectString,
+        error_description: smithy_client_8.expectString,
     });
     Object.assign(contents, doc);
     const exception = new UnsupportedGrantTypeException({
         $metadata: deserializeMetadata(parsedOutput),
-        ...contents
+        ...contents,
     });
-    return (0, smithy_client_7.decorateServiceException)(exception, parsedOutput.body);
+    return (0, smithy_client_8.decorateServiceException)(exception, parsedOutput.body);
 };
 var deserializeMetadata = (output) => {
     var _a, _b;
@@ -10161,10 +10326,10 @@ var deserializeMetadata = (output) => {
         httpStatusCode: output.statusCode,
         requestId: (_b = (_a = output.headers["x-amzn-requestid"]) !== null && _a !== void 0 ? _a : output.headers["x-amzn-request-id"]) !== null && _b !== void 0 ? _b : output.headers["x-amz-request-id"],
         extendedRequestId: output.headers["x-amz-id-2"],
-        cfId: output.headers["x-amz-cf-id"]
+        cfId: output.headers["x-amz-cf-id"],
     });
 };
-var collectBodyString = (streamBody, context) => (0, smithy_client_7.collectBody)(streamBody, context).then((body) => context.utf8Encoder(body));
+var collectBodyString = (streamBody, context) => (0, smithy_client_8.collectBody)(streamBody, context).then((body) => context.utf8Encoder(body));
 var parseBody = (streamBody, context) => collectBodyString(streamBody, context).then((encoded) => {
     if (encoded.length) {
         return JSON.parse(encoded);
@@ -10206,7 +10371,7 @@ var loadRestJsonErrorCode = (output, data) => {
         return sanitizeErrorCode(data["__type"]);
     }
 };
-var CreateTokenCommand = class _CreateTokenCommand extends smithy_client_6.Command {
+var CreateTokenCommand = class _CreateTokenCommand extends smithy_client_7.Command {
     constructor(input) {
         super();
         this.input = input;
@@ -10216,7 +10381,7 @@ var CreateTokenCommand = class _CreateTokenCommand extends smithy_client_6.Comma
             UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
             Endpoint: { type: "builtInParams", name: "endpoint" },
             Region: { type: "builtInParams", name: "region" },
-            UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
+            UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" },
         };
     }
     resolveMiddleware(clientStack, configuration, options) {
@@ -10231,7 +10396,11 @@ var CreateTokenCommand = class _CreateTokenCommand extends smithy_client_6.Comma
             clientName,
             commandName,
             inputFilterSensitiveLog: (_) => _,
-            outputFilterSensitiveLog: (_) => _
+            outputFilterSensitiveLog: (_) => _,
+            [types_1.SMITHY_CONTEXT_KEY]: {
+                service: "AWSSSOOIDCService",
+                operation: "CreateToken",
+            },
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -10246,8 +10415,9 @@ var CreateTokenCommand = class _CreateTokenCommand extends smithy_client_6.Comma
 exports.CreateTokenCommand = CreateTokenCommand;
 const middleware_endpoint_3 = __nccwpck_require__(82918);
 const middleware_serde_2 = __nccwpck_require__(81238);
-const smithy_client_9 = __nccwpck_require__(63570);
-var RegisterClientCommand = class _RegisterClientCommand extends smithy_client_9.Command {
+const smithy_client_10 = __nccwpck_require__(63570);
+const types_2 = __nccwpck_require__(55756);
+var RegisterClientCommand = class _RegisterClientCommand extends smithy_client_10.Command {
     constructor(input) {
         super();
         this.input = input;
@@ -10257,7 +10427,7 @@ var RegisterClientCommand = class _RegisterClientCommand extends smithy_client_9
             UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
             Endpoint: { type: "builtInParams", name: "endpoint" },
             Region: { type: "builtInParams", name: "region" },
-            UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
+            UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" },
         };
     }
     resolveMiddleware(clientStack, configuration, options) {
@@ -10272,7 +10442,11 @@ var RegisterClientCommand = class _RegisterClientCommand extends smithy_client_9
             clientName,
             commandName,
             inputFilterSensitiveLog: (_) => _,
-            outputFilterSensitiveLog: (_) => _
+            outputFilterSensitiveLog: (_) => _,
+            [types_2.SMITHY_CONTEXT_KEY]: {
+                service: "AWSSSOOIDCService",
+                operation: "RegisterClient",
+            },
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -10286,8 +10460,9 @@ var RegisterClientCommand = class _RegisterClientCommand extends smithy_client_9
 };
 const middleware_endpoint_4 = __nccwpck_require__(82918);
 const middleware_serde_3 = __nccwpck_require__(81238);
-const smithy_client_10 = __nccwpck_require__(63570);
-var StartDeviceAuthorizationCommand = class _StartDeviceAuthorizationCommand extends smithy_client_10.Command {
+const smithy_client_11 = __nccwpck_require__(63570);
+const types_3 = __nccwpck_require__(55756);
+var StartDeviceAuthorizationCommand = class _StartDeviceAuthorizationCommand extends smithy_client_11.Command {
     constructor(input) {
         super();
         this.input = input;
@@ -10297,7 +10472,7 @@ var StartDeviceAuthorizationCommand = class _StartDeviceAuthorizationCommand ext
             UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
             Endpoint: { type: "builtInParams", name: "endpoint" },
             Region: { type: "builtInParams", name: "region" },
-            UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
+            UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" },
         };
     }
     resolveMiddleware(clientStack, configuration, options) {
@@ -10312,7 +10487,11 @@ var StartDeviceAuthorizationCommand = class _StartDeviceAuthorizationCommand ext
             clientName,
             commandName,
             inputFilterSensitiveLog: (_) => _,
-            outputFilterSensitiveLog: (_) => _
+            outputFilterSensitiveLog: (_) => _,
+            [types_3.SMITHY_CONTEXT_KEY]: {
+                service: "AWSSSOOIDCService",
+                operation: "StartDeviceAuthorization",
+            },
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -10327,11 +10506,11 @@ var StartDeviceAuthorizationCommand = class _StartDeviceAuthorizationCommand ext
 var commands = {
     CreateTokenCommand,
     RegisterClientCommand,
-    StartDeviceAuthorizationCommand
+    StartDeviceAuthorizationCommand,
 };
 var SSOOIDC = class extends SSOOIDCClient {
 };
-(0, smithy_client_5.createAggregatedClient)(commands, SSOOIDC);
+(0, smithy_client_6.createAggregatedClient)(commands, SSOOIDC);
 
 
 /***/ }),
@@ -13752,6 +13931,21 @@ exports.createConfigValueProvider = createConfigValueProvider;
 
 /***/ }),
 
+/***/ 31518:
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.getEndpointFromConfig = void 0;
+const node_config_provider_1 = __nccwpck_require__(33461);
+const getEndpointUrlConfig_1 = __nccwpck_require__(7574);
+const getEndpointFromConfig = async (serviceId) => (0, node_config_provider_1.loadConfig)((0, getEndpointUrlConfig_1.getEndpointUrlConfig)(serviceId))();
+exports.getEndpointFromConfig = getEndpointFromConfig;
+
+
+/***/ }),
+
 /***/ 73929:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
@@ -13761,7 +13955,15 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.resolveParams = exports.getEndpointFromInstructions = void 0;
 const service_customizations_1 = __nccwpck_require__(13105);
 const createConfigValueProvider_1 = __nccwpck_require__(465);
+const getEndpointFromConfig_1 = __nccwpck_require__(31518);
+const toEndpointV1_1 = __nccwpck_require__(38938);
 const getEndpointFromInstructions = async (commandInput, instructionsSupplier, clientConfig, context) => {
+    if (!clientConfig.endpoint) {
+        const endpointFromConfig = await (0, getEndpointFromConfig_1.getEndpointFromConfig)(clientConfig.serviceId || "");
+        if (endpointFromConfig) {
+            clientConfig.endpoint = () => Promise.resolve((0, toEndpointV1_1.toEndpointV1)(endpointFromConfig));
+        }
+    }
     const endpointParams = await (0, exports.resolveParams)(commandInput, instructionsSupplier, clientConfig);
     if (typeof clientConfig.endpointProvider !== "function") {
         throw new Error("config.endpointProvider is not set.");
@@ -13799,6 +14001,49 @@ const resolveParams = async (commandInput, instructionsSupplier, clientConfig) =
     return endpointParams;
 };
 exports.resolveParams = resolveParams;
+
+
+/***/ }),
+
+/***/ 7574:
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.getEndpointUrlConfig = void 0;
+const shared_ini_file_loader_1 = __nccwpck_require__(43507);
+const ENV_ENDPOINT_URL = "AWS_ENDPOINT_URL";
+const CONFIG_ENDPOINT_URL = "endpoint_url";
+const getEndpointUrlConfig = (serviceId) => ({
+    environmentVariableSelector: (env) => {
+        const serviceSuffixParts = serviceId.split(" ").map((w) => w.toUpperCase());
+        const serviceEndpointUrl = env[[ENV_ENDPOINT_URL, ...serviceSuffixParts].join("_")];
+        if (serviceEndpointUrl)
+            return serviceEndpointUrl;
+        const endpointUrl = env[ENV_ENDPOINT_URL];
+        if (endpointUrl)
+            return endpointUrl;
+        return undefined;
+    },
+    configFileSelector: (profile, config) => {
+        if (config && profile.services) {
+            const servicesSection = config[["services", profile.services].join(shared_ini_file_loader_1.CONFIG_PREFIX_SEPARATOR)];
+            if (servicesSection) {
+                const servicePrefixParts = serviceId.split(" ").map((w) => w.toLowerCase());
+                const endpointUrl = servicesSection[[servicePrefixParts.join("_"), CONFIG_ENDPOINT_URL].join(shared_ini_file_loader_1.CONFIG_PREFIX_SEPARATOR)];
+                if (endpointUrl)
+                    return endpointUrl;
+            }
+        }
+        const endpointUrl = profile[CONFIG_ENDPOINT_URL];
+        if (endpointUrl)
+            return endpointUrl;
+        return undefined;
+    },
+    default: undefined,
+});
+exports.getEndpointUrlConfig = getEndpointUrlConfig;
 
 
 /***/ }),
@@ -14957,7 +15202,8 @@ const fromSharedConfigFiles = (configSelector, { preferredFile = "config", ...in
         ? { ...profileFromCredentials, ...profileFromConfig }
         : { ...profileFromConfig, ...profileFromCredentials };
     try {
-        const configValue = configSelector(mergedProfile);
+        const cfgFile = preferredFile === "config" ? configFile : credentialsFile;
+        const configValue = configSelector(mergedProfile, cfgFile);
         if (configValue === undefined) {
             throw new Error();
         }
@@ -16271,6 +16517,35 @@ exports.isServerError = isServerError;
 
 /***/ }),
 
+/***/ 46062:
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.getConfigData = void 0;
+const types_1 = __nccwpck_require__(55756);
+const loadSharedConfigFiles_1 = __nccwpck_require__(41879);
+const getConfigData = (data) => Object.entries(data)
+    .filter(([key]) => {
+    const sections = key.split(loadSharedConfigFiles_1.CONFIG_PREFIX_SEPARATOR);
+    if (sections.length === 2 && Object.values(types_1.IniSectionType).includes(sections[0])) {
+        return true;
+    }
+    return false;
+})
+    .reduce((acc, [key, value]) => {
+    const updatedKey = key.startsWith(types_1.IniSectionType.PROFILE) ? key.split(loadSharedConfigFiles_1.CONFIG_PREFIX_SEPARATOR)[1] : key;
+    acc[updatedKey] = value;
+    return acc;
+}, {
+    ...(data.default && { default: data.default }),
+});
+exports.getConfigData = getConfigData;
+
+
+/***/ }),
+
 /***/ 47237:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
@@ -16337,24 +16612,6 @@ exports.getHomeDir = getHomeDir;
 
 /***/ }),
 
-/***/ 32041:
-/***/ ((__unused_webpack_module, exports) => {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.getProfileData = void 0;
-const profileKeyRegex = /^profile\s(["'])?([^\1]+)\1$/;
-const getProfileData = (data) => Object.entries(data)
-    .filter(([key]) => profileKeyRegex.test(key))
-    .reduce((acc, [key, value]) => ({ ...acc, [profileKeyRegex.exec(key)[2]]: value }), {
-    ...(data.default && { default: data.default }),
-});
-exports.getProfileData = getProfileData;
-
-
-/***/ }),
-
 /***/ 52802:
 /***/ ((__unused_webpack_module, exports) => {
 
@@ -16411,16 +16668,17 @@ exports.getSSOTokenFromFile = getSSOTokenFromFile;
 /***/ }),
 
 /***/ 82820:
-/***/ ((__unused_webpack_module, exports) => {
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.getSsoSessionData = void 0;
-const ssoSessionKeyRegex = /^sso-session\s(["'])?([^\1]+)\1$/;
+const types_1 = __nccwpck_require__(55756);
+const loadSharedConfigFiles_1 = __nccwpck_require__(41879);
 const getSsoSessionData = (data) => Object.entries(data)
-    .filter(([key]) => ssoSessionKeyRegex.test(key))
-    .reduce((acc, [key, value]) => ({ ...acc, [ssoSessionKeyRegex.exec(key)[2]]: value }), {});
+    .filter(([key]) => key.startsWith(types_1.IniSectionType.SSO_SESSION + loadSharedConfigFiles_1.CONFIG_PREFIX_SEPARATOR))
+    .reduce((acc, [key, value]) => ({ ...acc, [key.split(loadSharedConfigFiles_1.CONFIG_PREFIX_SEPARATOR)[1]]: value }), {});
 exports.getSsoSessionData = getSsoSessionData;
 
 
@@ -16451,13 +16709,14 @@ tslib_1.__exportStar(__nccwpck_require__(63191), exports);
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.loadSharedConfigFiles = void 0;
+exports.loadSharedConfigFiles = exports.CONFIG_PREFIX_SEPARATOR = void 0;
+const getConfigData_1 = __nccwpck_require__(46062);
 const getConfigFilepath_1 = __nccwpck_require__(47237);
 const getCredentialsFilepath_1 = __nccwpck_require__(99036);
-const getProfileData_1 = __nccwpck_require__(32041);
 const parseIni_1 = __nccwpck_require__(54262);
 const slurpFile_1 = __nccwpck_require__(19155);
 const swallowError = () => ({});
+exports.CONFIG_PREFIX_SEPARATOR = ".";
 const loadSharedConfigFiles = async (init = {}) => {
     const { filepath = (0, getCredentialsFilepath_1.getCredentialsFilepath)(), configFilepath = (0, getConfigFilepath_1.getConfigFilepath)() } = init;
     const parsedFiles = await Promise.all([
@@ -16465,7 +16724,7 @@ const loadSharedConfigFiles = async (init = {}) => {
             ignoreCache: init.ignoreCache,
         })
             .then(parseIni_1.parseIni)
-            .then(getProfileData_1.getProfileData)
+            .then(getConfigData_1.getConfigData)
             .catch(swallowError),
         (0, slurpFile_1.slurpFile)(filepath, {
             ignoreCache: init.ignoreCache,
@@ -16534,37 +16793,59 @@ exports.mergeConfigFiles = mergeConfigFiles;
 /***/ }),
 
 /***/ 54262:
-/***/ ((__unused_webpack_module, exports) => {
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.parseIni = void 0;
+const types_1 = __nccwpck_require__(55756);
+const loadSharedConfigFiles_1 = __nccwpck_require__(41879);
+const prefixKeyRegex = /^([\w-]+)\s(["'])?([\w-@]+)\2$/;
 const profileNameBlockList = ["__proto__", "profile __proto__"];
 const parseIni = (iniData) => {
     const map = {};
     let currentSection;
-    for (let line of iniData.split(/\r?\n/)) {
-        line = line.split(/(^|\s)[;#]/)[0].trim();
-        const isSection = line[0] === "[" && line[line.length - 1] === "]";
+    let currentSubSection;
+    for (const iniLine of iniData.split(/\r?\n/)) {
+        const trimmedLine = iniLine.split(/(^|\s)[;#]/)[0].trim();
+        const isSection = trimmedLine[0] === "[" && trimmedLine[trimmedLine.length - 1] === "]";
         if (isSection) {
-            currentSection = line.substring(1, line.length - 1);
-            if (profileNameBlockList.includes(currentSection)) {
-                throw new Error(`Found invalid profile name "${currentSection}"`);
+            currentSection = undefined;
+            currentSubSection = undefined;
+            const sectionName = trimmedLine.substring(1, trimmedLine.length - 1);
+            const matches = prefixKeyRegex.exec(sectionName);
+            if (matches) {
+                const [, prefix, , name] = matches;
+                if (Object.values(types_1.IniSectionType).includes(prefix)) {
+                    currentSection = [prefix, name].join(loadSharedConfigFiles_1.CONFIG_PREFIX_SEPARATOR);
+                }
+            }
+            else {
+                currentSection = sectionName;
+            }
+            if (profileNameBlockList.includes(sectionName)) {
+                throw new Error(`Found invalid profile name "${sectionName}"`);
             }
         }
         else if (currentSection) {
-            const indexOfEqualsSign = line.indexOf("=");
-            const start = 0;
-            const end = line.length - 1;
-            const isAssignment = indexOfEqualsSign !== -1 && indexOfEqualsSign !== start && indexOfEqualsSign !== end;
-            if (isAssignment) {
+            const indexOfEqualsSign = trimmedLine.indexOf("=");
+            if (![0, -1].includes(indexOfEqualsSign)) {
                 const [name, value] = [
-                    line.substring(0, indexOfEqualsSign).trim(),
-                    line.substring(indexOfEqualsSign + 1).trim(),
+                    trimmedLine.substring(0, indexOfEqualsSign).trim(),
+                    trimmedLine.substring(indexOfEqualsSign + 1).trim(),
                 ];
-                map[currentSection] = map[currentSection] || {};
-                map[currentSection][name] = value;
+                if (value === "") {
+                    currentSubSection = name;
+                }
+                else {
+                    if (currentSubSection && iniLine.trimStart() === iniLine) {
+                        currentSubSection = undefined;
+                    }
+                    map[currentSection] = map[currentSection] || {};
+                    const key = currentSubSection ? [currentSubSection, name].join(loadSharedConfigFiles_1.CONFIG_PREFIX_SEPARATOR) : name;
+                    map[currentSection][key] = value;
+                }
             }
         }
     }
@@ -18867,6 +19148,13 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.IniSectionType = void 0;
+var IniSectionType;
+(function (IniSectionType) {
+    IniSectionType["PROFILE"] = "profile";
+    IniSectionType["SSO_SESSION"] = "sso-session";
+    IniSectionType["SERVICES"] = "services";
+})(IniSectionType = exports.IniSectionType || (exports.IniSectionType = {}));
 
 
 /***/ }),
@@ -23670,7 +23958,7 @@ module.exports = require("util");
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"@aws-sdk/client-marketplace-catalog","description":"AWS SDK for JavaScript Marketplace Catalog Client for Node.js, Browser and React Native","version":"3.423.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"tsc -p tsconfig.cjs.json","build:docs":"typedoc","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo marketplace-catalog"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"3.0.0","@aws-crypto/sha256-js":"3.0.0","@aws-sdk/client-sts":"3.423.0","@aws-sdk/credential-provider-node":"3.423.0","@aws-sdk/middleware-host-header":"3.418.0","@aws-sdk/middleware-logger":"3.418.0","@aws-sdk/middleware-recursion-detection":"3.418.0","@aws-sdk/middleware-signing":"3.418.0","@aws-sdk/middleware-user-agent":"3.418.0","@aws-sdk/region-config-resolver":"3.418.0","@aws-sdk/types":"3.418.0","@aws-sdk/util-endpoints":"3.418.0","@aws-sdk/util-user-agent-browser":"3.418.0","@aws-sdk/util-user-agent-node":"3.418.0","@smithy/config-resolver":"^2.0.10","@smithy/fetch-http-handler":"^2.1.5","@smithy/hash-node":"^2.0.9","@smithy/invalid-dependency":"^2.0.9","@smithy/middleware-content-length":"^2.0.11","@smithy/middleware-endpoint":"^2.0.9","@smithy/middleware-retry":"^2.0.12","@smithy/middleware-serde":"^2.0.9","@smithy/middleware-stack":"^2.0.2","@smithy/node-config-provider":"^2.0.12","@smithy/node-http-handler":"^2.1.5","@smithy/protocol-http":"^3.0.5","@smithy/smithy-client":"^2.1.6","@smithy/types":"^2.3.3","@smithy/url-parser":"^2.0.9","@smithy/util-base64":"^2.0.0","@smithy/util-body-length-browser":"^2.0.0","@smithy/util-body-length-node":"^2.1.0","@smithy/util-defaults-mode-browser":"^2.0.10","@smithy/util-defaults-mode-node":"^2.0.12","@smithy/util-retry":"^2.0.2","@smithy/util-utf8":"^2.0.0","tslib":"^2.5.0","uuid":"^8.3.2"},"devDependencies":{"@smithy/service-client-documentation-generator":"^2.0.0","@tsconfig/node14":"1.0.3","@types/node":"^14.14.31","@types/uuid":"^8.3.0","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typedoc":"0.23.23","typescript":"~4.9.5"},"engines":{"node":">=14.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-marketplace-catalog","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-marketplace-catalog"}}');
+module.exports = JSON.parse('{"name":"@aws-sdk/client-marketplace-catalog","description":"AWS SDK for JavaScript Marketplace Catalog Client for Node.js, Browser and React Native","version":"3.431.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"tsc -p tsconfig.cjs.json","build:docs":"typedoc","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo marketplace-catalog"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"3.0.0","@aws-crypto/sha256-js":"3.0.0","@aws-sdk/client-sts":"3.431.0","@aws-sdk/credential-provider-node":"3.431.0","@aws-sdk/middleware-host-header":"3.431.0","@aws-sdk/middleware-logger":"3.428.0","@aws-sdk/middleware-recursion-detection":"3.428.0","@aws-sdk/middleware-signing":"3.428.0","@aws-sdk/middleware-user-agent":"3.428.0","@aws-sdk/region-config-resolver":"3.430.0","@aws-sdk/types":"3.428.0","@aws-sdk/util-endpoints":"3.428.0","@aws-sdk/util-user-agent-browser":"3.428.0","@aws-sdk/util-user-agent-node":"3.430.0","@smithy/config-resolver":"^2.0.15","@smithy/fetch-http-handler":"^2.2.3","@smithy/hash-node":"^2.0.11","@smithy/invalid-dependency":"^2.0.11","@smithy/middleware-content-length":"^2.0.13","@smithy/middleware-endpoint":"^2.1.2","@smithy/middleware-retry":"^2.0.17","@smithy/middleware-serde":"^2.0.11","@smithy/middleware-stack":"^2.0.5","@smithy/node-config-provider":"^2.1.2","@smithy/node-http-handler":"^2.1.7","@smithy/protocol-http":"^3.0.7","@smithy/smithy-client":"^2.1.11","@smithy/types":"^2.3.5","@smithy/url-parser":"^2.0.11","@smithy/util-base64":"^2.0.0","@smithy/util-body-length-browser":"^2.0.0","@smithy/util-body-length-node":"^2.1.0","@smithy/util-defaults-mode-browser":"^2.0.15","@smithy/util-defaults-mode-node":"^2.0.20","@smithy/util-retry":"^2.0.4","@smithy/util-utf8":"^2.0.0","tslib":"^2.5.0","uuid":"^8.3.2"},"devDependencies":{"@smithy/service-client-documentation-generator":"^2.0.0","@tsconfig/node14":"1.0.3","@types/node":"^14.14.31","@types/uuid":"^8.3.0","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typedoc":"0.23.23","typescript":"~4.9.5"},"engines":{"node":">=14.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-marketplace-catalog","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-marketplace-catalog"}}');
 
 /***/ }),
 
@@ -23678,7 +23966,7 @@ module.exports = JSON.parse('{"name":"@aws-sdk/client-marketplace-catalog","desc
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"@aws-sdk/client-sso","description":"AWS SDK for JavaScript Sso Client for Node.js, Browser and React Native","version":"3.423.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"tsc -p tsconfig.cjs.json","build:docs":"typedoc","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo sso"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"3.0.0","@aws-crypto/sha256-js":"3.0.0","@aws-sdk/middleware-host-header":"3.418.0","@aws-sdk/middleware-logger":"3.418.0","@aws-sdk/middleware-recursion-detection":"3.418.0","@aws-sdk/middleware-user-agent":"3.418.0","@aws-sdk/region-config-resolver":"3.418.0","@aws-sdk/types":"3.418.0","@aws-sdk/util-endpoints":"3.418.0","@aws-sdk/util-user-agent-browser":"3.418.0","@aws-sdk/util-user-agent-node":"3.418.0","@smithy/config-resolver":"^2.0.10","@smithy/fetch-http-handler":"^2.1.5","@smithy/hash-node":"^2.0.9","@smithy/invalid-dependency":"^2.0.9","@smithy/middleware-content-length":"^2.0.11","@smithy/middleware-endpoint":"^2.0.9","@smithy/middleware-retry":"^2.0.12","@smithy/middleware-serde":"^2.0.9","@smithy/middleware-stack":"^2.0.2","@smithy/node-config-provider":"^2.0.12","@smithy/node-http-handler":"^2.1.5","@smithy/protocol-http":"^3.0.5","@smithy/smithy-client":"^2.1.6","@smithy/types":"^2.3.3","@smithy/url-parser":"^2.0.9","@smithy/util-base64":"^2.0.0","@smithy/util-body-length-browser":"^2.0.0","@smithy/util-body-length-node":"^2.1.0","@smithy/util-defaults-mode-browser":"^2.0.10","@smithy/util-defaults-mode-node":"^2.0.12","@smithy/util-retry":"^2.0.2","@smithy/util-utf8":"^2.0.0","tslib":"^2.5.0"},"devDependencies":{"@smithy/service-client-documentation-generator":"^2.0.0","@tsconfig/node14":"1.0.3","@types/node":"^14.14.31","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typedoc":"0.23.23","typescript":"~4.9.5"},"engines":{"node":">=14.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-sso","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-sso"}}');
+module.exports = JSON.parse('{"name":"@aws-sdk/client-sso","description":"AWS SDK for JavaScript Sso Client for Node.js, Browser and React Native","version":"3.431.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"tsc -p tsconfig.cjs.json","build:docs":"typedoc","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo sso"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"3.0.0","@aws-crypto/sha256-js":"3.0.0","@aws-sdk/middleware-host-header":"3.431.0","@aws-sdk/middleware-logger":"3.428.0","@aws-sdk/middleware-recursion-detection":"3.428.0","@aws-sdk/middleware-user-agent":"3.428.0","@aws-sdk/region-config-resolver":"3.430.0","@aws-sdk/types":"3.428.0","@aws-sdk/util-endpoints":"3.428.0","@aws-sdk/util-user-agent-browser":"3.428.0","@aws-sdk/util-user-agent-node":"3.430.0","@smithy/config-resolver":"^2.0.15","@smithy/fetch-http-handler":"^2.2.3","@smithy/hash-node":"^2.0.11","@smithy/invalid-dependency":"^2.0.11","@smithy/middleware-content-length":"^2.0.13","@smithy/middleware-endpoint":"^2.1.2","@smithy/middleware-retry":"^2.0.17","@smithy/middleware-serde":"^2.0.11","@smithy/middleware-stack":"^2.0.5","@smithy/node-config-provider":"^2.1.2","@smithy/node-http-handler":"^2.1.7","@smithy/protocol-http":"^3.0.7","@smithy/smithy-client":"^2.1.11","@smithy/types":"^2.3.5","@smithy/url-parser":"^2.0.11","@smithy/util-base64":"^2.0.0","@smithy/util-body-length-browser":"^2.0.0","@smithy/util-body-length-node":"^2.1.0","@smithy/util-defaults-mode-browser":"^2.0.15","@smithy/util-defaults-mode-node":"^2.0.20","@smithy/util-retry":"^2.0.4","@smithy/util-utf8":"^2.0.0","tslib":"^2.5.0"},"devDependencies":{"@smithy/service-client-documentation-generator":"^2.0.0","@tsconfig/node14":"1.0.3","@types/node":"^14.14.31","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typedoc":"0.23.23","typescript":"~4.9.5"},"engines":{"node":">=14.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-sso","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-sso"}}');
 
 /***/ }),
 
@@ -23686,7 +23974,7 @@ module.exports = JSON.parse('{"name":"@aws-sdk/client-sso","description":"AWS SD
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"@aws-sdk/client-sts","description":"AWS SDK for JavaScript Sts Client for Node.js, Browser and React Native","version":"3.423.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"tsc -p tsconfig.cjs.json","build:docs":"typedoc","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo sts","test":"yarn test:unit","test:unit":"jest"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"3.0.0","@aws-crypto/sha256-js":"3.0.0","@aws-sdk/credential-provider-node":"3.423.0","@aws-sdk/middleware-host-header":"3.418.0","@aws-sdk/middleware-logger":"3.418.0","@aws-sdk/middleware-recursion-detection":"3.418.0","@aws-sdk/middleware-sdk-sts":"3.418.0","@aws-sdk/middleware-signing":"3.418.0","@aws-sdk/middleware-user-agent":"3.418.0","@aws-sdk/region-config-resolver":"3.418.0","@aws-sdk/types":"3.418.0","@aws-sdk/util-endpoints":"3.418.0","@aws-sdk/util-user-agent-browser":"3.418.0","@aws-sdk/util-user-agent-node":"3.418.0","@smithy/config-resolver":"^2.0.10","@smithy/fetch-http-handler":"^2.1.5","@smithy/hash-node":"^2.0.9","@smithy/invalid-dependency":"^2.0.9","@smithy/middleware-content-length":"^2.0.11","@smithy/middleware-endpoint":"^2.0.9","@smithy/middleware-retry":"^2.0.12","@smithy/middleware-serde":"^2.0.9","@smithy/middleware-stack":"^2.0.2","@smithy/node-config-provider":"^2.0.12","@smithy/node-http-handler":"^2.1.5","@smithy/protocol-http":"^3.0.5","@smithy/smithy-client":"^2.1.6","@smithy/types":"^2.3.3","@smithy/url-parser":"^2.0.9","@smithy/util-base64":"^2.0.0","@smithy/util-body-length-browser":"^2.0.0","@smithy/util-body-length-node":"^2.1.0","@smithy/util-defaults-mode-browser":"^2.0.10","@smithy/util-defaults-mode-node":"^2.0.12","@smithy/util-retry":"^2.0.2","@smithy/util-utf8":"^2.0.0","fast-xml-parser":"4.2.5","tslib":"^2.5.0"},"devDependencies":{"@smithy/service-client-documentation-generator":"^2.0.0","@tsconfig/node14":"1.0.3","@types/node":"^14.14.31","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typedoc":"0.23.23","typescript":"~4.9.5"},"engines":{"node":">=14.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-sts","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-sts"}}');
+module.exports = JSON.parse('{"name":"@aws-sdk/client-sts","description":"AWS SDK for JavaScript Sts Client for Node.js, Browser and React Native","version":"3.431.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"tsc -p tsconfig.cjs.json","build:docs":"typedoc","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo sts","test":"yarn test:unit","test:unit":"jest"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"3.0.0","@aws-crypto/sha256-js":"3.0.0","@aws-sdk/credential-provider-node":"3.431.0","@aws-sdk/middleware-host-header":"3.431.0","@aws-sdk/middleware-logger":"3.428.0","@aws-sdk/middleware-recursion-detection":"3.428.0","@aws-sdk/middleware-sdk-sts":"3.428.0","@aws-sdk/middleware-signing":"3.428.0","@aws-sdk/middleware-user-agent":"3.428.0","@aws-sdk/region-config-resolver":"3.430.0","@aws-sdk/types":"3.428.0","@aws-sdk/util-endpoints":"3.428.0","@aws-sdk/util-user-agent-browser":"3.428.0","@aws-sdk/util-user-agent-node":"3.430.0","@smithy/config-resolver":"^2.0.15","@smithy/fetch-http-handler":"^2.2.3","@smithy/hash-node":"^2.0.11","@smithy/invalid-dependency":"^2.0.11","@smithy/middleware-content-length":"^2.0.13","@smithy/middleware-endpoint":"^2.1.2","@smithy/middleware-retry":"^2.0.17","@smithy/middleware-serde":"^2.0.11","@smithy/middleware-stack":"^2.0.5","@smithy/node-config-provider":"^2.1.2","@smithy/node-http-handler":"^2.1.7","@smithy/protocol-http":"^3.0.7","@smithy/smithy-client":"^2.1.11","@smithy/types":"^2.3.5","@smithy/url-parser":"^2.0.11","@smithy/util-base64":"^2.0.0","@smithy/util-body-length-browser":"^2.0.0","@smithy/util-body-length-node":"^2.1.0","@smithy/util-defaults-mode-browser":"^2.0.15","@smithy/util-defaults-mode-node":"^2.0.20","@smithy/util-retry":"^2.0.4","@smithy/util-utf8":"^2.0.0","fast-xml-parser":"4.2.5","tslib":"^2.5.0"},"devDependencies":{"@smithy/service-client-documentation-generator":"^2.0.0","@tsconfig/node14":"1.0.3","@types/node":"^14.14.31","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typedoc":"0.23.23","typescript":"~4.9.5"},"engines":{"node":">=14.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-sts","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-sts"}}');
 
 /***/ }),
 
