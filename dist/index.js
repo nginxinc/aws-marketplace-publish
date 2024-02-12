@@ -3159,7 +3159,7 @@ var se_UntagResourceCommand = /* @__PURE__ */ __name(async (input, context) => {
 }, "se_UntagResourceCommand");
 var de_BatchDescribeEntitiesCommand = /* @__PURE__ */ __name(async (output, context) => {
   if (output.statusCode !== 200 && output.statusCode >= 300) {
-    return de_BatchDescribeEntitiesCommandError(output, context);
+    return de_CommandError(output, context);
   }
   const contents = (0, import_smithy_client.map)({
     $metadata: deserializeMetadata(output)
@@ -3172,37 +3172,9 @@ var de_BatchDescribeEntitiesCommand = /* @__PURE__ */ __name(async (output, cont
   Object.assign(contents, doc);
   return contents;
 }, "de_BatchDescribeEntitiesCommand");
-var de_BatchDescribeEntitiesCommandError = /* @__PURE__ */ __name(async (output, context) => {
-  const parsedOutput = {
-    ...output,
-    body: await parseErrorBody(output.body, context)
-  };
-  const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    case "AccessDeniedException":
-    case "com.amazonaws.marketplacecatalog#AccessDeniedException":
-      throw await de_AccessDeniedExceptionRes(parsedOutput, context);
-    case "InternalServiceException":
-    case "com.amazonaws.marketplacecatalog#InternalServiceException":
-      throw await de_InternalServiceExceptionRes(parsedOutput, context);
-    case "ThrottlingException":
-    case "com.amazonaws.marketplacecatalog#ThrottlingException":
-      throw await de_ThrottlingExceptionRes(parsedOutput, context);
-    case "ValidationException":
-    case "com.amazonaws.marketplacecatalog#ValidationException":
-      throw await de_ValidationExceptionRes(parsedOutput, context);
-    default:
-      const parsedBody = parsedOutput.body;
-      return throwDefaultError({
-        output,
-        parsedBody,
-        errorCode
-      });
-  }
-}, "de_BatchDescribeEntitiesCommandError");
 var de_CancelChangeSetCommand = /* @__PURE__ */ __name(async (output, context) => {
   if (output.statusCode !== 200 && output.statusCode >= 300) {
-    return de_CancelChangeSetCommandError(output, context);
+    return de_CommandError(output, context);
   }
   const contents = (0, import_smithy_client.map)({
     $metadata: deserializeMetadata(output)
@@ -3215,43 +3187,9 @@ var de_CancelChangeSetCommand = /* @__PURE__ */ __name(async (output, context) =
   Object.assign(contents, doc);
   return contents;
 }, "de_CancelChangeSetCommand");
-var de_CancelChangeSetCommandError = /* @__PURE__ */ __name(async (output, context) => {
-  const parsedOutput = {
-    ...output,
-    body: await parseErrorBody(output.body, context)
-  };
-  const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    case "AccessDeniedException":
-    case "com.amazonaws.marketplacecatalog#AccessDeniedException":
-      throw await de_AccessDeniedExceptionRes(parsedOutput, context);
-    case "InternalServiceException":
-    case "com.amazonaws.marketplacecatalog#InternalServiceException":
-      throw await de_InternalServiceExceptionRes(parsedOutput, context);
-    case "ResourceInUseException":
-    case "com.amazonaws.marketplacecatalog#ResourceInUseException":
-      throw await de_ResourceInUseExceptionRes(parsedOutput, context);
-    case "ResourceNotFoundException":
-    case "com.amazonaws.marketplacecatalog#ResourceNotFoundException":
-      throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
-    case "ThrottlingException":
-    case "com.amazonaws.marketplacecatalog#ThrottlingException":
-      throw await de_ThrottlingExceptionRes(parsedOutput, context);
-    case "ValidationException":
-    case "com.amazonaws.marketplacecatalog#ValidationException":
-      throw await de_ValidationExceptionRes(parsedOutput, context);
-    default:
-      const parsedBody = parsedOutput.body;
-      return throwDefaultError({
-        output,
-        parsedBody,
-        errorCode
-      });
-  }
-}, "de_CancelChangeSetCommandError");
 var de_DeleteResourcePolicyCommand = /* @__PURE__ */ __name(async (output, context) => {
   if (output.statusCode !== 200 && output.statusCode >= 300) {
-    return de_DeleteResourcePolicyCommandError(output, context);
+    return de_CommandError(output, context);
   }
   const contents = (0, import_smithy_client.map)({
     $metadata: deserializeMetadata(output)
@@ -3259,40 +3197,9 @@ var de_DeleteResourcePolicyCommand = /* @__PURE__ */ __name(async (output, conte
   await (0, import_smithy_client.collectBody)(output.body, context);
   return contents;
 }, "de_DeleteResourcePolicyCommand");
-var de_DeleteResourcePolicyCommandError = /* @__PURE__ */ __name(async (output, context) => {
-  const parsedOutput = {
-    ...output,
-    body: await parseErrorBody(output.body, context)
-  };
-  const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    case "AccessDeniedException":
-    case "com.amazonaws.marketplacecatalog#AccessDeniedException":
-      throw await de_AccessDeniedExceptionRes(parsedOutput, context);
-    case "InternalServiceException":
-    case "com.amazonaws.marketplacecatalog#InternalServiceException":
-      throw await de_InternalServiceExceptionRes(parsedOutput, context);
-    case "ResourceNotFoundException":
-    case "com.amazonaws.marketplacecatalog#ResourceNotFoundException":
-      throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
-    case "ThrottlingException":
-    case "com.amazonaws.marketplacecatalog#ThrottlingException":
-      throw await de_ThrottlingExceptionRes(parsedOutput, context);
-    case "ValidationException":
-    case "com.amazonaws.marketplacecatalog#ValidationException":
-      throw await de_ValidationExceptionRes(parsedOutput, context);
-    default:
-      const parsedBody = parsedOutput.body;
-      return throwDefaultError({
-        output,
-        parsedBody,
-        errorCode
-      });
-  }
-}, "de_DeleteResourcePolicyCommandError");
 var de_DescribeChangeSetCommand = /* @__PURE__ */ __name(async (output, context) => {
   if (output.statusCode !== 200 && output.statusCode >= 300) {
-    return de_DescribeChangeSetCommandError(output, context);
+    return de_CommandError(output, context);
   }
   const contents = (0, import_smithy_client.map)({
     $metadata: deserializeMetadata(output)
@@ -3312,40 +3219,9 @@ var de_DescribeChangeSetCommand = /* @__PURE__ */ __name(async (output, context)
   Object.assign(contents, doc);
   return contents;
 }, "de_DescribeChangeSetCommand");
-var de_DescribeChangeSetCommandError = /* @__PURE__ */ __name(async (output, context) => {
-  const parsedOutput = {
-    ...output,
-    body: await parseErrorBody(output.body, context)
-  };
-  const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    case "AccessDeniedException":
-    case "com.amazonaws.marketplacecatalog#AccessDeniedException":
-      throw await de_AccessDeniedExceptionRes(parsedOutput, context);
-    case "InternalServiceException":
-    case "com.amazonaws.marketplacecatalog#InternalServiceException":
-      throw await de_InternalServiceExceptionRes(parsedOutput, context);
-    case "ResourceNotFoundException":
-    case "com.amazonaws.marketplacecatalog#ResourceNotFoundException":
-      throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
-    case "ThrottlingException":
-    case "com.amazonaws.marketplacecatalog#ThrottlingException":
-      throw await de_ThrottlingExceptionRes(parsedOutput, context);
-    case "ValidationException":
-    case "com.amazonaws.marketplacecatalog#ValidationException":
-      throw await de_ValidationExceptionRes(parsedOutput, context);
-    default:
-      const parsedBody = parsedOutput.body;
-      return throwDefaultError({
-        output,
-        parsedBody,
-        errorCode
-      });
-  }
-}, "de_DescribeChangeSetCommandError");
 var de_DescribeEntityCommand = /* @__PURE__ */ __name(async (output, context) => {
   if (output.statusCode !== 200 && output.statusCode >= 300) {
-    return de_DescribeEntityCommandError(output, context);
+    return de_CommandError(output, context);
   }
   const contents = (0, import_smithy_client.map)({
     $metadata: deserializeMetadata(output)
@@ -3362,43 +3238,9 @@ var de_DescribeEntityCommand = /* @__PURE__ */ __name(async (output, context) =>
   Object.assign(contents, doc);
   return contents;
 }, "de_DescribeEntityCommand");
-var de_DescribeEntityCommandError = /* @__PURE__ */ __name(async (output, context) => {
-  const parsedOutput = {
-    ...output,
-    body: await parseErrorBody(output.body, context)
-  };
-  const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    case "AccessDeniedException":
-    case "com.amazonaws.marketplacecatalog#AccessDeniedException":
-      throw await de_AccessDeniedExceptionRes(parsedOutput, context);
-    case "InternalServiceException":
-    case "com.amazonaws.marketplacecatalog#InternalServiceException":
-      throw await de_InternalServiceExceptionRes(parsedOutput, context);
-    case "ResourceNotFoundException":
-    case "com.amazonaws.marketplacecatalog#ResourceNotFoundException":
-      throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
-    case "ResourceNotSupportedException":
-    case "com.amazonaws.marketplacecatalog#ResourceNotSupportedException":
-      throw await de_ResourceNotSupportedExceptionRes(parsedOutput, context);
-    case "ThrottlingException":
-    case "com.amazonaws.marketplacecatalog#ThrottlingException":
-      throw await de_ThrottlingExceptionRes(parsedOutput, context);
-    case "ValidationException":
-    case "com.amazonaws.marketplacecatalog#ValidationException":
-      throw await de_ValidationExceptionRes(parsedOutput, context);
-    default:
-      const parsedBody = parsedOutput.body;
-      return throwDefaultError({
-        output,
-        parsedBody,
-        errorCode
-      });
-  }
-}, "de_DescribeEntityCommandError");
 var de_GetResourcePolicyCommand = /* @__PURE__ */ __name(async (output, context) => {
   if (output.statusCode !== 200 && output.statusCode >= 300) {
-    return de_GetResourcePolicyCommandError(output, context);
+    return de_CommandError(output, context);
   }
   const contents = (0, import_smithy_client.map)({
     $metadata: deserializeMetadata(output)
@@ -3410,40 +3252,9 @@ var de_GetResourcePolicyCommand = /* @__PURE__ */ __name(async (output, context)
   Object.assign(contents, doc);
   return contents;
 }, "de_GetResourcePolicyCommand");
-var de_GetResourcePolicyCommandError = /* @__PURE__ */ __name(async (output, context) => {
-  const parsedOutput = {
-    ...output,
-    body: await parseErrorBody(output.body, context)
-  };
-  const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    case "AccessDeniedException":
-    case "com.amazonaws.marketplacecatalog#AccessDeniedException":
-      throw await de_AccessDeniedExceptionRes(parsedOutput, context);
-    case "InternalServiceException":
-    case "com.amazonaws.marketplacecatalog#InternalServiceException":
-      throw await de_InternalServiceExceptionRes(parsedOutput, context);
-    case "ResourceNotFoundException":
-    case "com.amazonaws.marketplacecatalog#ResourceNotFoundException":
-      throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
-    case "ThrottlingException":
-    case "com.amazonaws.marketplacecatalog#ThrottlingException":
-      throw await de_ThrottlingExceptionRes(parsedOutput, context);
-    case "ValidationException":
-    case "com.amazonaws.marketplacecatalog#ValidationException":
-      throw await de_ValidationExceptionRes(parsedOutput, context);
-    default:
-      const parsedBody = parsedOutput.body;
-      return throwDefaultError({
-        output,
-        parsedBody,
-        errorCode
-      });
-  }
-}, "de_GetResourcePolicyCommandError");
 var de_ListChangeSetsCommand = /* @__PURE__ */ __name(async (output, context) => {
   if (output.statusCode !== 200 && output.statusCode >= 300) {
-    return de_ListChangeSetsCommandError(output, context);
+    return de_CommandError(output, context);
   }
   const contents = (0, import_smithy_client.map)({
     $metadata: deserializeMetadata(output)
@@ -3456,37 +3267,9 @@ var de_ListChangeSetsCommand = /* @__PURE__ */ __name(async (output, context) =>
   Object.assign(contents, doc);
   return contents;
 }, "de_ListChangeSetsCommand");
-var de_ListChangeSetsCommandError = /* @__PURE__ */ __name(async (output, context) => {
-  const parsedOutput = {
-    ...output,
-    body: await parseErrorBody(output.body, context)
-  };
-  const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    case "AccessDeniedException":
-    case "com.amazonaws.marketplacecatalog#AccessDeniedException":
-      throw await de_AccessDeniedExceptionRes(parsedOutput, context);
-    case "InternalServiceException":
-    case "com.amazonaws.marketplacecatalog#InternalServiceException":
-      throw await de_InternalServiceExceptionRes(parsedOutput, context);
-    case "ThrottlingException":
-    case "com.amazonaws.marketplacecatalog#ThrottlingException":
-      throw await de_ThrottlingExceptionRes(parsedOutput, context);
-    case "ValidationException":
-    case "com.amazonaws.marketplacecatalog#ValidationException":
-      throw await de_ValidationExceptionRes(parsedOutput, context);
-    default:
-      const parsedBody = parsedOutput.body;
-      return throwDefaultError({
-        output,
-        parsedBody,
-        errorCode
-      });
-  }
-}, "de_ListChangeSetsCommandError");
 var de_ListEntitiesCommand = /* @__PURE__ */ __name(async (output, context) => {
   if (output.statusCode !== 200 && output.statusCode >= 300) {
-    return de_ListEntitiesCommandError(output, context);
+    return de_CommandError(output, context);
   }
   const contents = (0, import_smithy_client.map)({
     $metadata: deserializeMetadata(output)
@@ -3499,40 +3282,9 @@ var de_ListEntitiesCommand = /* @__PURE__ */ __name(async (output, context) => {
   Object.assign(contents, doc);
   return contents;
 }, "de_ListEntitiesCommand");
-var de_ListEntitiesCommandError = /* @__PURE__ */ __name(async (output, context) => {
-  const parsedOutput = {
-    ...output,
-    body: await parseErrorBody(output.body, context)
-  };
-  const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    case "AccessDeniedException":
-    case "com.amazonaws.marketplacecatalog#AccessDeniedException":
-      throw await de_AccessDeniedExceptionRes(parsedOutput, context);
-    case "InternalServiceException":
-    case "com.amazonaws.marketplacecatalog#InternalServiceException":
-      throw await de_InternalServiceExceptionRes(parsedOutput, context);
-    case "ResourceNotFoundException":
-    case "com.amazonaws.marketplacecatalog#ResourceNotFoundException":
-      throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
-    case "ThrottlingException":
-    case "com.amazonaws.marketplacecatalog#ThrottlingException":
-      throw await de_ThrottlingExceptionRes(parsedOutput, context);
-    case "ValidationException":
-    case "com.amazonaws.marketplacecatalog#ValidationException":
-      throw await de_ValidationExceptionRes(parsedOutput, context);
-    default:
-      const parsedBody = parsedOutput.body;
-      return throwDefaultError({
-        output,
-        parsedBody,
-        errorCode
-      });
-  }
-}, "de_ListEntitiesCommandError");
 var de_ListTagsForResourceCommand = /* @__PURE__ */ __name(async (output, context) => {
   if (output.statusCode !== 200 && output.statusCode >= 300) {
-    return de_ListTagsForResourceCommandError(output, context);
+    return de_CommandError(output, context);
   }
   const contents = (0, import_smithy_client.map)({
     $metadata: deserializeMetadata(output)
@@ -3545,40 +3297,9 @@ var de_ListTagsForResourceCommand = /* @__PURE__ */ __name(async (output, contex
   Object.assign(contents, doc);
   return contents;
 }, "de_ListTagsForResourceCommand");
-var de_ListTagsForResourceCommandError = /* @__PURE__ */ __name(async (output, context) => {
-  const parsedOutput = {
-    ...output,
-    body: await parseErrorBody(output.body, context)
-  };
-  const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    case "AccessDeniedException":
-    case "com.amazonaws.marketplacecatalog#AccessDeniedException":
-      throw await de_AccessDeniedExceptionRes(parsedOutput, context);
-    case "InternalServiceException":
-    case "com.amazonaws.marketplacecatalog#InternalServiceException":
-      throw await de_InternalServiceExceptionRes(parsedOutput, context);
-    case "ResourceNotFoundException":
-    case "com.amazonaws.marketplacecatalog#ResourceNotFoundException":
-      throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
-    case "ThrottlingException":
-    case "com.amazonaws.marketplacecatalog#ThrottlingException":
-      throw await de_ThrottlingExceptionRes(parsedOutput, context);
-    case "ValidationException":
-    case "com.amazonaws.marketplacecatalog#ValidationException":
-      throw await de_ValidationExceptionRes(parsedOutput, context);
-    default:
-      const parsedBody = parsedOutput.body;
-      return throwDefaultError({
-        output,
-        parsedBody,
-        errorCode
-      });
-  }
-}, "de_ListTagsForResourceCommandError");
 var de_PutResourcePolicyCommand = /* @__PURE__ */ __name(async (output, context) => {
   if (output.statusCode !== 200 && output.statusCode >= 300) {
-    return de_PutResourcePolicyCommandError(output, context);
+    return de_CommandError(output, context);
   }
   const contents = (0, import_smithy_client.map)({
     $metadata: deserializeMetadata(output)
@@ -3586,40 +3307,9 @@ var de_PutResourcePolicyCommand = /* @__PURE__ */ __name(async (output, context)
   await (0, import_smithy_client.collectBody)(output.body, context);
   return contents;
 }, "de_PutResourcePolicyCommand");
-var de_PutResourcePolicyCommandError = /* @__PURE__ */ __name(async (output, context) => {
-  const parsedOutput = {
-    ...output,
-    body: await parseErrorBody(output.body, context)
-  };
-  const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    case "AccessDeniedException":
-    case "com.amazonaws.marketplacecatalog#AccessDeniedException":
-      throw await de_AccessDeniedExceptionRes(parsedOutput, context);
-    case "InternalServiceException":
-    case "com.amazonaws.marketplacecatalog#InternalServiceException":
-      throw await de_InternalServiceExceptionRes(parsedOutput, context);
-    case "ResourceNotFoundException":
-    case "com.amazonaws.marketplacecatalog#ResourceNotFoundException":
-      throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
-    case "ThrottlingException":
-    case "com.amazonaws.marketplacecatalog#ThrottlingException":
-      throw await de_ThrottlingExceptionRes(parsedOutput, context);
-    case "ValidationException":
-    case "com.amazonaws.marketplacecatalog#ValidationException":
-      throw await de_ValidationExceptionRes(parsedOutput, context);
-    default:
-      const parsedBody = parsedOutput.body;
-      return throwDefaultError({
-        output,
-        parsedBody,
-        errorCode
-      });
-  }
-}, "de_PutResourcePolicyCommandError");
 var de_StartChangeSetCommand = /* @__PURE__ */ __name(async (output, context) => {
   if (output.statusCode !== 200 && output.statusCode >= 300) {
-    return de_StartChangeSetCommandError(output, context);
+    return de_CommandError(output, context);
   }
   const contents = (0, import_smithy_client.map)({
     $metadata: deserializeMetadata(output)
@@ -3632,46 +3322,9 @@ var de_StartChangeSetCommand = /* @__PURE__ */ __name(async (output, context) =>
   Object.assign(contents, doc);
   return contents;
 }, "de_StartChangeSetCommand");
-var de_StartChangeSetCommandError = /* @__PURE__ */ __name(async (output, context) => {
-  const parsedOutput = {
-    ...output,
-    body: await parseErrorBody(output.body, context)
-  };
-  const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    case "AccessDeniedException":
-    case "com.amazonaws.marketplacecatalog#AccessDeniedException":
-      throw await de_AccessDeniedExceptionRes(parsedOutput, context);
-    case "InternalServiceException":
-    case "com.amazonaws.marketplacecatalog#InternalServiceException":
-      throw await de_InternalServiceExceptionRes(parsedOutput, context);
-    case "ResourceInUseException":
-    case "com.amazonaws.marketplacecatalog#ResourceInUseException":
-      throw await de_ResourceInUseExceptionRes(parsedOutput, context);
-    case "ResourceNotFoundException":
-    case "com.amazonaws.marketplacecatalog#ResourceNotFoundException":
-      throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
-    case "ServiceQuotaExceededException":
-    case "com.amazonaws.marketplacecatalog#ServiceQuotaExceededException":
-      throw await de_ServiceQuotaExceededExceptionRes(parsedOutput, context);
-    case "ThrottlingException":
-    case "com.amazonaws.marketplacecatalog#ThrottlingException":
-      throw await de_ThrottlingExceptionRes(parsedOutput, context);
-    case "ValidationException":
-    case "com.amazonaws.marketplacecatalog#ValidationException":
-      throw await de_ValidationExceptionRes(parsedOutput, context);
-    default:
-      const parsedBody = parsedOutput.body;
-      return throwDefaultError({
-        output,
-        parsedBody,
-        errorCode
-      });
-  }
-}, "de_StartChangeSetCommandError");
 var de_TagResourceCommand = /* @__PURE__ */ __name(async (output, context) => {
   if (output.statusCode !== 200 && output.statusCode >= 300) {
-    return de_TagResourceCommandError(output, context);
+    return de_CommandError(output, context);
   }
   const contents = (0, import_smithy_client.map)({
     $metadata: deserializeMetadata(output)
@@ -3679,40 +3332,9 @@ var de_TagResourceCommand = /* @__PURE__ */ __name(async (output, context) => {
   await (0, import_smithy_client.collectBody)(output.body, context);
   return contents;
 }, "de_TagResourceCommand");
-var de_TagResourceCommandError = /* @__PURE__ */ __name(async (output, context) => {
-  const parsedOutput = {
-    ...output,
-    body: await parseErrorBody(output.body, context)
-  };
-  const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    case "AccessDeniedException":
-    case "com.amazonaws.marketplacecatalog#AccessDeniedException":
-      throw await de_AccessDeniedExceptionRes(parsedOutput, context);
-    case "InternalServiceException":
-    case "com.amazonaws.marketplacecatalog#InternalServiceException":
-      throw await de_InternalServiceExceptionRes(parsedOutput, context);
-    case "ResourceNotFoundException":
-    case "com.amazonaws.marketplacecatalog#ResourceNotFoundException":
-      throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
-    case "ThrottlingException":
-    case "com.amazonaws.marketplacecatalog#ThrottlingException":
-      throw await de_ThrottlingExceptionRes(parsedOutput, context);
-    case "ValidationException":
-    case "com.amazonaws.marketplacecatalog#ValidationException":
-      throw await de_ValidationExceptionRes(parsedOutput, context);
-    default:
-      const parsedBody = parsedOutput.body;
-      return throwDefaultError({
-        output,
-        parsedBody,
-        errorCode
-      });
-  }
-}, "de_TagResourceCommandError");
 var de_UntagResourceCommand = /* @__PURE__ */ __name(async (output, context) => {
   if (output.statusCode !== 200 && output.statusCode >= 300) {
-    return de_UntagResourceCommandError(output, context);
+    return de_CommandError(output, context);
   }
   const contents = (0, import_smithy_client.map)({
     $metadata: deserializeMetadata(output)
@@ -3720,7 +3342,7 @@ var de_UntagResourceCommand = /* @__PURE__ */ __name(async (output, context) => 
   await (0, import_smithy_client.collectBody)(output.body, context);
   return contents;
 }, "de_UntagResourceCommand");
-var de_UntagResourceCommandError = /* @__PURE__ */ __name(async (output, context) => {
+var de_CommandError = /* @__PURE__ */ __name(async (output, context) => {
   const parsedOutput = {
     ...output,
     body: await parseErrorBody(output.body, context)
@@ -3733,15 +3355,24 @@ var de_UntagResourceCommandError = /* @__PURE__ */ __name(async (output, context
     case "InternalServiceException":
     case "com.amazonaws.marketplacecatalog#InternalServiceException":
       throw await de_InternalServiceExceptionRes(parsedOutput, context);
-    case "ResourceNotFoundException":
-    case "com.amazonaws.marketplacecatalog#ResourceNotFoundException":
-      throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
     case "ThrottlingException":
     case "com.amazonaws.marketplacecatalog#ThrottlingException":
       throw await de_ThrottlingExceptionRes(parsedOutput, context);
     case "ValidationException":
     case "com.amazonaws.marketplacecatalog#ValidationException":
       throw await de_ValidationExceptionRes(parsedOutput, context);
+    case "ResourceInUseException":
+    case "com.amazonaws.marketplacecatalog#ResourceInUseException":
+      throw await de_ResourceInUseExceptionRes(parsedOutput, context);
+    case "ResourceNotFoundException":
+    case "com.amazonaws.marketplacecatalog#ResourceNotFoundException":
+      throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
+    case "ResourceNotSupportedException":
+    case "com.amazonaws.marketplacecatalog#ResourceNotSupportedException":
+      throw await de_ResourceNotSupportedExceptionRes(parsedOutput, context);
+    case "ServiceQuotaExceededException":
+    case "com.amazonaws.marketplacecatalog#ServiceQuotaExceededException":
+      throw await de_ServiceQuotaExceededExceptionRes(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
       return throwDefaultError({
@@ -3750,7 +3381,7 @@ var de_UntagResourceCommandError = /* @__PURE__ */ __name(async (output, context
         errorCode
       });
   }
-}, "de_UntagResourceCommandError");
+}, "de_CommandError");
 var throwDefaultError = (0, import_smithy_client.withBaseException)(MarketplaceCatalogServiceException);
 var de_AccessDeniedExceptionRes = /* @__PURE__ */ __name(async (parsedOutput, context) => {
   const contents = (0, import_smithy_client.map)({});
@@ -4922,7 +4553,7 @@ var se_StartDeviceAuthorizationCommand = /* @__PURE__ */ __name(async (input, co
 }, "se_StartDeviceAuthorizationCommand");
 var de_CreateTokenCommand = /* @__PURE__ */ __name(async (output, context) => {
   if (output.statusCode !== 200 && output.statusCode >= 300) {
-    return de_CreateTokenCommandError(output, context);
+    return de_CommandError(output, context);
   }
   const contents = (0, import_smithy_client.map)({
     $metadata: deserializeMetadata(output)
@@ -4938,58 +4569,9 @@ var de_CreateTokenCommand = /* @__PURE__ */ __name(async (output, context) => {
   Object.assign(contents, doc);
   return contents;
 }, "de_CreateTokenCommand");
-var de_CreateTokenCommandError = /* @__PURE__ */ __name(async (output, context) => {
-  const parsedOutput = {
-    ...output,
-    body: await parseErrorBody(output.body, context)
-  };
-  const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    case "AccessDeniedException":
-    case "com.amazonaws.ssooidc#AccessDeniedException":
-      throw await de_AccessDeniedExceptionRes(parsedOutput, context);
-    case "AuthorizationPendingException":
-    case "com.amazonaws.ssooidc#AuthorizationPendingException":
-      throw await de_AuthorizationPendingExceptionRes(parsedOutput, context);
-    case "ExpiredTokenException":
-    case "com.amazonaws.ssooidc#ExpiredTokenException":
-      throw await de_ExpiredTokenExceptionRes(parsedOutput, context);
-    case "InternalServerException":
-    case "com.amazonaws.ssooidc#InternalServerException":
-      throw await de_InternalServerExceptionRes(parsedOutput, context);
-    case "InvalidClientException":
-    case "com.amazonaws.ssooidc#InvalidClientException":
-      throw await de_InvalidClientExceptionRes(parsedOutput, context);
-    case "InvalidGrantException":
-    case "com.amazonaws.ssooidc#InvalidGrantException":
-      throw await de_InvalidGrantExceptionRes(parsedOutput, context);
-    case "InvalidRequestException":
-    case "com.amazonaws.ssooidc#InvalidRequestException":
-      throw await de_InvalidRequestExceptionRes(parsedOutput, context);
-    case "InvalidScopeException":
-    case "com.amazonaws.ssooidc#InvalidScopeException":
-      throw await de_InvalidScopeExceptionRes(parsedOutput, context);
-    case "SlowDownException":
-    case "com.amazonaws.ssooidc#SlowDownException":
-      throw await de_SlowDownExceptionRes(parsedOutput, context);
-    case "UnauthorizedClientException":
-    case "com.amazonaws.ssooidc#UnauthorizedClientException":
-      throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-    case "UnsupportedGrantTypeException":
-    case "com.amazonaws.ssooidc#UnsupportedGrantTypeException":
-      throw await de_UnsupportedGrantTypeExceptionRes(parsedOutput, context);
-    default:
-      const parsedBody = parsedOutput.body;
-      return throwDefaultError({
-        output,
-        parsedBody,
-        errorCode
-      });
-  }
-}, "de_CreateTokenCommandError");
 var de_CreateTokenWithIAMCommand = /* @__PURE__ */ __name(async (output, context) => {
   if (output.statusCode !== 200 && output.statusCode >= 300) {
-    return de_CreateTokenWithIAMCommandError(output, context);
+    return de_CommandError(output, context);
   }
   const contents = (0, import_smithy_client.map)({
     $metadata: deserializeMetadata(output)
@@ -5007,7 +4589,45 @@ var de_CreateTokenWithIAMCommand = /* @__PURE__ */ __name(async (output, context
   Object.assign(contents, doc);
   return contents;
 }, "de_CreateTokenWithIAMCommand");
-var de_CreateTokenWithIAMCommandError = /* @__PURE__ */ __name(async (output, context) => {
+var de_RegisterClientCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode !== 200 && output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const contents = (0, import_smithy_client.map)({
+    $metadata: deserializeMetadata(output)
+  });
+  const data = (0, import_smithy_client.expectNonNull)((0, import_smithy_client.expectObject)(await parseBody(output.body, context)), "body");
+  const doc = (0, import_smithy_client.take)(data, {
+    authorizationEndpoint: import_smithy_client.expectString,
+    clientId: import_smithy_client.expectString,
+    clientIdIssuedAt: import_smithy_client.expectLong,
+    clientSecret: import_smithy_client.expectString,
+    clientSecretExpiresAt: import_smithy_client.expectLong,
+    tokenEndpoint: import_smithy_client.expectString
+  });
+  Object.assign(contents, doc);
+  return contents;
+}, "de_RegisterClientCommand");
+var de_StartDeviceAuthorizationCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode !== 200 && output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const contents = (0, import_smithy_client.map)({
+    $metadata: deserializeMetadata(output)
+  });
+  const data = (0, import_smithy_client.expectNonNull)((0, import_smithy_client.expectObject)(await parseBody(output.body, context)), "body");
+  const doc = (0, import_smithy_client.take)(data, {
+    deviceCode: import_smithy_client.expectString,
+    expiresIn: import_smithy_client.expectInt32,
+    interval: import_smithy_client.expectInt32,
+    userCode: import_smithy_client.expectString,
+    verificationUri: import_smithy_client.expectString,
+    verificationUriComplete: import_smithy_client.expectString
+  });
+  Object.assign(contents, doc);
+  return contents;
+}, "de_StartDeviceAuthorizationCommand");
+var de_CommandError = /* @__PURE__ */ __name(async (output, context) => {
   const parsedOutput = {
     ...output,
     body: await parseErrorBody(output.body, context)
@@ -5035,9 +4655,6 @@ var de_CreateTokenWithIAMCommandError = /* @__PURE__ */ __name(async (output, co
     case "InvalidRequestException":
     case "com.amazonaws.ssooidc#InvalidRequestException":
       throw await de_InvalidRequestExceptionRes(parsedOutput, context);
-    case "InvalidRequestRegionException":
-    case "com.amazonaws.ssooidc#InvalidRequestRegionException":
-      throw await de_InvalidRequestRegionExceptionRes(parsedOutput, context);
     case "InvalidScopeException":
     case "com.amazonaws.ssooidc#InvalidScopeException":
       throw await de_InvalidScopeExceptionRes(parsedOutput, context);
@@ -5050,53 +4667,12 @@ var de_CreateTokenWithIAMCommandError = /* @__PURE__ */ __name(async (output, co
     case "UnsupportedGrantTypeException":
     case "com.amazonaws.ssooidc#UnsupportedGrantTypeException":
       throw await de_UnsupportedGrantTypeExceptionRes(parsedOutput, context);
-    default:
-      const parsedBody = parsedOutput.body;
-      return throwDefaultError({
-        output,
-        parsedBody,
-        errorCode
-      });
-  }
-}, "de_CreateTokenWithIAMCommandError");
-var de_RegisterClientCommand = /* @__PURE__ */ __name(async (output, context) => {
-  if (output.statusCode !== 200 && output.statusCode >= 300) {
-    return de_RegisterClientCommandError(output, context);
-  }
-  const contents = (0, import_smithy_client.map)({
-    $metadata: deserializeMetadata(output)
-  });
-  const data = (0, import_smithy_client.expectNonNull)((0, import_smithy_client.expectObject)(await parseBody(output.body, context)), "body");
-  const doc = (0, import_smithy_client.take)(data, {
-    authorizationEndpoint: import_smithy_client.expectString,
-    clientId: import_smithy_client.expectString,
-    clientIdIssuedAt: import_smithy_client.expectLong,
-    clientSecret: import_smithy_client.expectString,
-    clientSecretExpiresAt: import_smithy_client.expectLong,
-    tokenEndpoint: import_smithy_client.expectString
-  });
-  Object.assign(contents, doc);
-  return contents;
-}, "de_RegisterClientCommand");
-var de_RegisterClientCommandError = /* @__PURE__ */ __name(async (output, context) => {
-  const parsedOutput = {
-    ...output,
-    body: await parseErrorBody(output.body, context)
-  };
-  const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    case "InternalServerException":
-    case "com.amazonaws.ssooidc#InternalServerException":
-      throw await de_InternalServerExceptionRes(parsedOutput, context);
+    case "InvalidRequestRegionException":
+    case "com.amazonaws.ssooidc#InvalidRequestRegionException":
+      throw await de_InvalidRequestRegionExceptionRes(parsedOutput, context);
     case "InvalidClientMetadataException":
     case "com.amazonaws.ssooidc#InvalidClientMetadataException":
       throw await de_InvalidClientMetadataExceptionRes(parsedOutput, context);
-    case "InvalidRequestException":
-    case "com.amazonaws.ssooidc#InvalidRequestException":
-      throw await de_InvalidRequestExceptionRes(parsedOutput, context);
-    case "InvalidScopeException":
-    case "com.amazonaws.ssooidc#InvalidScopeException":
-      throw await de_InvalidScopeExceptionRes(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
       return throwDefaultError({
@@ -5105,57 +4681,7 @@ var de_RegisterClientCommandError = /* @__PURE__ */ __name(async (output, contex
         errorCode
       });
   }
-}, "de_RegisterClientCommandError");
-var de_StartDeviceAuthorizationCommand = /* @__PURE__ */ __name(async (output, context) => {
-  if (output.statusCode !== 200 && output.statusCode >= 300) {
-    return de_StartDeviceAuthorizationCommandError(output, context);
-  }
-  const contents = (0, import_smithy_client.map)({
-    $metadata: deserializeMetadata(output)
-  });
-  const data = (0, import_smithy_client.expectNonNull)((0, import_smithy_client.expectObject)(await parseBody(output.body, context)), "body");
-  const doc = (0, import_smithy_client.take)(data, {
-    deviceCode: import_smithy_client.expectString,
-    expiresIn: import_smithy_client.expectInt32,
-    interval: import_smithy_client.expectInt32,
-    userCode: import_smithy_client.expectString,
-    verificationUri: import_smithy_client.expectString,
-    verificationUriComplete: import_smithy_client.expectString
-  });
-  Object.assign(contents, doc);
-  return contents;
-}, "de_StartDeviceAuthorizationCommand");
-var de_StartDeviceAuthorizationCommandError = /* @__PURE__ */ __name(async (output, context) => {
-  const parsedOutput = {
-    ...output,
-    body: await parseErrorBody(output.body, context)
-  };
-  const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    case "InternalServerException":
-    case "com.amazonaws.ssooidc#InternalServerException":
-      throw await de_InternalServerExceptionRes(parsedOutput, context);
-    case "InvalidClientException":
-    case "com.amazonaws.ssooidc#InvalidClientException":
-      throw await de_InvalidClientExceptionRes(parsedOutput, context);
-    case "InvalidRequestException":
-    case "com.amazonaws.ssooidc#InvalidRequestException":
-      throw await de_InvalidRequestExceptionRes(parsedOutput, context);
-    case "SlowDownException":
-    case "com.amazonaws.ssooidc#SlowDownException":
-      throw await de_SlowDownExceptionRes(parsedOutput, context);
-    case "UnauthorizedClientException":
-    case "com.amazonaws.ssooidc#UnauthorizedClientException":
-      throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-    default:
-      const parsedBody = parsedOutput.body;
-      return throwDefaultError({
-        output,
-        parsedBody,
-        errorCode
-      });
-  }
-}, "de_StartDeviceAuthorizationCommandError");
+}, "de_CommandError");
 var throwDefaultError = (0, import_smithy_client.withBaseException)(SSOOIDCServiceException);
 var de_AccessDeniedExceptionRes = /* @__PURE__ */ __name(async (parsedOutput, context) => {
   const contents = (0, import_smithy_client.map)({});
@@ -5914,7 +5440,7 @@ var se_LogoutCommand = /* @__PURE__ */ __name(async (input, context) => {
 }, "se_LogoutCommand");
 var de_GetRoleCredentialsCommand = /* @__PURE__ */ __name(async (output, context) => {
   if (output.statusCode !== 200 && output.statusCode >= 300) {
-    return de_GetRoleCredentialsCommandError(output, context);
+    return de_CommandError(output, context);
   }
   const contents = (0, import_smithy_client.map)({
     $metadata: deserializeMetadata(output)
@@ -5926,37 +5452,9 @@ var de_GetRoleCredentialsCommand = /* @__PURE__ */ __name(async (output, context
   Object.assign(contents, doc);
   return contents;
 }, "de_GetRoleCredentialsCommand");
-var de_GetRoleCredentialsCommandError = /* @__PURE__ */ __name(async (output, context) => {
-  const parsedOutput = {
-    ...output,
-    body: await parseErrorBody(output.body, context)
-  };
-  const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    case "InvalidRequestException":
-    case "com.amazonaws.sso#InvalidRequestException":
-      throw await de_InvalidRequestExceptionRes(parsedOutput, context);
-    case "ResourceNotFoundException":
-    case "com.amazonaws.sso#ResourceNotFoundException":
-      throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
-    case "TooManyRequestsException":
-    case "com.amazonaws.sso#TooManyRequestsException":
-      throw await de_TooManyRequestsExceptionRes(parsedOutput, context);
-    case "UnauthorizedException":
-    case "com.amazonaws.sso#UnauthorizedException":
-      throw await de_UnauthorizedExceptionRes(parsedOutput, context);
-    default:
-      const parsedBody = parsedOutput.body;
-      return throwDefaultError({
-        output,
-        parsedBody,
-        errorCode
-      });
-  }
-}, "de_GetRoleCredentialsCommandError");
 var de_ListAccountRolesCommand = /* @__PURE__ */ __name(async (output, context) => {
   if (output.statusCode !== 200 && output.statusCode >= 300) {
-    return de_ListAccountRolesCommandError(output, context);
+    return de_CommandError(output, context);
   }
   const contents = (0, import_smithy_client.map)({
     $metadata: deserializeMetadata(output)
@@ -5969,37 +5467,9 @@ var de_ListAccountRolesCommand = /* @__PURE__ */ __name(async (output, context) 
   Object.assign(contents, doc);
   return contents;
 }, "de_ListAccountRolesCommand");
-var de_ListAccountRolesCommandError = /* @__PURE__ */ __name(async (output, context) => {
-  const parsedOutput = {
-    ...output,
-    body: await parseErrorBody(output.body, context)
-  };
-  const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    case "InvalidRequestException":
-    case "com.amazonaws.sso#InvalidRequestException":
-      throw await de_InvalidRequestExceptionRes(parsedOutput, context);
-    case "ResourceNotFoundException":
-    case "com.amazonaws.sso#ResourceNotFoundException":
-      throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
-    case "TooManyRequestsException":
-    case "com.amazonaws.sso#TooManyRequestsException":
-      throw await de_TooManyRequestsExceptionRes(parsedOutput, context);
-    case "UnauthorizedException":
-    case "com.amazonaws.sso#UnauthorizedException":
-      throw await de_UnauthorizedExceptionRes(parsedOutput, context);
-    default:
-      const parsedBody = parsedOutput.body;
-      return throwDefaultError({
-        output,
-        parsedBody,
-        errorCode
-      });
-  }
-}, "de_ListAccountRolesCommandError");
 var de_ListAccountsCommand = /* @__PURE__ */ __name(async (output, context) => {
   if (output.statusCode !== 200 && output.statusCode >= 300) {
-    return de_ListAccountsCommandError(output, context);
+    return de_CommandError(output, context);
   }
   const contents = (0, import_smithy_client.map)({
     $metadata: deserializeMetadata(output)
@@ -6012,7 +5482,17 @@ var de_ListAccountsCommand = /* @__PURE__ */ __name(async (output, context) => {
   Object.assign(contents, doc);
   return contents;
 }, "de_ListAccountsCommand");
-var de_ListAccountsCommandError = /* @__PURE__ */ __name(async (output, context) => {
+var de_LogoutCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode !== 200 && output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const contents = (0, import_smithy_client.map)({
+    $metadata: deserializeMetadata(output)
+  });
+  await (0, import_smithy_client.collectBody)(output.body, context);
+  return contents;
+}, "de_LogoutCommand");
+var de_CommandError = /* @__PURE__ */ __name(async (output, context) => {
   const parsedOutput = {
     ...output,
     body: await parseErrorBody(output.body, context)
@@ -6039,42 +5519,7 @@ var de_ListAccountsCommandError = /* @__PURE__ */ __name(async (output, context)
         errorCode
       });
   }
-}, "de_ListAccountsCommandError");
-var de_LogoutCommand = /* @__PURE__ */ __name(async (output, context) => {
-  if (output.statusCode !== 200 && output.statusCode >= 300) {
-    return de_LogoutCommandError(output, context);
-  }
-  const contents = (0, import_smithy_client.map)({
-    $metadata: deserializeMetadata(output)
-  });
-  await (0, import_smithy_client.collectBody)(output.body, context);
-  return contents;
-}, "de_LogoutCommand");
-var de_LogoutCommandError = /* @__PURE__ */ __name(async (output, context) => {
-  const parsedOutput = {
-    ...output,
-    body: await parseErrorBody(output.body, context)
-  };
-  const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    case "InvalidRequestException":
-    case "com.amazonaws.sso#InvalidRequestException":
-      throw await de_InvalidRequestExceptionRes(parsedOutput, context);
-    case "TooManyRequestsException":
-    case "com.amazonaws.sso#TooManyRequestsException":
-      throw await de_TooManyRequestsExceptionRes(parsedOutput, context);
-    case "UnauthorizedException":
-    case "com.amazonaws.sso#UnauthorizedException":
-      throw await de_UnauthorizedExceptionRes(parsedOutput, context);
-    default:
-      const parsedBody = parsedOutput.body;
-      return throwDefaultError({
-        output,
-        parsedBody,
-        errorCode
-      });
-  }
-}, "de_LogoutCommandError");
+}, "de_CommandError");
 var throwDefaultError = (0, import_smithy_client.withBaseException)(SSOServiceException);
 var de_InvalidRequestExceptionRes = /* @__PURE__ */ __name(async (parsedOutput, context) => {
   const contents = (0, import_smithy_client.map)({});
@@ -7005,7 +6450,7 @@ var se_GetSessionTokenCommand = /* @__PURE__ */ __name(async (input, context) =>
 }, "se_GetSessionTokenCommand");
 var de_AssumeRoleCommand = /* @__PURE__ */ __name(async (output, context) => {
   if (output.statusCode >= 300) {
-    return de_AssumeRoleCommandError(output, context);
+    return de_CommandError(output, context);
   }
   const data = await parseBody(output.body, context);
   let contents = {};
@@ -7016,37 +6461,9 @@ var de_AssumeRoleCommand = /* @__PURE__ */ __name(async (output, context) => {
   };
   return response;
 }, "de_AssumeRoleCommand");
-var de_AssumeRoleCommandError = /* @__PURE__ */ __name(async (output, context) => {
-  const parsedOutput = {
-    ...output,
-    body: await parseErrorBody(output.body, context)
-  };
-  const errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    case "ExpiredTokenException":
-    case "com.amazonaws.sts#ExpiredTokenException":
-      throw await de_ExpiredTokenExceptionRes(parsedOutput, context);
-    case "MalformedPolicyDocument":
-    case "com.amazonaws.sts#MalformedPolicyDocumentException":
-      throw await de_MalformedPolicyDocumentExceptionRes(parsedOutput, context);
-    case "PackedPolicyTooLarge":
-    case "com.amazonaws.sts#PackedPolicyTooLargeException":
-      throw await de_PackedPolicyTooLargeExceptionRes(parsedOutput, context);
-    case "RegionDisabledException":
-    case "com.amazonaws.sts#RegionDisabledException":
-      throw await de_RegionDisabledExceptionRes(parsedOutput, context);
-    default:
-      const parsedBody = parsedOutput.body;
-      return throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        errorCode
-      });
-  }
-}, "de_AssumeRoleCommandError");
 var de_AssumeRoleWithSAMLCommand = /* @__PURE__ */ __name(async (output, context) => {
   if (output.statusCode >= 300) {
-    return de_AssumeRoleWithSAMLCommandError(output, context);
+    return de_CommandError(output, context);
   }
   const data = await parseBody(output.body, context);
   let contents = {};
@@ -7057,43 +6474,9 @@ var de_AssumeRoleWithSAMLCommand = /* @__PURE__ */ __name(async (output, context
   };
   return response;
 }, "de_AssumeRoleWithSAMLCommand");
-var de_AssumeRoleWithSAMLCommandError = /* @__PURE__ */ __name(async (output, context) => {
-  const parsedOutput = {
-    ...output,
-    body: await parseErrorBody(output.body, context)
-  };
-  const errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    case "ExpiredTokenException":
-    case "com.amazonaws.sts#ExpiredTokenException":
-      throw await de_ExpiredTokenExceptionRes(parsedOutput, context);
-    case "IDPRejectedClaim":
-    case "com.amazonaws.sts#IDPRejectedClaimException":
-      throw await de_IDPRejectedClaimExceptionRes(parsedOutput, context);
-    case "InvalidIdentityToken":
-    case "com.amazonaws.sts#InvalidIdentityTokenException":
-      throw await de_InvalidIdentityTokenExceptionRes(parsedOutput, context);
-    case "MalformedPolicyDocument":
-    case "com.amazonaws.sts#MalformedPolicyDocumentException":
-      throw await de_MalformedPolicyDocumentExceptionRes(parsedOutput, context);
-    case "PackedPolicyTooLarge":
-    case "com.amazonaws.sts#PackedPolicyTooLargeException":
-      throw await de_PackedPolicyTooLargeExceptionRes(parsedOutput, context);
-    case "RegionDisabledException":
-    case "com.amazonaws.sts#RegionDisabledException":
-      throw await de_RegionDisabledExceptionRes(parsedOutput, context);
-    default:
-      const parsedBody = parsedOutput.body;
-      return throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        errorCode
-      });
-  }
-}, "de_AssumeRoleWithSAMLCommandError");
 var de_AssumeRoleWithWebIdentityCommand = /* @__PURE__ */ __name(async (output, context) => {
   if (output.statusCode >= 300) {
-    return de_AssumeRoleWithWebIdentityCommandError(output, context);
+    return de_CommandError(output, context);
   }
   const data = await parseBody(output.body, context);
   let contents = {};
@@ -7104,46 +6487,9 @@ var de_AssumeRoleWithWebIdentityCommand = /* @__PURE__ */ __name(async (output, 
   };
   return response;
 }, "de_AssumeRoleWithWebIdentityCommand");
-var de_AssumeRoleWithWebIdentityCommandError = /* @__PURE__ */ __name(async (output, context) => {
-  const parsedOutput = {
-    ...output,
-    body: await parseErrorBody(output.body, context)
-  };
-  const errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    case "ExpiredTokenException":
-    case "com.amazonaws.sts#ExpiredTokenException":
-      throw await de_ExpiredTokenExceptionRes(parsedOutput, context);
-    case "IDPCommunicationError":
-    case "com.amazonaws.sts#IDPCommunicationErrorException":
-      throw await de_IDPCommunicationErrorExceptionRes(parsedOutput, context);
-    case "IDPRejectedClaim":
-    case "com.amazonaws.sts#IDPRejectedClaimException":
-      throw await de_IDPRejectedClaimExceptionRes(parsedOutput, context);
-    case "InvalidIdentityToken":
-    case "com.amazonaws.sts#InvalidIdentityTokenException":
-      throw await de_InvalidIdentityTokenExceptionRes(parsedOutput, context);
-    case "MalformedPolicyDocument":
-    case "com.amazonaws.sts#MalformedPolicyDocumentException":
-      throw await de_MalformedPolicyDocumentExceptionRes(parsedOutput, context);
-    case "PackedPolicyTooLarge":
-    case "com.amazonaws.sts#PackedPolicyTooLargeException":
-      throw await de_PackedPolicyTooLargeExceptionRes(parsedOutput, context);
-    case "RegionDisabledException":
-    case "com.amazonaws.sts#RegionDisabledException":
-      throw await de_RegionDisabledExceptionRes(parsedOutput, context);
-    default:
-      const parsedBody = parsedOutput.body;
-      return throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        errorCode
-      });
-  }
-}, "de_AssumeRoleWithWebIdentityCommandError");
 var de_DecodeAuthorizationMessageCommand = /* @__PURE__ */ __name(async (output, context) => {
   if (output.statusCode >= 300) {
-    return de_DecodeAuthorizationMessageCommandError(output, context);
+    return de_CommandError(output, context);
   }
   const data = await parseBody(output.body, context);
   let contents = {};
@@ -7154,13 +6500,86 @@ var de_DecodeAuthorizationMessageCommand = /* @__PURE__ */ __name(async (output,
   };
   return response;
 }, "de_DecodeAuthorizationMessageCommand");
-var de_DecodeAuthorizationMessageCommandError = /* @__PURE__ */ __name(async (output, context) => {
+var de_GetAccessKeyInfoCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await parseBody(output.body, context);
+  let contents = {};
+  contents = de_GetAccessKeyInfoResponse(data.GetAccessKeyInfoResult, context);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_GetAccessKeyInfoCommand");
+var de_GetCallerIdentityCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await parseBody(output.body, context);
+  let contents = {};
+  contents = de_GetCallerIdentityResponse(data.GetCallerIdentityResult, context);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_GetCallerIdentityCommand");
+var de_GetFederationTokenCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await parseBody(output.body, context);
+  let contents = {};
+  contents = de_GetFederationTokenResponse(data.GetFederationTokenResult, context);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_GetFederationTokenCommand");
+var de_GetSessionTokenCommand = /* @__PURE__ */ __name(async (output, context) => {
+  if (output.statusCode >= 300) {
+    return de_CommandError(output, context);
+  }
+  const data = await parseBody(output.body, context);
+  let contents = {};
+  contents = de_GetSessionTokenResponse(data.GetSessionTokenResult, context);
+  const response = {
+    $metadata: deserializeMetadata(output),
+    ...contents
+  };
+  return response;
+}, "de_GetSessionTokenCommand");
+var de_CommandError = /* @__PURE__ */ __name(async (output, context) => {
   const parsedOutput = {
     ...output,
     body: await parseErrorBody(output.body, context)
   };
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
+    case "ExpiredTokenException":
+    case "com.amazonaws.sts#ExpiredTokenException":
+      throw await de_ExpiredTokenExceptionRes(parsedOutput, context);
+    case "MalformedPolicyDocument":
+    case "com.amazonaws.sts#MalformedPolicyDocumentException":
+      throw await de_MalformedPolicyDocumentExceptionRes(parsedOutput, context);
+    case "PackedPolicyTooLarge":
+    case "com.amazonaws.sts#PackedPolicyTooLargeException":
+      throw await de_PackedPolicyTooLargeExceptionRes(parsedOutput, context);
+    case "RegionDisabledException":
+    case "com.amazonaws.sts#RegionDisabledException":
+      throw await de_RegionDisabledExceptionRes(parsedOutput, context);
+    case "IDPRejectedClaim":
+    case "com.amazonaws.sts#IDPRejectedClaimException":
+      throw await de_IDPRejectedClaimExceptionRes(parsedOutput, context);
+    case "InvalidIdentityToken":
+    case "com.amazonaws.sts#InvalidIdentityTokenException":
+      throw await de_InvalidIdentityTokenExceptionRes(parsedOutput, context);
+    case "IDPCommunicationError":
+    case "com.amazonaws.sts#IDPCommunicationErrorException":
+      throw await de_IDPCommunicationErrorExceptionRes(parsedOutput, context);
     case "InvalidAuthorizationMessageException":
     case "com.amazonaws.sts#InvalidAuthorizationMessageException":
       throw await de_InvalidAuthorizationMessageExceptionRes(parsedOutput, context);
@@ -7172,129 +6591,7 @@ var de_DecodeAuthorizationMessageCommandError = /* @__PURE__ */ __name(async (ou
         errorCode
       });
   }
-}, "de_DecodeAuthorizationMessageCommandError");
-var de_GetAccessKeyInfoCommand = /* @__PURE__ */ __name(async (output, context) => {
-  if (output.statusCode >= 300) {
-    return de_GetAccessKeyInfoCommandError(output, context);
-  }
-  const data = await parseBody(output.body, context);
-  let contents = {};
-  contents = de_GetAccessKeyInfoResponse(data.GetAccessKeyInfoResult, context);
-  const response = {
-    $metadata: deserializeMetadata(output),
-    ...contents
-  };
-  return response;
-}, "de_GetAccessKeyInfoCommand");
-var de_GetAccessKeyInfoCommandError = /* @__PURE__ */ __name(async (output, context) => {
-  const parsedOutput = {
-    ...output,
-    body: await parseErrorBody(output.body, context)
-  };
-  const errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  const parsedBody = parsedOutput.body;
-  return throwDefaultError({
-    output,
-    parsedBody: parsedBody.Error,
-    errorCode
-  });
-}, "de_GetAccessKeyInfoCommandError");
-var de_GetCallerIdentityCommand = /* @__PURE__ */ __name(async (output, context) => {
-  if (output.statusCode >= 300) {
-    return de_GetCallerIdentityCommandError(output, context);
-  }
-  const data = await parseBody(output.body, context);
-  let contents = {};
-  contents = de_GetCallerIdentityResponse(data.GetCallerIdentityResult, context);
-  const response = {
-    $metadata: deserializeMetadata(output),
-    ...contents
-  };
-  return response;
-}, "de_GetCallerIdentityCommand");
-var de_GetCallerIdentityCommandError = /* @__PURE__ */ __name(async (output, context) => {
-  const parsedOutput = {
-    ...output,
-    body: await parseErrorBody(output.body, context)
-  };
-  const errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  const parsedBody = parsedOutput.body;
-  return throwDefaultError({
-    output,
-    parsedBody: parsedBody.Error,
-    errorCode
-  });
-}, "de_GetCallerIdentityCommandError");
-var de_GetFederationTokenCommand = /* @__PURE__ */ __name(async (output, context) => {
-  if (output.statusCode >= 300) {
-    return de_GetFederationTokenCommandError(output, context);
-  }
-  const data = await parseBody(output.body, context);
-  let contents = {};
-  contents = de_GetFederationTokenResponse(data.GetFederationTokenResult, context);
-  const response = {
-    $metadata: deserializeMetadata(output),
-    ...contents
-  };
-  return response;
-}, "de_GetFederationTokenCommand");
-var de_GetFederationTokenCommandError = /* @__PURE__ */ __name(async (output, context) => {
-  const parsedOutput = {
-    ...output,
-    body: await parseErrorBody(output.body, context)
-  };
-  const errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    case "MalformedPolicyDocument":
-    case "com.amazonaws.sts#MalformedPolicyDocumentException":
-      throw await de_MalformedPolicyDocumentExceptionRes(parsedOutput, context);
-    case "PackedPolicyTooLarge":
-    case "com.amazonaws.sts#PackedPolicyTooLargeException":
-      throw await de_PackedPolicyTooLargeExceptionRes(parsedOutput, context);
-    case "RegionDisabledException":
-    case "com.amazonaws.sts#RegionDisabledException":
-      throw await de_RegionDisabledExceptionRes(parsedOutput, context);
-    default:
-      const parsedBody = parsedOutput.body;
-      return throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        errorCode
-      });
-  }
-}, "de_GetFederationTokenCommandError");
-var de_GetSessionTokenCommand = /* @__PURE__ */ __name(async (output, context) => {
-  if (output.statusCode >= 300) {
-    return de_GetSessionTokenCommandError(output, context);
-  }
-  const data = await parseBody(output.body, context);
-  let contents = {};
-  contents = de_GetSessionTokenResponse(data.GetSessionTokenResult, context);
-  const response = {
-    $metadata: deserializeMetadata(output),
-    ...contents
-  };
-  return response;
-}, "de_GetSessionTokenCommand");
-var de_GetSessionTokenCommandError = /* @__PURE__ */ __name(async (output, context) => {
-  const parsedOutput = {
-    ...output,
-    body: await parseErrorBody(output.body, context)
-  };
-  const errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    case "RegionDisabledException":
-    case "com.amazonaws.sts#RegionDisabledException":
-      throw await de_RegionDisabledExceptionRes(parsedOutput, context);
-    default:
-      const parsedBody = parsedOutput.body;
-      return throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        errorCode
-      });
-  }
-}, "de_GetSessionTokenCommandError");
+}, "de_CommandError");
 var de_ExpiredTokenExceptionRes = /* @__PURE__ */ __name(async (parsedOutput, context) => {
   const body = parsedOutput.body;
   const deserialized = de_ExpiredTokenException(body.Error, context);
@@ -8147,34 +7444,54 @@ var STS = _STS;
 // src/index.ts
 var import_EndpointParameters9 = __nccwpck_require__(510);
 var import_runtimeExtensions = __nccwpck_require__(2053);
-var import_util_endpoints = __nccwpck_require__(3350);
+
 
 // src/defaultStsRoleAssumers.ts
+var import_util_endpoints = __nccwpck_require__(3350);
 var ASSUME_ROLE_DEFAULT_REGION = "us-east-1";
-var decorateDefaultRegion = /* @__PURE__ */ __name((region) => {
-  if (typeof region !== "function") {
-    return region === void 0 ? ASSUME_ROLE_DEFAULT_REGION : region;
+var resolveRegion = /* @__PURE__ */ __name(async (_region, _parentRegion, credentialProviderLogger) => {
+  var _a2, _b;
+  const region = typeof _region === "function" ? await _region() : _region;
+  const parentRegion = typeof _parentRegion === "function" ? await _parentRegion() : _parentRegion;
+  if (!parentRegion || (0, import_util_endpoints.partition)(parentRegion).name === "aws") {
+    (_a2 = credentialProviderLogger == null ? void 0 : credentialProviderLogger.debug) == null ? void 0 : _a2.call(
+      credentialProviderLogger,
+      "@aws-sdk/client-sts::resolveRegion",
+      "accepting first of:",
+      `${region} (provider)`,
+      `${ASSUME_ROLE_DEFAULT_REGION} (STS default)`
+    );
+    return region ?? ASSUME_ROLE_DEFAULT_REGION;
+  } else {
+    (_b = credentialProviderLogger == null ? void 0 : credentialProviderLogger.debug) == null ? void 0 : _b.call(
+      credentialProviderLogger,
+      "@aws-sdk/client-sts::resolveRegion",
+      "accepting first of:",
+      `${region} (provider)`,
+      `${parentRegion} (parent client)`,
+      `${ASSUME_ROLE_DEFAULT_REGION} (STS default)`
+    );
+    return region ?? parentRegion ?? ASSUME_ROLE_DEFAULT_REGION;
   }
-  return async () => {
-    try {
-      return await region();
-    } catch (e) {
-      return ASSUME_ROLE_DEFAULT_REGION;
-    }
-  };
-}, "decorateDefaultRegion");
+}, "resolveRegion");
 var getDefaultRoleAssumer = /* @__PURE__ */ __name((stsOptions, stsClientCtor) => {
   let stsClient;
   let closureSourceCreds;
   return async (sourceCreds, params) => {
+    var _a2;
     closureSourceCreds = sourceCreds;
     if (!stsClient) {
-      const { logger, region, requestHandler } = stsOptions;
+      const { logger, region, requestHandler, credentialProviderLogger } = stsOptions;
+      const resolvedRegion = await resolveRegion(
+        region,
+        (_a2 = stsOptions == null ? void 0 : stsOptions.parentClientConfig) == null ? void 0 : _a2.region,
+        credentialProviderLogger
+      );
       stsClient = new stsClientCtor({
         logger,
         // A hack to make sts client uses the credential in current closure.
         credentialDefaultProvider: () => async () => closureSourceCreds,
-        region: decorateDefaultRegion(region || stsOptions.region),
+        region: resolvedRegion,
         ...requestHandler ? { requestHandler } : {}
       });
     }
@@ -8195,11 +7512,17 @@ var getDefaultRoleAssumer = /* @__PURE__ */ __name((stsOptions, stsClientCtor) =
 var getDefaultRoleAssumerWithWebIdentity = /* @__PURE__ */ __name((stsOptions, stsClientCtor) => {
   let stsClient;
   return async (params) => {
+    var _a2;
     if (!stsClient) {
-      const { logger, region, requestHandler } = stsOptions;
+      const { logger, region, requestHandler, credentialProviderLogger } = stsOptions;
+      const resolvedRegion = await resolveRegion(
+        region,
+        (_a2 = stsOptions == null ? void 0 : stsOptions.parentClientConfig) == null ? void 0 : _a2.region,
+        credentialProviderLogger
+      );
       stsClient = new stsClientCtor({
         logger,
-        region: decorateDefaultRegion(region || stsOptions.region),
+        region: resolvedRegion,
         ...requestHandler ? { requestHandler } : {}
       });
     }
@@ -8560,7 +7883,13 @@ var resolveAwsSdkSigV4Config = /* @__PURE__ */ __name((config) => {
   }
   if (!normalizedCreds) {
     if (config.credentialDefaultProvider) {
-      normalizedCreds = (0, import_core.normalizeProvider)(config.credentialDefaultProvider(config));
+      normalizedCreds = (0, import_core.normalizeProvider)(
+        config.credentialDefaultProvider(
+          Object.assign({}, config, {
+            parentClientConfig: config
+          })
+        )
+      );
     } else {
       normalizedCreds = /* @__PURE__ */ __name(async () => {
         throw new Error("`credentials` is missing");
@@ -9105,7 +8434,14 @@ var resolveAssumeRoleCredentials = /* @__PURE__ */ __name(async (profileName, pr
   const data = profiles[profileName];
   if (!options.roleAssumer) {
     const { getDefaultRoleAssumer: getDefaultRoleAssumer2 } = await Promise.resolve().then(() => (init_loadSts(), loadSts_exports));
-    options.roleAssumer = getDefaultRoleAssumer2(options.clientConfig, options.clientPlugins);
+    options.roleAssumer = getDefaultRoleAssumer2(
+      {
+        ...options.clientConfig,
+        credentialProviderLogger: options.logger,
+        parentClientConfig: options == null ? void 0 : options.parentClientConfig
+      },
+      options.clientPlugins
+    );
   }
   const { source_profile } = data;
   if (source_profile && source_profile in visitedProfiles) {
@@ -9179,7 +8515,8 @@ var resolveWebIdentityCredentials = /* @__PURE__ */ __name(async (profile, optio
     roleArn: profile.role_arn,
     roleSessionName: profile.role_session_name,
     roleAssumerWithWebIdentity: options.roleAssumerWithWebIdentity,
-    logger: options.logger
+    logger: options.logger,
+    parentClientConfig: options.parentClientConfig
   })()
 ), "resolveWebIdentityCredentials");
 
@@ -9692,10 +9029,33 @@ exports.fromTokenFile = fromTokenFile;
 /***/ }),
 
 /***/ 7905:
-/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
+/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 "use strict";
 
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.fromWebToken = void 0;
 const fromWebToken = (init) => async () => {
@@ -9705,7 +9065,11 @@ const fromWebToken = (init) => async () => {
     let { roleAssumerWithWebIdentity } = init;
     if (!roleAssumerWithWebIdentity) {
         const { getDefaultRoleAssumerWithWebIdentity } = await Promise.resolve().then(() => __importStar(__nccwpck_require__(4999)));
-        roleAssumerWithWebIdentity = getDefaultRoleAssumerWithWebIdentity(init.clientConfig, init.clientPlugins);
+        roleAssumerWithWebIdentity = getDefaultRoleAssumerWithWebIdentity({
+            ...init.clientConfig,
+            credentialProviderLogger: init.logger,
+            parentClientConfig: init.parentClientConfig,
+        }, init.clientPlugins);
     }
     return roleAssumerWithWebIdentity({
         RoleArn: roleArn,
@@ -10030,7 +9394,11 @@ var import_signature_v4 = __nccwpck_require__(1528);
 var import_util_middleware = __nccwpck_require__(2390);
 var CREDENTIAL_EXPIRE_WINDOW = 3e5;
 var resolveAwsAuthConfig = /* @__PURE__ */ __name((input) => {
-  const normalizedCreds = input.credentials ? normalizeCredentialProvider(input.credentials) : input.credentialDefaultProvider(input);
+  const normalizedCreds = input.credentials ? normalizeCredentialProvider(input.credentials) : input.credentialDefaultProvider(
+    Object.assign({}, input, {
+      parentClientConfig: input
+    })
+  );
   const { signingEscapePath = true, systemClockOffset = input.systemClockOffset || 0, sha256 } = input;
   let signer;
   if (input.signer) {
@@ -10096,7 +9464,11 @@ var resolveAwsAuthConfig = /* @__PURE__ */ __name((input) => {
   };
 }, "resolveAwsAuthConfig");
 var resolveSigV4AuthConfig = /* @__PURE__ */ __name((input) => {
-  const normalizedCreds = input.credentials ? normalizeCredentialProvider(input.credentials) : input.credentialDefaultProvider(input);
+  const normalizedCreds = input.credentials ? normalizeCredentialProvider(input.credentials) : input.credentialDefaultProvider(
+    Object.assign({}, input, {
+      parentClientConfig: input
+    })
+  );
   const { signingEscapePath = true, systemClockOffset = input.systemClockOffset || 0, sha256 } = input;
   let signer;
   if (input.signer) {
@@ -11938,13 +11310,24 @@ function createPaginator(ClientCtor, CommandCtor, inputTokenName, outputTokenNam
       }
       yield page;
       const prevToken = token;
-      token = page[outputTokenName];
+      token = get(page, outputTokenName);
       hasNext = !!(token && (!config.stopOnSameToken || token !== prevToken));
     }
     return void 0;
   }, "paginateOperation");
 }
 __name(createPaginator, "createPaginator");
+var get = /* @__PURE__ */ __name((fromObject, path) => {
+  let cursor = fromObject;
+  const pathComponents = path.split(".");
+  for (const step of pathComponents) {
+    if (!cursor || typeof cursor !== "object") {
+      return void 0;
+    }
+    cursor = cursor[step];
+  }
+  return cursor;
+}, "get");
 // Annotate the CommonJS export names for ESM import in node:
 
 0 && (0);
@@ -17894,9 +17277,11 @@ var SelectorType = /* @__PURE__ */ ((SelectorType2) => {
 /***/ 2429:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
+var __create = Object.create;
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
+var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
 var __name = (target, value) => __defProp(target, "name", { value, configurable: true });
 var __export = (target, all) => {
@@ -17911,6 +17296,14 @@ var __copyProps = (to, from, except, desc) => {
   }
   return to;
 };
+var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+  // If the importer is in node compatibility mode or this is not an ESM
+  // file that has been converted to a CommonJS file using a Babel-
+  // compatible transform (i.e. "__esModule" has not been set), then set
+  // "default" to the CommonJS "module.exports" for node compatibility.
+  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+  mod
+));
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // src/index.ts
@@ -17922,7 +17315,6 @@ module.exports = __toCommonJS(src_exports);
 
 // src/resolveDefaultsModeConfig.ts
 var import_config_resolver = __nccwpck_require__(3098);
-var import_credential_provider_imds = __nccwpck_require__(7477);
 var import_node_config_provider = __nccwpck_require__(3461);
 var import_property_provider = __nccwpck_require__(9721);
 
@@ -17991,8 +17383,9 @@ var inferPhysicalRegion = /* @__PURE__ */ __name(async () => {
   }
   if (!process.env[ENV_IMDS_DISABLED]) {
     try {
-      const endpoint = await (0, import_credential_provider_imds.getInstanceMetadataEndpoint)();
-      return (await (0, import_credential_provider_imds.httpRequest)({ ...endpoint, path: IMDS_REGION_PATH })).toString();
+      const { getInstanceMetadataEndpoint, httpRequest } = await Promise.resolve().then(() => __toESM(__nccwpck_require__(7477)));
+      const endpoint = await getInstanceMetadataEndpoint();
+      return (await httpRequest({ ...endpoint, path: IMDS_REGION_PATH })).toString();
     } catch (e) {
     }
   }
@@ -22835,7 +22228,7 @@ module.exports = require("util");
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"@aws-sdk/client-marketplace-catalog","description":"AWS SDK for JavaScript Marketplace Catalog Client for Node.js, Browser and React Native","version":"3.504.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"node ../../scripts/compilation/inline client-marketplace-catalog","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo marketplace-catalog"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"3.0.0","@aws-crypto/sha256-js":"3.0.0","@aws-sdk/client-sts":"3.504.0","@aws-sdk/core":"3.496.0","@aws-sdk/credential-provider-node":"3.504.0","@aws-sdk/middleware-host-header":"3.502.0","@aws-sdk/middleware-logger":"3.502.0","@aws-sdk/middleware-recursion-detection":"3.502.0","@aws-sdk/middleware-signing":"3.502.0","@aws-sdk/middleware-user-agent":"3.502.0","@aws-sdk/region-config-resolver":"3.502.0","@aws-sdk/types":"3.502.0","@aws-sdk/util-endpoints":"3.502.0","@aws-sdk/util-user-agent-browser":"3.502.0","@aws-sdk/util-user-agent-node":"3.502.0","@smithy/config-resolver":"^2.1.1","@smithy/core":"^1.3.1","@smithy/fetch-http-handler":"^2.4.1","@smithy/hash-node":"^2.1.1","@smithy/invalid-dependency":"^2.1.1","@smithy/middleware-content-length":"^2.1.1","@smithy/middleware-endpoint":"^2.4.1","@smithy/middleware-retry":"^2.1.1","@smithy/middleware-serde":"^2.1.1","@smithy/middleware-stack":"^2.1.1","@smithy/node-config-provider":"^2.2.1","@smithy/node-http-handler":"^2.3.1","@smithy/protocol-http":"^3.1.1","@smithy/smithy-client":"^2.3.1","@smithy/types":"^2.9.1","@smithy/url-parser":"^2.1.1","@smithy/util-base64":"^2.1.1","@smithy/util-body-length-browser":"^2.1.1","@smithy/util-body-length-node":"^2.2.1","@smithy/util-defaults-mode-browser":"^2.1.1","@smithy/util-defaults-mode-node":"^2.1.1","@smithy/util-endpoints":"^1.1.1","@smithy/util-retry":"^2.1.1","@smithy/util-utf8":"^2.1.1","tslib":"^2.5.0","uuid":"^8.3.2"},"devDependencies":{"@smithy/service-client-documentation-generator":"^2.1.1","@tsconfig/node14":"1.0.3","@types/node":"^14.14.31","@types/uuid":"^8.3.0","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typescript":"~4.9.5"},"engines":{"node":">=14.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-marketplace-catalog","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-marketplace-catalog"}}');
+module.exports = JSON.parse('{"name":"@aws-sdk/client-marketplace-catalog","description":"AWS SDK for JavaScript Marketplace Catalog Client for Node.js, Browser and React Native","version":"3.511.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"node ../../scripts/compilation/inline client-marketplace-catalog","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo marketplace-catalog"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"3.0.0","@aws-crypto/sha256-js":"3.0.0","@aws-sdk/client-sts":"3.511.0","@aws-sdk/core":"3.511.0","@aws-sdk/credential-provider-node":"3.511.0","@aws-sdk/middleware-host-header":"3.511.0","@aws-sdk/middleware-logger":"3.511.0","@aws-sdk/middleware-recursion-detection":"3.511.0","@aws-sdk/middleware-signing":"3.511.0","@aws-sdk/middleware-user-agent":"3.511.0","@aws-sdk/region-config-resolver":"3.511.0","@aws-sdk/types":"3.511.0","@aws-sdk/util-endpoints":"3.511.0","@aws-sdk/util-user-agent-browser":"3.511.0","@aws-sdk/util-user-agent-node":"3.511.0","@smithy/config-resolver":"^2.1.1","@smithy/core":"^1.3.1","@smithy/fetch-http-handler":"^2.4.1","@smithy/hash-node":"^2.1.1","@smithy/invalid-dependency":"^2.1.1","@smithy/middleware-content-length":"^2.1.1","@smithy/middleware-endpoint":"^2.4.1","@smithy/middleware-retry":"^2.1.1","@smithy/middleware-serde":"^2.1.1","@smithy/middleware-stack":"^2.1.1","@smithy/node-config-provider":"^2.2.1","@smithy/node-http-handler":"^2.3.1","@smithy/protocol-http":"^3.1.1","@smithy/smithy-client":"^2.3.1","@smithy/types":"^2.9.1","@smithy/url-parser":"^2.1.1","@smithy/util-base64":"^2.1.1","@smithy/util-body-length-browser":"^2.1.1","@smithy/util-body-length-node":"^2.2.1","@smithy/util-defaults-mode-browser":"^2.1.1","@smithy/util-defaults-mode-node":"^2.1.1","@smithy/util-endpoints":"^1.1.1","@smithy/util-retry":"^2.1.1","@smithy/util-utf8":"^2.1.1","tslib":"^2.5.0","uuid":"^8.3.2"},"devDependencies":{"@smithy/service-client-documentation-generator":"^2.1.1","@tsconfig/node14":"1.0.3","@types/node":"^14.14.31","@types/uuid":"^8.3.0","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typescript":"~4.9.5"},"engines":{"node":">=14.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-marketplace-catalog","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-marketplace-catalog"}}');
 
 /***/ }),
 
@@ -22843,7 +22236,7 @@ module.exports = JSON.parse('{"name":"@aws-sdk/client-marketplace-catalog","desc
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"@aws-sdk/client-sso-oidc","description":"AWS SDK for JavaScript Sso Oidc Client for Node.js, Browser and React Native","version":"3.504.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"node ../../scripts/compilation/inline client-sso-oidc","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo sso-oidc"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"3.0.0","@aws-crypto/sha256-js":"3.0.0","@aws-sdk/client-sts":"3.504.0","@aws-sdk/core":"3.496.0","@aws-sdk/middleware-host-header":"3.502.0","@aws-sdk/middleware-logger":"3.502.0","@aws-sdk/middleware-recursion-detection":"3.502.0","@aws-sdk/middleware-signing":"3.502.0","@aws-sdk/middleware-user-agent":"3.502.0","@aws-sdk/region-config-resolver":"3.502.0","@aws-sdk/types":"3.502.0","@aws-sdk/util-endpoints":"3.502.0","@aws-sdk/util-user-agent-browser":"3.502.0","@aws-sdk/util-user-agent-node":"3.502.0","@smithy/config-resolver":"^2.1.1","@smithy/core":"^1.3.1","@smithy/fetch-http-handler":"^2.4.1","@smithy/hash-node":"^2.1.1","@smithy/invalid-dependency":"^2.1.1","@smithy/middleware-content-length":"^2.1.1","@smithy/middleware-endpoint":"^2.4.1","@smithy/middleware-retry":"^2.1.1","@smithy/middleware-serde":"^2.1.1","@smithy/middleware-stack":"^2.1.1","@smithy/node-config-provider":"^2.2.1","@smithy/node-http-handler":"^2.3.1","@smithy/protocol-http":"^3.1.1","@smithy/smithy-client":"^2.3.1","@smithy/types":"^2.9.1","@smithy/url-parser":"^2.1.1","@smithy/util-base64":"^2.1.1","@smithy/util-body-length-browser":"^2.1.1","@smithy/util-body-length-node":"^2.2.1","@smithy/util-defaults-mode-browser":"^2.1.1","@smithy/util-defaults-mode-node":"^2.1.1","@smithy/util-endpoints":"^1.1.1","@smithy/util-retry":"^2.1.1","@smithy/util-utf8":"^2.1.1","tslib":"^2.5.0"},"devDependencies":{"@smithy/service-client-documentation-generator":"^2.1.1","@tsconfig/node14":"1.0.3","@types/node":"^14.14.31","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typescript":"~4.9.5"},"engines":{"node":">=14.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","peerDependencies":{"@aws-sdk/credential-provider-node":"^3.504.0"},"browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-sso-oidc","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-sso-oidc"}}');
+module.exports = JSON.parse('{"name":"@aws-sdk/client-sso-oidc","description":"AWS SDK for JavaScript Sso Oidc Client for Node.js, Browser and React Native","version":"3.511.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"node ../../scripts/compilation/inline client-sso-oidc","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo sso-oidc"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"3.0.0","@aws-crypto/sha256-js":"3.0.0","@aws-sdk/client-sts":"3.511.0","@aws-sdk/core":"3.511.0","@aws-sdk/middleware-host-header":"3.511.0","@aws-sdk/middleware-logger":"3.511.0","@aws-sdk/middleware-recursion-detection":"3.511.0","@aws-sdk/middleware-signing":"3.511.0","@aws-sdk/middleware-user-agent":"3.511.0","@aws-sdk/region-config-resolver":"3.511.0","@aws-sdk/types":"3.511.0","@aws-sdk/util-endpoints":"3.511.0","@aws-sdk/util-user-agent-browser":"3.511.0","@aws-sdk/util-user-agent-node":"3.511.0","@smithy/config-resolver":"^2.1.1","@smithy/core":"^1.3.1","@smithy/fetch-http-handler":"^2.4.1","@smithy/hash-node":"^2.1.1","@smithy/invalid-dependency":"^2.1.1","@smithy/middleware-content-length":"^2.1.1","@smithy/middleware-endpoint":"^2.4.1","@smithy/middleware-retry":"^2.1.1","@smithy/middleware-serde":"^2.1.1","@smithy/middleware-stack":"^2.1.1","@smithy/node-config-provider":"^2.2.1","@smithy/node-http-handler":"^2.3.1","@smithy/protocol-http":"^3.1.1","@smithy/smithy-client":"^2.3.1","@smithy/types":"^2.9.1","@smithy/url-parser":"^2.1.1","@smithy/util-base64":"^2.1.1","@smithy/util-body-length-browser":"^2.1.1","@smithy/util-body-length-node":"^2.2.1","@smithy/util-defaults-mode-browser":"^2.1.1","@smithy/util-defaults-mode-node":"^2.1.1","@smithy/util-endpoints":"^1.1.1","@smithy/util-retry":"^2.1.1","@smithy/util-utf8":"^2.1.1","tslib":"^2.5.0"},"devDependencies":{"@smithy/service-client-documentation-generator":"^2.1.1","@tsconfig/node14":"1.0.3","@types/node":"^14.14.31","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typescript":"~4.9.5"},"engines":{"node":">=14.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","peerDependencies":{"@aws-sdk/credential-provider-node":"^3.511.0"},"browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-sso-oidc","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-sso-oidc"}}');
 
 /***/ }),
 
@@ -22851,7 +22244,7 @@ module.exports = JSON.parse('{"name":"@aws-sdk/client-sso-oidc","description":"A
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"@aws-sdk/client-sso","description":"AWS SDK for JavaScript Sso Client for Node.js, Browser and React Native","version":"3.502.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"node ../../scripts/compilation/inline client-sso","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo sso"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"3.0.0","@aws-crypto/sha256-js":"3.0.0","@aws-sdk/core":"3.496.0","@aws-sdk/middleware-host-header":"3.502.0","@aws-sdk/middleware-logger":"3.502.0","@aws-sdk/middleware-recursion-detection":"3.502.0","@aws-sdk/middleware-user-agent":"3.502.0","@aws-sdk/region-config-resolver":"3.502.0","@aws-sdk/types":"3.502.0","@aws-sdk/util-endpoints":"3.502.0","@aws-sdk/util-user-agent-browser":"3.502.0","@aws-sdk/util-user-agent-node":"3.502.0","@smithy/config-resolver":"^2.1.1","@smithy/core":"^1.3.1","@smithy/fetch-http-handler":"^2.4.1","@smithy/hash-node":"^2.1.1","@smithy/invalid-dependency":"^2.1.1","@smithy/middleware-content-length":"^2.1.1","@smithy/middleware-endpoint":"^2.4.1","@smithy/middleware-retry":"^2.1.1","@smithy/middleware-serde":"^2.1.1","@smithy/middleware-stack":"^2.1.1","@smithy/node-config-provider":"^2.2.1","@smithy/node-http-handler":"^2.3.1","@smithy/protocol-http":"^3.1.1","@smithy/smithy-client":"^2.3.1","@smithy/types":"^2.9.1","@smithy/url-parser":"^2.1.1","@smithy/util-base64":"^2.1.1","@smithy/util-body-length-browser":"^2.1.1","@smithy/util-body-length-node":"^2.2.1","@smithy/util-defaults-mode-browser":"^2.1.1","@smithy/util-defaults-mode-node":"^2.1.1","@smithy/util-endpoints":"^1.1.1","@smithy/util-retry":"^2.1.1","@smithy/util-utf8":"^2.1.1","tslib":"^2.5.0"},"devDependencies":{"@smithy/service-client-documentation-generator":"^2.1.1","@tsconfig/node14":"1.0.3","@types/node":"^14.14.31","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typescript":"~4.9.5"},"engines":{"node":">=14.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-sso","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-sso"}}');
+module.exports = JSON.parse('{"name":"@aws-sdk/client-sso","description":"AWS SDK for JavaScript Sso Client for Node.js, Browser and React Native","version":"3.511.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"node ../../scripts/compilation/inline client-sso","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo sso"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"3.0.0","@aws-crypto/sha256-js":"3.0.0","@aws-sdk/core":"3.511.0","@aws-sdk/middleware-host-header":"3.511.0","@aws-sdk/middleware-logger":"3.511.0","@aws-sdk/middleware-recursion-detection":"3.511.0","@aws-sdk/middleware-user-agent":"3.511.0","@aws-sdk/region-config-resolver":"3.511.0","@aws-sdk/types":"3.511.0","@aws-sdk/util-endpoints":"3.511.0","@aws-sdk/util-user-agent-browser":"3.511.0","@aws-sdk/util-user-agent-node":"3.511.0","@smithy/config-resolver":"^2.1.1","@smithy/core":"^1.3.1","@smithy/fetch-http-handler":"^2.4.1","@smithy/hash-node":"^2.1.1","@smithy/invalid-dependency":"^2.1.1","@smithy/middleware-content-length":"^2.1.1","@smithy/middleware-endpoint":"^2.4.1","@smithy/middleware-retry":"^2.1.1","@smithy/middleware-serde":"^2.1.1","@smithy/middleware-stack":"^2.1.1","@smithy/node-config-provider":"^2.2.1","@smithy/node-http-handler":"^2.3.1","@smithy/protocol-http":"^3.1.1","@smithy/smithy-client":"^2.3.1","@smithy/types":"^2.9.1","@smithy/url-parser":"^2.1.1","@smithy/util-base64":"^2.1.1","@smithy/util-body-length-browser":"^2.1.1","@smithy/util-body-length-node":"^2.2.1","@smithy/util-defaults-mode-browser":"^2.1.1","@smithy/util-defaults-mode-node":"^2.1.1","@smithy/util-endpoints":"^1.1.1","@smithy/util-retry":"^2.1.1","@smithy/util-utf8":"^2.1.1","tslib":"^2.5.0"},"devDependencies":{"@smithy/service-client-documentation-generator":"^2.1.1","@tsconfig/node14":"1.0.3","@types/node":"^14.14.31","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typescript":"~4.9.5"},"engines":{"node":">=14.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-sso","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-sso"}}');
 
 /***/ }),
 
@@ -22859,7 +22252,7 @@ module.exports = JSON.parse('{"name":"@aws-sdk/client-sso","description":"AWS SD
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"@aws-sdk/client-sts","description":"AWS SDK for JavaScript Sts Client for Node.js, Browser and React Native","version":"3.504.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"node ../../scripts/compilation/inline client-sts","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"rimraf ./dist-types tsconfig.types.tsbuildinfo && tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo sts","test":"yarn test:unit","test:unit":"jest"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"3.0.0","@aws-crypto/sha256-js":"3.0.0","@aws-sdk/core":"3.496.0","@aws-sdk/middleware-host-header":"3.502.0","@aws-sdk/middleware-logger":"3.502.0","@aws-sdk/middleware-recursion-detection":"3.502.0","@aws-sdk/middleware-user-agent":"3.502.0","@aws-sdk/region-config-resolver":"3.502.0","@aws-sdk/types":"3.502.0","@aws-sdk/util-endpoints":"3.502.0","@aws-sdk/util-user-agent-browser":"3.502.0","@aws-sdk/util-user-agent-node":"3.502.0","@smithy/config-resolver":"^2.1.1","@smithy/core":"^1.3.1","@smithy/fetch-http-handler":"^2.4.1","@smithy/hash-node":"^2.1.1","@smithy/invalid-dependency":"^2.1.1","@smithy/middleware-content-length":"^2.1.1","@smithy/middleware-endpoint":"^2.4.1","@smithy/middleware-retry":"^2.1.1","@smithy/middleware-serde":"^2.1.1","@smithy/middleware-stack":"^2.1.1","@smithy/node-config-provider":"^2.2.1","@smithy/node-http-handler":"^2.3.1","@smithy/protocol-http":"^3.1.1","@smithy/smithy-client":"^2.3.1","@smithy/types":"^2.9.1","@smithy/url-parser":"^2.1.1","@smithy/util-base64":"^2.1.1","@smithy/util-body-length-browser":"^2.1.1","@smithy/util-body-length-node":"^2.2.1","@smithy/util-defaults-mode-browser":"^2.1.1","@smithy/util-defaults-mode-node":"^2.1.1","@smithy/util-endpoints":"^1.1.1","@smithy/util-middleware":"^2.1.1","@smithy/util-retry":"^2.1.1","@smithy/util-utf8":"^2.1.1","fast-xml-parser":"4.2.5","tslib":"^2.5.0"},"devDependencies":{"@smithy/service-client-documentation-generator":"^2.1.1","@tsconfig/node14":"1.0.3","@types/node":"^14.14.31","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typescript":"~4.9.5"},"engines":{"node":">=14.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","peerDependencies":{"@aws-sdk/credential-provider-node":"^3.504.0"},"browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-sts","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-sts"}}');
+module.exports = JSON.parse('{"name":"@aws-sdk/client-sts","description":"AWS SDK for JavaScript Sts Client for Node.js, Browser and React Native","version":"3.511.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"node ../../scripts/compilation/inline client-sts","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"rimraf ./dist-types tsconfig.types.tsbuildinfo && tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo sts","test":"yarn test:unit","test:unit":"jest"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"3.0.0","@aws-crypto/sha256-js":"3.0.0","@aws-sdk/core":"3.511.0","@aws-sdk/middleware-host-header":"3.511.0","@aws-sdk/middleware-logger":"3.511.0","@aws-sdk/middleware-recursion-detection":"3.511.0","@aws-sdk/middleware-user-agent":"3.511.0","@aws-sdk/region-config-resolver":"3.511.0","@aws-sdk/types":"3.511.0","@aws-sdk/util-endpoints":"3.511.0","@aws-sdk/util-user-agent-browser":"3.511.0","@aws-sdk/util-user-agent-node":"3.511.0","@smithy/config-resolver":"^2.1.1","@smithy/core":"^1.3.1","@smithy/fetch-http-handler":"^2.4.1","@smithy/hash-node":"^2.1.1","@smithy/invalid-dependency":"^2.1.1","@smithy/middleware-content-length":"^2.1.1","@smithy/middleware-endpoint":"^2.4.1","@smithy/middleware-retry":"^2.1.1","@smithy/middleware-serde":"^2.1.1","@smithy/middleware-stack":"^2.1.1","@smithy/node-config-provider":"^2.2.1","@smithy/node-http-handler":"^2.3.1","@smithy/protocol-http":"^3.1.1","@smithy/smithy-client":"^2.3.1","@smithy/types":"^2.9.1","@smithy/url-parser":"^2.1.1","@smithy/util-base64":"^2.1.1","@smithy/util-body-length-browser":"^2.1.1","@smithy/util-body-length-node":"^2.2.1","@smithy/util-defaults-mode-browser":"^2.1.1","@smithy/util-defaults-mode-node":"^2.1.1","@smithy/util-endpoints":"^1.1.1","@smithy/util-middleware":"^2.1.1","@smithy/util-retry":"^2.1.1","@smithy/util-utf8":"^2.1.1","fast-xml-parser":"4.2.5","tslib":"^2.5.0"},"devDependencies":{"@smithy/service-client-documentation-generator":"^2.1.1","@tsconfig/node14":"1.0.3","@types/node":"^14.14.31","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typescript":"~4.9.5"},"engines":{"node":">=14.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","peerDependencies":{"@aws-sdk/credential-provider-node":"^3.511.0"},"browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-sts","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-sts"}}');
 
 /***/ })
 
