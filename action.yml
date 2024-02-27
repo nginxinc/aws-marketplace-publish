@@ -20,6 +20,12 @@ inputs:
   usage-instructions:
     description: 'Usage instructions for the new release'
     required: true
+  compatible-services:
+    description: 'What services is this version of your product compatible with?'
+    required: false
+  resources:
+    description: 'What resources are available for users to deploy your software?'
+    required: false
 runs:
   using: 'node20'
   main: 'dist/index.js'

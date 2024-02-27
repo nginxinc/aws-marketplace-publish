@@ -14,6 +14,8 @@ async function run(): Promise<void> {
     const releaseNotes = core.getInput('release-notes')
     const description = core.getInput('description')
     const usageInstructions = core.getInput('usage-instructions')
+    const deploymentResources = core.getInput('resources')
+    const compatibleServices = core.getInput('compatible-services')
 
     const details = {
       Version: {
@@ -22,12 +24,12 @@ async function run(): Promise<void> {
       },
       DeliveryOptions: [
         {
-          DeliveryOptionTitle: 'EKSDelivery',
+          DeliveryOptionTitle: 'ECS Fargate',
           Details: {
             EcrDeliveryOptionDetails: {
-              DeploymentResources: [],
+              DeploymentResources: deploymentResources || [],
               ContainerImages: [registry],
-              CompatibleServices: ['EKS'],
+              CompatibleServices: [compatibleServices || 'ECS'],
               Description: description,
               UsageInstructions: usageInstructions,
             },
