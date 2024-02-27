@@ -21,10 +21,22 @@ inputs:
     description: 'Usage instructions for the new release'
     required: true
   compatible-services:
-    description: 'What services is this version of your product compatible with?'
+    description: 'Comma-delimited list of compatible services for this to be deployed with'
     required: false
   resources:
-    description: 'What resources are available for users to deploy your software?'
+    description: |
+      Pass in a JSON array to this. Example: 
+      resources: |-
+        [
+          {
+            Name: "Terraform Module",
+            Url: "https://github.com/managedoss/terraform-aws-superset"
+          },
+          {
+            Name: "Cloudformation Template",
+            Url: "https://us-east-1.console.aws.amazon.com/cloudformation/home#/stacks/quickcreate?templateUrl=https://managedoss-shared-web-assets.s3.amazonaws.com/cloudformation.yml"
+          }
+        ]
     required: false
 runs:
   using: 'node20'
