@@ -42,8 +42,8 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core = __importStar(__nccwpck_require__(2186));
 const aws = __importStar(__nccwpck_require__(7560));
 function run() {
-    var _a;
     return __awaiter(this, void 0, void 0, function* () {
+        var _a;
         try {
             const client = new aws.MarketplaceCatalogClient({ region: 'us-east-1' });
             const productID = core.getInput('product-id', { required: true });
