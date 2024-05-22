@@ -19,9 +19,9 @@ jobs:
     steps:
       - name: Fetch Dependabot metadata
         id: dependabot-metadata
-        uses: dependabot/fetch-metadata@v2.0.0
+        uses: dependabot/fetch-metadata@v2.1.0
 
-      - uses: actions/checkout@v4.1.2
+      - uses: actions/checkout@v4.1.4
         if: ${{ steps.dependabot-metadata.outputs.package-ecosystem == 'npm_and_yarn' }}
         with:
           ref: ${{ github.head_ref }}
@@ -46,6 +46,6 @@ jobs:
       - name: Commit changes
         if: ${{ steps.dependabot-metadata.outputs.package-ecosystem == 'npm_and_yarn' }}
         id: commit
-        uses: stefanzweifel/git-auto-commit-action@v5.0.0
+        uses: stefanzweifel/git-auto-commit-action@v5.0.1
         with:
           commit_message: 'Update dist/ after build'
