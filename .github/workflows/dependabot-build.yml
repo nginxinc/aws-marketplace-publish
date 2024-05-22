@@ -27,11 +27,11 @@ jobs:
           ref: ${{ github.head_ref }}
           token: ${{ secrets.NGINX_PAT }}
 
-      - name: Set up Node.js 16.x
+      - name: Set up Node.js 20.x
         if: ${{ steps.dependabot-metadata.outputs.package-ecosystem == 'npm_and_yarn' }}
         uses: actions/setup-node@v4.0.2
         with:
-          node-version: 16.x
+          node-version: 20.x
 
       - name: Install dependencies
         if: ${{ steps.dependabot-metadata.outputs.package-ecosystem == 'npm_and_yarn' }}
