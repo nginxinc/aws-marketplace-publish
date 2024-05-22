@@ -19,9 +19,9 @@ jobs:
     steps:
       - name: Fetch Dependabot metadata
         id: dependabot-metadata
-        uses: dependabot/fetch-metadata@v2.0.0
+        uses: dependabot/fetch-metadata@v2.1.0
 
-      - uses: actions/checkout@v4.1.2
+      - uses: actions/checkout@v4.1.4
         if: ${{ steps.dependabot-metadata.outputs.package-ecosystem == 'npm_and_yarn' }}
         with:
           ref: ${{ github.head_ref }}
