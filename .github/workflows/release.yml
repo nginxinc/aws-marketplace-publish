@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4.1.6
+        uses: actions/checkout@v4.1.7
 
       - name: Create/Update Draft
         uses: lucacome/draft-release@v1.1.0
