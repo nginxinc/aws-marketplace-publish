@@ -22,14 +22,14 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v2
+        uses: aws-actions/configure-aws-credentials@v4.0.2
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
       - name: Publish to AWS Marketplace
-        uses: nginxinc/aws-marketplace-publish@v0.1.0
+        uses: nginxinc/aws-marketplace-publish@v1.0.5
         with:
           product-id: ${{ secrets.AWS_MARKETPLACE_PRODUCT_ID }}
           version: ${{ replace(github.ref, 'refs/tags/', '') }}
