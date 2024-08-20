@@ -29,7 +29,7 @@ jobs:
           aws-region: us-east-1
 
       - name: Publish to AWS Marketplace
-        uses: nginxinc/aws-marketplace-publish@v0.1.0
+        uses: nginxinc/aws-marketplace-publish@v0.1.2
         with:
           product-id: ${{ secrets.AWS_MARKETPLACE_PRODUCT_ID }}
           version: ${{ replace(github.ref, 'refs/tags/', '') }}
