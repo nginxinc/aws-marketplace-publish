@@ -18,3 +18,27 @@ repos:
         args: [--autofix, --no-sort-keys, --no-ensure-ascii]
       - id: mixed-line-ending
         args: [--fix=lf]
+
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.18.4
+    hooks:
+      - id: gitleaks
+
+  - repo: https://github.com/DavidAnson/markdownlint-cli2
+    rev: v0.14.0
+    hooks:
+      - id: markdownlint-cli2
+
+  - repo: https://github.com/adrienverge/yamllint.git
+    rev: v1.35.1
+    hooks:
+      - id: yamllint
+
+  - repo: https://github.com/thlorenz/doctoc
+    rev: v2.2.0
+    hooks:
+      - id: doctoc
+        args: [--update-only, --title, "## Table of Contents"]
+
+ci:
+  autoupdate_schedule: quarterly # We use renovate for more frequent updates and there's no way to disable autoupdate
