@@ -1,6 +1,5 @@
 # Publish Docker images to AWS Marketplace
 
-
 This is a simple GitHub Action to publish new versions of Docker images to AWS Marketplace.
 At the moment, it only supports adding a new version of an existing product. Contributions are welcome!
 
