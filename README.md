@@ -1,3 +1,7 @@
+<!-- markdownlint-disable-next-line first-line-h1 -->
+[![OpenSSFScorecard](https://api.securityscorecards.dev/projects/github.com/nginxinc/aws-marketplace-publish/badge)](https://scorecard.dev/viewer/?uri=github.com/nginxinc/aws-marketplace-publish)
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+
 # Publish Docker images to AWS Marketplace
 
 This is a simple GitHub Action to publish new versions of Docker images to AWS Marketplace.
