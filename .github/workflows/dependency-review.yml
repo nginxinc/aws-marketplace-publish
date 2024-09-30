@@ -1,0 +1,32 @@
+name: Dependency Review
+on:
+  pull_request:
+    branches:
+      - main
+  merge_group:
+    types:
+      - checks_requested
+
+concurrency:
+  group: ${{ github.ref_name }}-deps-review
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  dependency-review:
+    name: Dependency Review
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: read # for actions/checkout
+      pull-requests: write # for actions/dependency-review-action to post comments
+    if: ${{ github.event_name != 'merge_group' }}
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+
+      - name: Dependency Review
+        uses: actions/dependency-review-action@5a2ce3f5b92ee19cbb1541a4984c76d921601d7c # v4.3.4
+        with:
+          config-file: "nginxinc/k8s-common/dependency-review-config.yml@main"
